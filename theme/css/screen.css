@@ -334,6 +334,7 @@ footer[role="contentinfo"] .copyright { font-size: 0.833em; line-height: 1.8em; 
 .ie #contact .oddbird { font-size: 3.375em; line-height: 1.333em; margin-bottom: 0.444em; }
 .ie #contact .twitter { font-size: 1.25em; line-height: 1.2em; display: inline; float: left; width: 32.075%; margin-right: 1.887%; }
 .ie #contact .twitter:last-child { display: inline; float: right; margin-right: 0; #margin-left: -1em; }
+.no-last-child .ie #contact .twitter .jonny { display: inline; float: right; margin-right: 0; #margin-left: -1em; }
 .ie #contact .twitter::before, .ie #contact .twitter::after { display: -moz-inline-box; -moz-box-orient: vertical; display: inline-block; vertical-align: middle; *vertical-align: auto; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50); opacity: 0.5; }
 .ie #contact .twitter::before, .ie #contact .twitter::after { *display: inline; }
 .ie #contact .twitter::before { content: url('../images/tweet.png?1327695373'); }
@@ -341,6 +342,7 @@ footer[role="contentinfo"] .copyright { font-size: 0.833em; line-height: 1.8em; 
 @media (min-width: 720px) { #contact .oddbird { font-size: 3.375em; line-height: 1.333em; margin-bottom: 0.444em; }
   #contact .twitter { font-size: 1.25em; line-height: 1.2em; display: inline; float: left; width: 32.075%; margin-right: 1.887%; }
   #contact .twitter:last-child { display: inline; float: right; margin-right: 0; #margin-left: -1em; }
+  .no-last-child #contact .twitter .jonny { display: inline; float: right; margin-right: 0; #margin-left: -1em; }
   #contact .twitter::before, #contact .twitter::after { display: -moz-inline-box; -moz-box-orient: vertical; display: inline-block; vertical-align: middle; *vertical-align: auto; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50); opacity: 0.5; }
   #contact .twitter::before, #contact .twitter::after { *display: inline; }
   #contact .twitter::before { content: url('../images/tweet.png?1327695373'); }
