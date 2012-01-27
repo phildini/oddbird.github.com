@@ -82,9 +82,9 @@ html > body { font-size: 16px; }
 html { text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
 
 body { background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(0, 153, 204, 0.296)), color-stop(100%, rgba(0, 191, 255, 0))), -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, rgba(77, 210, 255, 0.296)), color-stop(100%, rgba(77, 210, 255, 0))), url('../images/noise.png?1327695373'); background-image: -webkit-linear-gradient(top, rgba(0, 153, 204, 0.296), rgba(0, 191, 255, 0) 6em), -webkit-linear-gradient(left, rgba(77, 210, 255, 0.296), rgba(77, 210, 255, 0)), url('../images/noise.png?1327695373'); background-image: -moz-linear-gradient(top, rgba(0, 153, 204, 0.296), rgba(0, 191, 255, 0) 6em), -moz-linear-gradient(left, rgba(77, 210, 255, 0.296), rgba(77, 210, 255, 0)), url('../images/noise.png?1327695373'); background-image: -o-linear-gradient(top, rgba(0, 153, 204, 0.296), rgba(0, 191, 255, 0) 6em), -o-linear-gradient(left, rgba(77, 210, 255, 0.296), rgba(77, 210, 255, 0)), url('../images/noise.png?1327695373'); background-image: -ms-linear-gradient(top, rgba(0, 153, 204, 0.296), rgba(0, 191, 255, 0) 6em), -ms-linear-gradient(left, rgba(77, 210, 255, 0.296), rgba(77, 210, 255, 0)), url('../images/noise.png?1327695373'); background-image: linear-gradient(top, rgba(0, 153, 204, 0.296), rgba(0, 191, 255, 0) 6em), linear-gradient(left, rgba(77, 210, 255, 0.296), rgba(77, 210, 255, 0)), url('../images/noise.png?1327695373'); text-shadow: rgba(242, 242, 242, 0.667) 0 1px; color: #004d66; background-color: #e5f9ff; }
-.ie body { background: #ccf2ff; }
+.no-boxshadow body { background: #ccf2ff; }
 body > div { -webkit-box-shadow: rgba(0, 153, 204, 0.198) 0 -1.5em 1.5em; -moz-box-shadow: rgba(0, 153, 204, 0.198) 0 -1.5em 1.5em; -o-box-shadow: rgba(0, 153, 204, 0.198) 0 -1.5em 1.5em; box-shadow: rgba(0, 153, 204, 0.198) 0 -1.5em 1.5em; overflow: hidden; }
-.ie body > div { background: #e5f9ff; }
+.no-boxshadow body > div { background: #e5f9ff; }
 @media (max-width: 719px) { body > div { *zoom: 1; margin: auto; width: 26em; max-width: 100%; }
   body > div:after { content: ""; display: table; clear: both; } }
 .ie body > div { *zoom: 1; margin: auto; width: 53em; max-width: 100%; }
