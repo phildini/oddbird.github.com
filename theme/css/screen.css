@@ -250,25 +250,25 @@ button, input[type="reset"], input[type="submit"], input[type="button"], input[t
 
 [role="banner"] { padding-top: 1.875em; position: relative; }
 @media (max-width: 719px) { [role="banner"] hgroup { clear: both; margin-left: 3.571%; margin-right: 3.571%; margin-bottom: 1.5em; text-align: center; } }
-.ie [role="banner"] h2 { display: inline; float: left; width: 125%; margin-right: 3.571%; display: inline; float: right; margin-right: 3.571%; #margin-left: -1em; font-size: 1.5em; line-height: 1.5em; }
+.ie [role="banner"] h2 { display: inline; float: left; width: 63.636%; margin-right: 1.818%; display: inline; float: right; margin-right: 1.818%; #margin-left: -1em; font-size: 1.5em; line-height: 1.5em; }
 @media (min-width: 720px) { [role="banner"] h2 { display: inline; float: left; width: 63.636%; margin-right: 1.818%; display: inline; float: right; margin-right: 1.818%; #margin-left: -1em; font-size: 1.5em; line-height: 1.5em; } }
 [role="banner"] .intro { font-style: italic; position: relative; }
 @media (max-width: 719px) { [role="banner"] .intro { clear: both; margin-left: 3.571%; margin-right: 3.571%; font-size: 1.25em; line-height: 1.5em; margin-top: 0.6em; padding-top: 1.2em; padding-bottom: 1.2em; margin-bottom: 0em; }
   [role="banner"] .intro::before { position: absolute; top: 0; bottom: 0; background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, rgba(229, 249, 255, 0.667)), color-stop(50%, rgba(229, 249, 255, 0.333)), color-stop(100%, rgba(229, 249, 255, 0))); background-image: -webkit-linear-gradient(left, rgba(229, 249, 255, 0.667), rgba(229, 249, 255, 0.333), rgba(229, 249, 255, 0)); background-image: -moz-linear-gradient(left, rgba(229, 249, 255, 0.667), rgba(229, 249, 255, 0.333), rgba(229, 249, 255, 0)); background-image: -o-linear-gradient(left, rgba(229, 249, 255, 0.667), rgba(229, 249, 255, 0.333), rgba(229, 249, 255, 0)); background-image: -ms-linear-gradient(left, rgba(229, 249, 255, 0.667), rgba(229, 249, 255, 0.333), rgba(229, 249, 255, 0)); background-image: linear-gradient(left, rgba(229, 249, 255, 0.667), rgba(229, 249, 255, 0.333), rgba(229, 249, 255, 0)); left: -600%; right: -600%; content: " "; z-index: -1; } }
-.ie [role="banner"] .intro { display: inline; float: left; width: 125%; margin-right: 3.571%; display: inline; float: right; margin-right: 3.571%; #margin-left: -1em; font-size: 1.5em; line-height: 1.5em; margin-bottom: 1em; }
+.ie [role="banner"] .intro { display: inline; float: left; width: 63.636%; margin-right: 1.818%; display: inline; float: right; margin-right: 1.818%; #margin-left: -1em; font-size: 1.5em; line-height: 1.5em; margin-bottom: 1em; }
 @media (min-width: 720px) { [role="banner"] .intro { display: inline; float: left; width: 63.636%; margin-right: 1.818%; display: inline; float: right; margin-right: 1.818%; #margin-left: -1em; font-size: 1.5em; line-height: 1.5em; margin-bottom: 1em; } }
 
 [role="main"] { padding-bottom: 1.5em; }
 [role="main"] h2, [role="main"] h3 { position: absolute; clip: rect(0 0 0 0); overflow: hidden; margin: -1px; padding: 0; height: 1px; width: 1px; border: 0; }
 @media (max-width: 719px) { [role="main"] > section { clear: both; margin-left: 3.571%; margin-right: 3.571%; } }
-.ie [role="main"] > section { clear: both; margin-left: 3.571%; margin-right: 3.571%; }
+.ie [role="main"] > section { clear: both; margin-left: 1.818%; margin-right: 1.818%; }
 @media (min-width: 720px) { [role="main"] > section { clear: both; margin-left: 1.818%; margin-right: 1.818%; } }
 
 footer[role="contentinfo"] { border-top-style: solid; border-top-width: 0.125em; padding-top: 1.375em; padding-bottom: 4.5em; background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(255, 148, 77, 0.444)), color-stop(100%, rgba(255, 148, 77, 0))); background-image: -webkit-linear-gradient(top, rgba(255, 148, 77, 0.444), rgba(255, 148, 77, 0)); background-image: -moz-linear-gradient(top, rgba(255, 148, 77, 0.444), rgba(255, 148, 77, 0)); background-image: -o-linear-gradient(top, rgba(255, 148, 77, 0.444), rgba(255, 148, 77, 0)); background-image: -ms-linear-gradient(top, rgba(255, 148, 77, 0.444), rgba(255, 148, 77, 0)); background-image: linear-gradient(top, rgba(255, 148, 77, 0.444), rgba(255, 148, 77, 0)); -webkit-box-shadow: rgba(229, 249, 255, 0.667) 0 0 1.5em; -moz-box-shadow: rgba(229, 249, 255, 0.667) 0 0 1.5em; -o-box-shadow: rgba(229, 249, 255, 0.667) 0 0 1.5em; box-shadow: rgba(229, 249, 255, 0.667) 0 0 1.5em; overflow: hidden; background-color: rgba(255, 148, 77, 0.444); border-color: #e5f9ff; }
 footer[role="contentinfo"] .colophon, footer[role="contentinfo"] .copyright { color: #993d00; }
 @media (max-width: 719px) { footer[role="contentinfo"] .colophon, footer[role="contentinfo"] .copyright { clear: both; margin-left: 3.571%; margin-right: 3.571%; } }
 footer[role="contentinfo"] .colophon { font-style: italic; margin-bottom: 1.5em; }
-.ie footer[role="contentinfo"] .colophon { display: inline; float: left; width: 125%; margin-right: 3.571%; display: inline; float: right; margin-right: 3.571%; #margin-left: -1em; }
+.ie footer[role="contentinfo"] .colophon { display: inline; float: left; width: 63.636%; margin-right: 1.818%; display: inline; float: right; margin-right: 1.818%; #margin-left: -1em; }
 @media (min-width: 720px) { footer[role="contentinfo"] .colophon { display: inline; float: left; width: 63.636%; margin-right: 1.818%; display: inline; float: right; margin-right: 1.818%; #margin-left: -1em; } }
 footer[role="contentinfo"] .colophon a:link, footer[role="contentinfo"] .colophon a:visited { margin-left: 0.2em; text-transform: lowercase; font-style: normal; font-weight: bold; }
 footer[role="contentinfo"] .copyright { font-size: 0.833em; line-height: 1.8em; font-family: "FranklinGothicCond", "Helvetica Neue", Helvetica, Arial, sans-serif; text-transform: uppercase; }
