@@ -8,17 +8,6 @@
   <subtitle type="text">Recent blog posts</subtitle>
   <generator>Werkzeug</generator>
   <entry xml:base="http://oddbird.net/feed.atom">
-    <title type="text">This is another test blog post</title>
-    <id>http://oddbird.net/2012/07/11/another</id>
-    <updated>2012-07-11T00:00:00Z</updated>
-    <link href="http://oddbird.net/2012/07/11/another" />
-    <author>
-      <name>OddBird</name>
-    </author>
-    <content type="html">&lt;p&gt;Just curious about a fe things.&lt;/p&gt;
-</content>
-  </entry>
-  <entry xml:base="http://oddbird.net/feed.atom">
     <title type="text">this is a test</title>
     <id>http://oddbird.net/2012/07/11/this-is-a-test</id>
     <updated>2012-07-11T00:00:00Z</updated>
@@ -34,6 +23,17 @@
   &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; susy-grid-background&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;
+</content>
+  </entry>
+  <entry xml:base="http://oddbird.net/feed.atom">
+    <title type="text">This is another test blog post</title>
+    <id>http://oddbird.net/2012/07/11/another</id>
+    <updated>2012-07-11T00:00:00Z</updated>
+    <link href="http://oddbird.net/2012/07/11/another" />
+    <author>
+      <name>OddBird</name>
+    </author>
+    <content type="html">&lt;p&gt;Just curious about a fe things.&lt;/p&gt;
 </content>
   </entry>
 </feed>
