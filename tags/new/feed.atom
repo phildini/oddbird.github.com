@@ -15,7 +15,7 @@
     <author>
       <name>OddBird</name>
     </author>
-    <content type="html">&lt;p&gt;Just curious about a fe things.&lt;/p&gt;
+    <content type="html">&lt;p&gt;Just curious about a&amp;nbsp;fe&amp;nbsp;things.&lt;/p&gt;
 </content>
   </entry>
 </feed>
