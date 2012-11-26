@@ -8,7 +8,7 @@
   <subtitle type="text">Recent blog posts</subtitle>
   <generator>Werkzeug</generator>
   <entry xml:base="http://oddbird.net/feed.atom">
-    <title type="text">this is a test</title>
+    <title type="text">A test post</title>
     <id>http://oddbird.net/2012/07/11/this-is-a-test</id>
     <updated>2012-07-11T00:00:00Z</updated>
     <link href="http://oddbird.net/2012/07/11/this-is-a-test" />
