@@ -17,7 +17,7 @@
     </author>
     <content type="html">&lt;p&gt;Let's try this shit out and see what happens.&lt;/p&gt;
 &lt;p&gt;Yes?&lt;/p&gt;
-&lt;pre class="code scss"&gt;
+&lt;pre class="code scss literal-block"&gt;
 &lt;span class="nc"&gt;.container&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; container&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
   &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; susy-grid-background&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
