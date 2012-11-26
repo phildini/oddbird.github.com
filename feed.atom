@@ -15,7 +15,7 @@
     <author>
       <name>OddBird</name>
     </author>
-    <content type="html">&lt;p&gt;Just&amp;nbsp;curious&amp;nbsp;about&amp;nbsp;a&amp;nbsp;fe&amp;nbsp;things.&lt;/p&gt;
+    <content type="html">&lt;p&gt;Just curious&amp;nbsp;about&amp;nbsp;a&amp;nbsp;fe&amp;nbsp;things.&lt;/p&gt;
 </content>
   </entry>
   <entry xml:base="http://oddbird.net/feed.atom">
@@ -29,18 +29,18 @@
     <content type="html">&lt;p&gt;The &lt;a class="reference external" href="http://jasonweaver.name/lab/offcanvas/"&gt;off-canvas&lt;/a&gt; design pattern
 for creating responsive websites
 has been getting all the attention lately,
-and I&amp;#8217;ve had several people&amp;nbsp;ask&amp;nbsp;how&amp;nbsp;Susy&amp;nbsp;might&amp;nbsp;play&amp;nbsp;along.&lt;/p&gt;
+and I&amp;#8217;ve had several people ask&amp;nbsp;how&amp;nbsp;Susy&amp;nbsp;might&amp;nbsp;play&amp;nbsp;along.&lt;/p&gt;
 &lt;p&gt;The truth is,
 off-canvas design is as simple with Susy
 as any other design pattern.
 All you need to do
-is pull some of your columns&amp;nbsp;off&amp;nbsp;the&amp;nbsp;screen.&amp;nbsp;It&amp;#8217;s&amp;nbsp;that&amp;nbsp;simple.&lt;/p&gt;
+is pull some of your columns off&amp;nbsp;the&amp;nbsp;screen.&amp;nbsp;It&amp;#8217;s&amp;nbsp;that&amp;nbsp;simple.&lt;/p&gt;
 &lt;p&gt;I&amp;#8217;ve thrown together a very &lt;a class="reference external" href="/demos/susy-off-canvas/"&gt;rough demo&lt;/a&gt;
 that only shows Susy&amp;#8217;s part of the equation.
-You still need to add &lt;span class="caps"&gt;&lt;span class="caps"&gt;&lt;span class="caps"&gt;&lt;span class="caps"&gt;&lt;span class="caps"&gt;&lt;span class="caps"&gt;JS&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&amp;nbsp;interaction&amp;nbsp;and&amp;nbsp;no-js&amp;nbsp;fallbacks.&lt;/p&gt;
+You still need to add &lt;span class="caps"&gt;&lt;span class="caps"&gt;&lt;span class="caps"&gt;&lt;span class="caps"&gt;&lt;span class="caps"&gt;JS&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&amp;nbsp;interaction&amp;nbsp;and&amp;nbsp;no-js&amp;nbsp;fallbacks.&lt;/p&gt;
 &lt;p&gt;If anyone wants to take what I&amp;#8217;ve done,
 and flesh it out,
-I would&amp;nbsp;be&amp;nbsp;glad&amp;nbsp;to&amp;nbsp;pull&amp;nbsp;that&amp;nbsp;in.&lt;/p&gt;
+I would be&amp;nbsp;glad&amp;nbsp;to&amp;nbsp;pull&amp;nbsp;that&amp;nbsp;in.&lt;/p&gt;
 &lt;section id="simple-markup"&gt;
 &lt;h2&gt;Simple&amp;nbsp;Markup:&lt;/h2&gt;
 &lt;pre class="code html"&gt;
@@ -189,7 +189,7 @@ I would&amp;nbsp;be&amp;nbsp;glad&amp;nbsp;to&amp;nbsp;pull&amp;nbsp;that&amp;nb
     <author>
       <name>OddBird</name>
     </author>
-    <content type="html">&lt;p&gt;Let&amp;#8217;s try this shit&amp;nbsp;out&amp;nbsp;and&amp;nbsp;see&amp;nbsp;what&amp;nbsp;happens.&lt;/p&gt;
+    <content type="html">&lt;p&gt;Let&amp;#8217;s try this shit out&amp;nbsp;and&amp;nbsp;see&amp;nbsp;what&amp;nbsp;happens.&lt;/p&gt;
 &lt;p&gt;Yes?&lt;/p&gt;
 &lt;pre class="code scss"&gt;
 &lt;span class="nc"&gt;.container&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
