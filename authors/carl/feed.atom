@@ -15,7 +15,7 @@
     <author>
       <name>OddBird</name>
     </author>
-    <content type="html">&lt;p&gt;Let&amp;#8217;s try this shit out&amp;nbsp;and&amp;nbsp;see&amp;nbsp;what&amp;nbsp;happens.&lt;/p&gt;
+    <content type="html">&lt;p&gt;Let&amp;#8217;s try this shit out and see what&amp;nbsp;happens.&lt;/p&gt;
 &lt;p&gt;Yes?&lt;/p&gt;
 &lt;pre class="code scss"&gt;
 &lt;span class="nc"&gt;.container&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
