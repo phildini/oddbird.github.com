@@ -22,9 +22,9 @@ var OBC = (function (OBC, $) {
         }
     };
 
-    window.onload = function () {
+    $(function () {
         OBC.susyOffCanvasToggle.init($('.toggle'));
-    };
+    });
 
     return OBC;
 
