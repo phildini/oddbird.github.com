@@ -44,7 +44,7 @@
 
   <!-- Styles -->
   
-  <link rel="stylesheet" href="/static/dist/screen.min.6db6eea6.css" media="screen" />
+  <link rel="stylesheet" href="/static/dist/screen.min.d1e8d380.css" media="screen" />
   <link rel="stylesheet" href="/static/dist/print.min.d911293c.css" media="print" />
   
 
@@ -123,150 +123,29 @@ as any other design pattern.
 All you need to do
 is pull some of your columns off the screen.
 It&#8217;s that&nbsp;simple.</p>
-<p>I&#8217;ve thrown together a very <a class="reference external" href="/demos/susy-off-canvas/">rough demo</a>
-that only shows Susy&#8217;s part of the equation.
-You still need to add <span class="caps">JS</span> interaction
-and no-js&nbsp;fallbacks.</p>
-<p>If anyone wants to take what I&#8217;ve done,
-and flesh it out,
-I would be glad to pull that&nbsp;in.</p>
+<p>I&#8217;ve thrown together a <a class="reference external" href="/demos/susy-off-canvas/">rough demo</a>
+showing how it works.
+With a little time,
+you could add a no-js fallback
+and smooth the&nbsp;transitions.</p>
 <section id="simple-markup">
 <h2>Simple&nbsp;Markup:</h2>
 <pre class="code html">
 <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;header&gt;</span>header<span class="nt">&lt;/header&gt;</span>
-  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;left&quot;</span><span class="nt">&gt;</span>left<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;header&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;#left&quot;</span> <span class="na">class=</span><span class="s">&quot;show-left&quot;</span><span class="nt">&gt;</span>show-left<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;#right&quot;</span> <span class="na">class=</span><span class="s">&quot;show-right&quot;</span><span class="nt">&gt;</span>show-right<span class="nt">&lt;/a&gt;</span>
+    header
+  <span class="nt">&lt;/header&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;left&quot;</span> <span class="na">id=</span><span class="s">&quot;left&quot;</span><span class="nt">&gt;</span>left<span class="nt">&lt;/div&gt;</span>
   <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;main&quot;</span><span class="nt">&gt;</span>main<span class="nt">&lt;/div&gt;</span>
-  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;right&quot;</span><span class="nt">&gt;</span>right<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;right&quot;</span> <span class="na">id=</span><span class="s">&quot;right&quot;</span><span class="nt">&gt;</span>right<span class="nt">&lt;/div&gt;</span>
   <span class="nt">&lt;footer&gt;</span>footer<span class="nt">&lt;/footer&gt;</span>
 <span class="nt">&lt;/div&gt;</span>
 </pre>
 </section>
 <section id="the-susy-sass-part">
 <h2>The Susy/Sass&nbsp;Part:</h2>
-<pre class="code scss">
-<span class="k">&#64;import</span> <span class="s2">&quot;compass&quot;</span><span class="p">;</span>
-<span class="k">&#64;import</span> <span class="s2">&quot;susy&quot;</span><span class="p">;</span>
-
-<span class="c1">// --------------------------------------------
-// settings
-</span>
-<span class="na">$total-columns</span><span class="o">  :</span> <span class="mi">12</span><span class="p">;</span>
-<span class="na">$column-width</span><span class="o">   :</span> <span class="mi">5</span><span class="kt">em</span><span class="p">;</span>
-<span class="na">$gutter-width</span><span class="o">   :</span> <span class="mi">1</span><span class="kt">em</span><span class="p">;</span>
-<span class="na">$grid-padding</span><span class="o">   :</span> <span class="mi">0</span><span class="p">;</span>
-
-<span class="c1">// --------------------------------------------
-// layout
-//
-// we only need to set the container once
-// (for our largest layout)
-// because it will automatically remain full-width
-// at any smaller size.
-</span>
-<span class="nt">body</span> <span class="p">{</span> <span class="na">padding</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span> <span class="na">margin</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
-<span class="o">*</span> <span class="p">{</span> <span class="k">&#64;include</span><span class="nd"> box-sizing</span><span class="p">(</span><span class="no">border</span><span class="o">-</span><span class="n">box</span><span class="p">);</span> <span class="p">}</span>
-
-<span class="nc">.container</span> <span class="p">{</span>
-  <span class="k">&#64;include</span><span class="nd"> container</span><span class="p">;</span>
-  <span class="k">&#64;include</span><span class="nd"> box-sizing</span><span class="p">(</span><span class="no">content</span><span class="o">-</span><span class="n">box</span><span class="p">);</span>
-  <span class="na">overflow</span><span class="o">:</span> <span class="no">hidden</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nt">header</span><span class="o">,</span> <span class="nt">footer</span> <span class="p">{</span> <span class="na">clear</span><span class="o">:</span> <span class="no">both</span><span class="p">;</span> <span class="p">}</span>
-
-<span class="c1">// --------------------------------------------
-// phone
-//
-// No need for Susy here -
-// we're not dealing with columns.
-</span>
-<span class="nc">.left</span><span class="o">,</span> <span class="nc">.right</span><span class="o">,</span> <span class="nc">.main</span> <span class="p">{</span>
-  <span class="k">&#64;include</span><span class="nd"> transition</span><span class="p">(</span><span class="mf">.2</span><span class="kt">s</span> <span class="n">all</span> <span class="n">ease</span><span class="p">);</span>
-  <span class="na">float</span><span class="o">:</span> <span class="no">left</span><span class="p">;</span>
-  <span class="na">width</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nc">.left</span> <span class="p">{</span>
-  <span class="na">margin-left</span><span class="o">:</span> <span class="mi">-100</span><span class="kt">%</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nc">.right</span> <span class="p">{</span>
-  <span class="na">float</span><span class="o">:</span> <span class="no">right</span><span class="p">;</span>
-  <span class="na">margin-right</span><span class="o">:</span> <span class="mi">-100</span><span class="kt">%</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="c1">// --------------------------------------------
-// tablet
-//
-// You can set this to any min-width
-// and any column-count that you want for tablets.
-// No need for a max-width,
-// because most of it works towards the desktop
-// and we can override the rest.
-// We're not setting a container,
-// so the column-count is just how you want to divide up
-// the 100% space that we have available.
-</span>
-<span class="nv">$tablet</span><span class="o">   :</span> <span class="mi">30</span><span class="kt">em</span><span class="p">;</span>   <span class="c1">// tablet min-width breakpoint
-</span><span class="nv">$columns</span><span class="o">  :</span> <span class="mi">8</span><span class="p">;</span>      <span class="c1">// divide into as many columns as you want
-</span><span class="nv">$main</span><span class="o">     :</span> <span class="mi">6</span><span class="p">;</span>      <span class="c1">// main content uses most of them
-</span><span class="nv">$side</span><span class="o">     :</span> <span class="nv">$columns</span> <span class="o">-</span> <span class="nv">$main</span><span class="p">;</span> <span class="c1">// room for one sidebar at a time
-</span>
-<span class="k">&#64;include</span><span class="nd"> at-breakpoint</span><span class="p">(</span><span class="nv">$tablet</span> <span class="nv">$columns</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nc">.main</span> <span class="p">{</span>
-    <span class="k">&#64;include</span><span class="nd"> span-columns</span><span class="p">(</span><span class="nv">$main</span><span class="p">);</span>
-    <span class="na">margin-right</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="nc">.left</span> <span class="p">{</span>
-    <span class="k">&#64;include</span><span class="nd"> span-columns</span><span class="p">(</span><span class="nv">$side</span><span class="p">);</span>
-    <span class="na">margin-left</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="nc">.right</span> <span class="p">{</span>
-    <span class="k">&#64;include</span><span class="nd"> span-columns</span><span class="p">(</span><span class="nv">$side</span> <span class="n">omega</span><span class="p">);</span>
-    <span class="na">margin-right</span><span class="o">:</span> <span class="mi">-100</span><span class="kt">%</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c1">// --------------------------------------------
-// desktop
-//
-// Now we're just bringing things back to normal.
-</span>
-<span class="nv">$desktop</span><span class="o">    :</span> <span class="mi">60</span><span class="kt">em</span><span class="p">;</span>           <span class="c1">// desktop breakpoint
-</span><span class="nv">$columns</span><span class="o">    :</span> <span class="nv">$total-columns</span><span class="p">;</span> <span class="c1">// use all the columns
-</span><span class="nv">$main</span><span class="o">       :</span> <span class="mi">6</span><span class="p">;</span>              <span class="c1">// main uses some
-</span><span class="nv">$side</span><span class="o">       :</span> <span class="nf">floor</span><span class="p">((</span><span class="nv">$columns</span> <span class="o">-</span> <span class="nv">$main</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span> <span class="c1">// the rest are divided between sidebars
-</span>
-<span class="k">&#64;include</span><span class="nd"> at-breakpoint</span><span class="p">(</span><span class="nv">$desktop</span> <span class="nv">$columns</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nc">.main</span> <span class="p">{</span>
-    <span class="k">&#64;include</span><span class="nd"> span-columns</span><span class="p">(</span><span class="nv">$main</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="nc">.left</span><span class="o">,</span> <span class="nc">.right</span> <span class="p">{</span>
-    <span class="k">&#64;include</span><span class="nd"> span-columns</span><span class="p">(</span><span class="nv">$side</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="nc">.right</span> <span class="p">{</span>
-    <span class="k">&#64;include</span><span class="nd"> omega</span><span class="p">;</span>
-    <span class="na">margin-right</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c1">// --------------------------------------------
-// styles (for demo only)
-</span>
-<span class="nc">.left</span><span class="o">,</span> <span class="nc">.right</span><span class="o">,</span> <span class="nc">.main</span> <span class="p">{</span>
-  <span class="na">height</span><span class="o">:</span> <span class="mi">20</span><span class="kt">em</span><span class="p">;</span>
-  <span class="na">padding</span><span class="o">:</span> <span class="mi">1</span><span class="kt">em</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nc">.left</span> <span class="p">{</span> <span class="na">background</span><span class="o">:</span> <span class="mh">#cff</span><span class="p">;</span> <span class="p">}</span>
-<span class="nc">.right</span> <span class="p">{</span> <span class="na">background</span><span class="o">:</span> <span class="mh">#ffc</span><span class="p">;</span> <span class="p">}</span>
-
-<span class="nt">header</span><span class="o">,</span> <span class="nt">footer</span> <span class="p">{</span>
-  <span class="na">height</span><span class="o">:</span> <span class="mi">3</span><span class="kt">em</span><span class="p">;</span>
-  <span class="na">padding</span><span class="o">:</span> <span class="mi">1</span><span class="kt">em</span><span class="p">;</span>
-  <span class="na">background</span><span class="o">:</span> <span class="mh">#fcf</span><span class="p">;</span>
-<span class="p">}</span>
-</pre>
 </section>
 </div>
 
