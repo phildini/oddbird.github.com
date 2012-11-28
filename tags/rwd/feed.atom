@@ -63,10 +63,10 @@ to toggle state&amp;nbsp;body-classes.&lt;/p&gt;
 &lt;section id="susy-settings"&gt;
 &lt;h2&gt;Susy&amp;nbsp;Settings:&lt;/h2&gt;
 &lt;pre class="code scss"&gt;
-&lt;span class="na"&gt;$total-columns&lt;/span&gt;&lt;span class="o"&gt;    :&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="na"&gt;$column-width&lt;/span&gt;&lt;span class="o"&gt;     :&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="na"&gt;$gutter-width&lt;/span&gt;&lt;span class="o"&gt;     :&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="na"&gt;$grid-padding&lt;/span&gt;&lt;span class="o"&gt;     :&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$total-columns&lt;/span&gt;&lt;span class="o"&gt;    :&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$column-width&lt;/span&gt;&lt;span class="o"&gt;     :&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$gutter-width&lt;/span&gt;&lt;span class="o"&gt;     :&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$grid-padding&lt;/span&gt;&lt;span class="o"&gt;     :&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;Since this is a mobile-first design pattern,
 we&amp;#8217;ll start with settings for a
@@ -75,15 +75,15 @@ You can change those any way you&amp;nbsp;like.&lt;/p&gt;
 &lt;p&gt;I&amp;#8217;m also going to establish my
 medium and large column settings right&amp;nbsp;away:&lt;/p&gt;
 &lt;pre class="code scss"&gt;
-&lt;span class="na"&gt;$medium-columns&lt;/span&gt;&lt;span class="o"&gt;   :&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="na"&gt;$large-columns&lt;/span&gt;&lt;span class="o"&gt;    :&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$medium-columns&lt;/span&gt;&lt;span class="o"&gt;   :&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$large-columns&lt;/span&gt;&lt;span class="o"&gt;    :&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;And I&amp;#8217;ll set Susy&amp;#8217;s
 &lt;code&gt;$container-width&lt;/code&gt;
 override to the largest layout width,
 so the container is fluid up to that&amp;nbsp;point:&lt;/p&gt;
 &lt;pre class="code scss"&gt;
-&lt;span class="na"&gt;$container-width&lt;/span&gt;&lt;span class="o"&gt;  :&lt;/span&gt; &lt;span class="nf"&gt;container-outer-width&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$large-columns&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="nv"&gt;$container-width&lt;/span&gt;&lt;span class="o"&gt;  :&lt;/span&gt; &lt;span class="nf"&gt;container-outer-width&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$large-columns&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;/pre&gt;
 &lt;/section&gt;
 &lt;section id="establish-the-container"&gt;
