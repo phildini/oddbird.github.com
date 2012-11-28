@@ -44,7 +44,7 @@
 
   <!-- Styles -->
   
-  <link rel="stylesheet" href="/static/dist/screen.min.c5709753.css" media="screen" />
+  <link rel="stylesheet" href="/static/dist/screen.min.e9ccef2b.css" media="screen" />
   <link rel="stylesheet" href="/static/dist/print.min.288bd9ea.css" media="print" />
   
 
@@ -116,7 +116,7 @@
 for responsive websites
 has been getting all the attention lately,
 and I&#8217;ve had several people ask
-how Susy might play&nbsp;along.</p>
+how <a class="reference external" href="http://susy.oddbird.net/">Susy</a> might play&nbsp;along.</p>
 <p>The truth is,
 Susy handles off-canvas layout the same
 as any other layout.
@@ -160,10 +160,10 @@ to toggle state&nbsp;body-classes.</p>
 <section id="susy-settings">
 <h2>Susy&nbsp;Settings:</h2>
 <pre class="code scss">
-<span class="nv">$total-columns</span><span class="o">    :</span> <span class="mi">5</span><span class="p">;</span>
-<span class="nv">$column-width</span><span class="o">     :</span> <span class="mi">4</span><span class="kt">em</span><span class="p">;</span>
-<span class="nv">$gutter-width</span><span class="o">     :</span> <span class="mi">1</span><span class="kt">em</span><span class="p">;</span>
-<span class="nv">$grid-padding</span><span class="o">     :</span> <span class="mi">1</span><span class="kt">em</span><span class="p">;</span>
+<span class="na">$total-columns</span><span class="o">    :</span> <span class="mi">5</span><span class="p">;</span>
+<span class="na">$column-width</span><span class="o">     :</span> <span class="mi">4</span><span class="kt">em</span><span class="p">;</span>
+<span class="na">$gutter-width</span><span class="o">     :</span> <span class="mi">1</span><span class="kt">em</span><span class="p">;</span>
+<span class="na">$grid-padding</span><span class="o">     :</span> <span class="mi">1</span><span class="kt">em</span><span class="p">;</span>
 </pre>
 <p>Since this is a mobile-first design pattern,
 we&#8217;ll start with settings for a
@@ -172,15 +172,15 @@ You can change those any way you&nbsp;like.</p>
 <p>I&#8217;m also going to establish my
 medium and large column settings right&nbsp;away:</p>
 <pre class="code scss">
-<span class="nv">$medium-columns</span><span class="o">   :</span> <span class="mi">8</span><span class="p">;</span>
-<span class="nv">$large-columns</span><span class="o">    :</span> <span class="mi">12</span><span class="p">;</span>
+<span class="na">$medium-columns</span><span class="o">   :</span> <span class="mi">8</span><span class="p">;</span>
+<span class="na">$large-columns</span><span class="o">    :</span> <span class="mi">12</span><span class="p">;</span>
 </pre>
 <p>And I&#8217;ll set Susy&#8217;s
 <code>$container-width</code>
 override to the largest layout width,
 so the container is fluid up to that&nbsp;point:</p>
 <pre class="code scss">
-<span class="nv">$container-width</span><span class="o">  :</span> <span class="nf">container-outer-width</span><span class="p">(</span><span class="nv">$large-columns</span><span class="p">);</span>
+<span class="na">$container-width</span><span class="o">  :</span> <span class="nf">container-outer-width</span><span class="p">(</span><span class="nv">$large-columns</span><span class="p">);</span>
 </pre>
 </section>
 <section id="establish-the-container">
