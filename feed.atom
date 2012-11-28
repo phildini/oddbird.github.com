@@ -79,7 +79,7 @@ medium and large column settings right&amp;nbsp;away:&lt;/p&gt;
 &lt;span class="na"&gt;$large-columns&lt;/span&gt;&lt;span class="o"&gt;    :&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;And I&amp;#8217;ll set Susy&amp;#8217;s
-&lt;code&gt; $container-width &lt;/code&gt;
+&lt;code&gt;$container-width&lt;/code&gt;
 override to the largest layout width,
 so the container is fluid up to that&amp;nbsp;point:&lt;/p&gt;
 &lt;pre class="code scss"&gt;
@@ -95,27 +95,26 @@ so the container is fluid up to that&amp;nbsp;point:&lt;/p&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;Besides establishing the usual Susy container,
-I also set &lt;code&gt; overflow &lt;/code&gt;
-to &lt;code&gt; hidden &lt;/code&gt;
+I also set &lt;code&gt;overflow&lt;/code&gt; to &lt;code&gt;hidden&lt;/code&gt;
 so that our off-canvas elements
 don&amp;#8217;t trigger a horizontal&amp;nbsp;scrollbar.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="small-layout"&gt;
 &lt;h2&gt;Small&amp;nbsp;Layout:&lt;/h2&gt;
 &lt;p&gt;For our smallest layout
-the &lt;code&gt; .main &lt;/code&gt; section is visible at all times,
+the &lt;code&gt;.main&lt;/code&gt; section is visible at all times,
 full-width by default
 or pushed to one side to make room
-for the &lt;code&gt; .left &lt;/code&gt; or &lt;code&gt; .right &lt;/code&gt;
+for the &lt;code&gt;.left&lt;/code&gt; or &lt;code&gt;.right&lt;/code&gt;
 sections to&amp;nbsp;appear.&lt;/p&gt;
 &lt;pre class="code scss"&gt;
 &lt;span class="nv"&gt;$anchor&lt;/span&gt;&lt;span class="o"&gt; :&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nv"&gt;$side&lt;/span&gt;&lt;span class="o"&gt;   :&lt;/span&gt; &lt;span class="nv"&gt;$total-columns&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nv"&gt;$anchor&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/pre&gt;
-&lt;p&gt;I&amp;#8217;ve created an &lt;code&gt; $anchor &lt;/code&gt; variable
+&lt;p&gt;I&amp;#8217;ve created an &lt;code&gt;$anchor&lt;/code&gt; variable
 to control how many columns of the main section
 remain visible while side-sections are displayed.
-The &lt;code&gt; $side &lt;/code&gt; width of our left &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; right sections
+The &lt;code&gt;$side&lt;/code&gt; width of our left &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; right sections
 is based on the remaining&amp;nbsp;space.&lt;/p&gt;
 &lt;pre class="code scss"&gt;
 &lt;span class="nc"&gt;.left&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
@@ -137,22 +136,22 @@ is based on the remaining&amp;nbsp;space.&lt;/p&gt;
   &lt;span class="nc"&gt;.show-right&lt;/span&gt; &lt;span class="k"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;margin-right&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;
-&lt;p&gt;The &lt;code&gt; span-column &lt;/code&gt; mixins establish our spacing,
+&lt;p&gt;The &lt;code&gt;span-column&lt;/code&gt; mixins establish our spacing,
 just like any other Susy site.
 The main difference here is that our total columns-spanned
 is much larger than the number of columns available.
-A few &lt;code&gt; margin &lt;/code&gt; adjustments,
+A few &lt;code&gt;margin&lt;/code&gt; adjustments,
 and we&amp;#8217;ve pulled the left and right sections off the canvas.
-I also removed the &lt;code&gt; margin-right &lt;/code&gt; gutter
+I also removed the &lt;code&gt;margin-right&lt;/code&gt; gutter
 on our main column, since it spans the full&amp;nbsp;width.&lt;/p&gt;
-&lt;p&gt;The &lt;code&gt; .show-left &lt;/code&gt; and &lt;code&gt; .show-right &lt;/code&gt;
+&lt;p&gt;The &lt;code&gt;.show-left&lt;/code&gt; and &lt;code&gt;.show-right&lt;/code&gt;
 selectors allow us to move everything around
 when we want to show and hide the sidebars.
-The &lt;code&gt; space() &lt;/code&gt; function is used to push
+The &lt;code&gt;space()&lt;/code&gt; function is used to push
 our main section only as far as it needs to go:
-&lt;code&gt; space() &lt;/code&gt; represents the space taken by
-a given number of &lt;code&gt; columns() &lt;/code&gt;
-with the final &lt;code&gt; gutter() &lt;/code&gt; included.&lt;/p&gt;
+&lt;code&gt;space()&lt;/code&gt; represents the space taken by
+a given number of &lt;code&gt;columns()&lt;/code&gt;
+with the final &lt;code&gt;gutter()&lt;/code&gt; included.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="medium-layout"&gt;
 &lt;h2&gt;Medium&amp;nbsp;Layout:&lt;/h2&gt;
@@ -190,13 +189,13 @@ I&amp;#8217;ll leave that as an exercise for the&amp;nbsp;reader.&lt;/p&gt;
 &lt;p&gt;At our medium breakpoint,
 we change the styles to show both the
 left and main sections by default.
-I used &lt;code&gt; width: columns() &lt;/code&gt;
-instead of &lt;code&gt; span-columns &lt;/code&gt;
+I used &lt;code&gt;width: columns()&lt;/code&gt;
+instead of &lt;code&gt;span-columns&lt;/code&gt;
 on the main &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; right sections
 because only the width actually needs to change,
 while our left column needs the gutter adjusted as&amp;nbsp;well.&lt;/p&gt;
 &lt;p&gt;We also hide the left toggle
-( &lt;code&gt; [href=&amp;quot;#left&amp;quot;] &lt;/code&gt; )
+( &lt;code&gt;[href=&amp;quot;#left&amp;quot;]&lt;/code&gt; )
 as it is no longer&amp;nbsp;needed.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="large-layout"&gt;

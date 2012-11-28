@@ -44,7 +44,7 @@
 
   <!-- Styles -->
   
-  <link rel="stylesheet" href="/static/dist/screen.min.e9ccef2b.css" media="screen" />
+  <link rel="stylesheet" href="/static/dist/screen.min.c5709753.css" media="screen" />
   <link rel="stylesheet" href="/static/dist/print.min.288bd9ea.css" media="print" />
   
 
@@ -176,7 +176,7 @@ medium and large column settings right&nbsp;away:</p>
 <span class="na">$large-columns</span><span class="o">    :</span> <span class="mi">12</span><span class="p">;</span>
 </pre>
 <p>And I&#8217;ll set Susy&#8217;s
-<code> $container-width </code>
+<code>$container-width</code>
 override to the largest layout width,
 so the container is fluid up to that&nbsp;point:</p>
 <pre class="code scss">
@@ -192,27 +192,26 @@ so the container is fluid up to that&nbsp;point:</p>
 <span class="p">}</span>
 </pre>
 <p>Besides establishing the usual Susy container,
-I also set <code> overflow </code>
-to <code> hidden </code>
+I also set <code>overflow</code> to <code>hidden</code>
 so that our off-canvas elements
 don&#8217;t trigger a horizontal&nbsp;scrollbar.</p>
 </section>
 <section id="small-layout">
 <h2>Small&nbsp;Layout:</h2>
 <p>For our smallest layout
-the <code> .main </code> section is visible at all times,
+the <code>.main</code> section is visible at all times,
 full-width by default
 or pushed to one side to make room
-for the <code> .left </code> or <code> .right </code>
+for the <code>.left</code> or <code>.right</code>
 sections to&nbsp;appear.</p>
 <pre class="code scss">
 <span class="nv">$anchor</span><span class="o"> :</span> <span class="mi">1</span><span class="p">;</span>
 <span class="nv">$side</span><span class="o">   :</span> <span class="nv">$total-columns</span> <span class="o">-</span> <span class="nv">$anchor</span><span class="p">;</span>
 </pre>
-<p>I&#8217;ve created an <code> $anchor </code> variable
+<p>I&#8217;ve created an <code>$anchor</code> variable
 to control how many columns of the main section
 remain visible while side-sections are displayed.
-The <code> $side </code> width of our left <span class="amp">&amp;</span> right sections
+The <code>$side</code> width of our left <span class="amp">&amp;</span> right sections
 is based on the remaining&nbsp;space.</p>
 <pre class="code scss">
 <span class="nc">.left</span> <span class="p">{</span>
@@ -234,22 +233,22 @@ is based on the remaining&nbsp;space.</p>
   <span class="nc">.show-right</span> <span class="k">&amp;</span> <span class="p">{</span> <span class="na">margin-right</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
 <span class="p">}</span>
 </pre>
-<p>The <code> span-column </code> mixins establish our spacing,
+<p>The <code>span-column</code> mixins establish our spacing,
 just like any other Susy site.
 The main difference here is that our total columns-spanned
 is much larger than the number of columns available.
-A few <code> margin </code> adjustments,
+A few <code>margin</code> adjustments,
 and we&#8217;ve pulled the left and right sections off the canvas.
-I also removed the <code> margin-right </code> gutter
+I also removed the <code>margin-right</code> gutter
 on our main column, since it spans the full&nbsp;width.</p>
-<p>The <code> .show-left </code> and <code> .show-right </code>
+<p>The <code>.show-left</code> and <code>.show-right</code>
 selectors allow us to move everything around
 when we want to show and hide the sidebars.
-The <code> space() </code> function is used to push
+The <code>space()</code> function is used to push
 our main section only as far as it needs to go:
-<code> space() </code> represents the space taken by
-a given number of <code> columns() </code>
-with the final <code> gutter() </code> included.</p>
+<code>space()</code> represents the space taken by
+a given number of <code>columns()</code>
+with the final <code>gutter()</code> included.</p>
 </section>
 <section id="medium-layout">
 <h2>Medium&nbsp;Layout:</h2>
@@ -287,13 +286,13 @@ I&#8217;ll leave that as an exercise for the&nbsp;reader.</p>
 <p>At our medium breakpoint,
 we change the styles to show both the
 left and main sections by default.
-I used <code> width: columns() </code>
-instead of <code> span-columns </code>
+I used <code>width: columns()</code>
+instead of <code>span-columns</code>
 on the main <span class="amp">&amp;</span> right sections
 because only the width actually needs to change,
 while our left column needs the gutter adjusted as&nbsp;well.</p>
 <p>We also hide the left toggle
-( <code> [href=&quot;#left&quot;] </code> )
+( <code>[href=&quot;#left&quot;]</code> )
 as it is no longer&nbsp;needed.</p>
 </section>
 <section id="large-layout">
