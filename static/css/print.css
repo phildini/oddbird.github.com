@@ -48,16 +48,16 @@
 
 @font-face {
   font-family: "FranklinGothic";
-  src: url('../fonts/FranklinGothic-Demi-webfont.eot');
-  src: url('../fonts/FranklinGothic-Demi-webfont.eot?#iefix') format('eot'), url('../fonts/FranklinGothic-Demi-webfont.woff') format('woff'), url('../fonts/FranklinGothic-Demi-webfont.ttf') format('truetype'), url('../fonts/FranklinGothic-Demi-webfont.svg#webfontSMxOInhK') format('svg');
+  src: url('../fonts/FranklinGothic-Med-webfont.eot');
+  src: url('../fonts/FranklinGothic-Med-webfont.eot?#iefix') format('eot'), url('../fonts/FranklinGothic-Med-webfont.woff') format('woff'), url('../fonts/FranklinGothic-Med-webfont.ttf') format('truetype'), url('../fonts/FranklinGothic-Med-webfont.svg#webfontSMxOInhK') format('svg');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
   font-family: "FranklinGothic";
-  src: url('../fonts/FranklinGothic-DemiIt-webfont.eot');
-  src: url('../fonts/FranklinGothic-DemiIt-webfont.eot?#iefix') format('eot'), url('../fonts/FranklinGothic-DemiIt-webfont.woff') format('woff'), url('../fonts/FranklinGothic-DemiIt-webfont.ttf') format('truetype'), url('../fonts/FranklinGothic-DemiIt-webfont.svg#webfontSMxOInhK') format('svg');
+  src: url('../fonts/FranklinGothic-MedIt-webfont.eot');
+  src: url('../fonts/FranklinGothic-MedIt-webfont.eot?#iefix') format('eot'), url('../fonts/FranklinGothic-MedIt-webfont.woff') format('woff'), url('../fonts/FranklinGothic-MedIt-webfont.ttf') format('truetype'), url('../fonts/FranklinGothic-MedIt-webfont.svg#webfontSMxOInhK') format('svg');
   font-weight: bold;
   font-style: italic;
 }
@@ -80,16 +80,16 @@
 
 @font-face {
   font-family: "FranklinGothicCond";
-  src: url('../fonts/FranklinGothic-DemiCd-webfont.eot');
-  src: url('../fonts/FranklinGothic-DemiCd-webfont.eot?#iefix') format('eot'), url('../fonts/FranklinGothic-DemiCd-webfont.woff') format('woff'), url('../fonts/FranklinGothic-DemiCd-webfont.ttf') format('truetype'), url('../fonts/FranklinGothic-DemiCd-webfont.svg#webfontSMxOInhK') format('svg');
+  src: url('../fonts/FranklinGothic-MedCd-webfont.eot');
+  src: url('../fonts/FranklinGothic-MedCd-webfont.eot?#iefix') format('eot'), url('../fonts/FranklinGothic-MedCd-webfont.woff') format('woff'), url('../fonts/FranklinGothic-MedCd-webfont.ttf') format('truetype'), url('../fonts/FranklinGothic-MedCd-webfont.svg#webfontSMxOInhK') format('svg');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
   font-family: "FranklinGothicCond";
-  src: url('../fonts/FranklinGothic-DemiCdIt-webfont.eot');
-  src: url('../fonts/FranklinGothic-DemiCdIt-webfont.eot?#iefix') format('eot'), url('../fonts/FranklinGothic-DemiCdIt-webfont.woff') format('woff'), url('../fonts/FranklinGothic-DemiCdIt-webfont.ttf') format('truetype'), url('../fonts/FranklinGothic-DemiCdIt-webfont.svg#webfontSMxOInhK') format('svg');
+  src: url('../fonts/FranklinGothic-MedCdIt-webfont.eot');
+  src: url('../fonts/FranklinGothic-MedCdIt-webfont.eot?#iefix') format('eot'), url('../fonts/FranklinGothic-MedCdIt-webfont.woff') format('woff'), url('../fonts/FranklinGothic-MedCdIt-webfont.ttf') format('truetype'), url('../fonts/FranklinGothic-MedCdIt-webfont.svg#webfontSMxOInhK') format('svg');
   font-weight: bold;
   font-style: italic;
 }
