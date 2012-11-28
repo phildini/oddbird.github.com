@@ -137,14 +137,26 @@ body p, body ul, body ol, body pre {
   margin-bottom: 22px;
   margin-bottom: 1.22222rem;
 }
-body .code {
+body code, body .code {
   font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
   font-size: 12px;
   font-size: 0.66667rem;
+  line-height: 22px;
+  line-height: 1.22222rem;
+}
+body code {
+  display: inline-block;
+  padding: 0 .5em;
+  background: rgba(0, 115, 153, 0.125);
+}
+body .code {
   line-height: 17px;
   line-height: 0.91667rem;
   margin-bottom: 22px;
   margin-bottom: 1.22222rem;
+  -webkit-box-shadow: #595959 0 0 0.25em inset;
+  -moz-box-shadow: #595959 0 0 0.25em inset;
+  box-shadow: #595959 0 0 0.25em inset;
   overflow: auto;
   padding: 0.61111rem 0.91667rem;
   border-left: 0.30556rem solid rgba(0, 77, 102, 0.25);

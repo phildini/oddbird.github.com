@@ -44,8 +44,8 @@
 
   <!-- Styles -->
   
-  <link rel="stylesheet" href="/static/dist/screen.min.bad37648.css" media="screen" />
-  <link rel="stylesheet" href="/static/dist/print.min.03cd0605.css" media="print" />
+  <link rel="stylesheet" href="/static/dist/screen.min.19d93fb1.css" media="screen" />
+  <link rel="stylesheet" href="/static/dist/print.min.14062311.css" media="print" />
   
 
   <!-- Modernizr -->
@@ -118,23 +118,21 @@ has been getting all the attention lately,
 and I&#8217;ve had several people ask
 how Susy might play&nbsp;along.</p>
 <p>The truth is,
-off-canvas design is as simple with Susy
-as any other design pattern.
+off-canvas design is as easy with Susy
+as any other design.
 All you need to do
 is pull some of your columns off the screen.
-It&#8217;s that&nbsp;simple.</p>
-<p>I&#8217;ve thrown together a <a class="reference external" href="/demos/susy-off-canvas/">rough demo</a>
-showing how it works.
-With a little time,
-you could add a no-js fallback
-and smooth the&nbsp;transitions.</p>
-<section id="simple-markup">
-<h2>Simple&nbsp;Markup:</h2>
+I&#8217;ll show you how,
+following Jason&#8217;s directions,
+and just adding in the Susy&nbsp;bits.</p>
+<p>Check out the <a class="reference external" href="/demos/susy-off-canvas/">demo</a>.</p>
+<section id="basic-markup">
+<h2>Basic&nbsp;Markup:</h2>
 <pre class="code html">
 <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;header&gt;</span>
-    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;#left&quot;</span> <span class="na">class=</span><span class="s">&quot;show-left&quot;</span><span class="nt">&gt;</span>show-left<span class="nt">&lt;/a&gt;</span>
-    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;#right&quot;</span> <span class="na">class=</span><span class="s">&quot;show-right&quot;</span><span class="nt">&gt;</span>show-right<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;#left&quot;</span> <span class="na">class=</span><span class="s">&quot;toggle&quot;</span><span class="nt">&gt;</span>show-left<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;#right&quot;</span> <span class="na">class=</span><span class="s">&quot;toggle&quot;</span><span class="nt">&gt;</span>show-right<span class="nt">&lt;/a&gt;</span>
     header
   <span class="nt">&lt;/header&gt;</span>
   <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;left&quot;</span> <span class="na">id=</span><span class="s">&quot;left&quot;</span><span class="nt">&gt;</span>left<span class="nt">&lt;/div&gt;</span>
@@ -143,9 +141,201 @@ and smooth the&nbsp;transitions.</p>
   <span class="nt">&lt;footer&gt;</span>footer<span class="nt">&lt;/footer&gt;</span>
 <span class="nt">&lt;/div&gt;</span>
 </pre>
+<p>We have a simple container
+with header, footer,
+and three body columns:
+left, right, and main.
+Inside the header
+we have links that we&#8217;ll hijack in JavaScript
+to toggle our active&nbsp;styles.</p>
 </section>
-<section id="the-susy-sass-part">
-<h2>The Susy/Sass&nbsp;Part:</h2>
+<section id="susy-settings">
+<h2>Susy&nbsp;Settings:</h2>
+<pre class="code scss">
+<span class="na">$total-columns</span><span class="o">    :</span> <span class="mi">5</span><span class="p">;</span>
+<span class="na">$column-width</span><span class="o">     :</span> <span class="mi">4</span><span class="kt">em</span><span class="p">;</span>
+<span class="na">$gutter-width</span><span class="o">     :</span> <span class="mi">1</span><span class="kt">em</span><span class="p">;</span>
+<span class="na">$grid-padding</span><span class="o">     :</span> <span class="mi">1</span><span class="kt">em</span><span class="p">;</span>
+</pre>
+<p>Since this is a mobile-first design pattern,
+we&#8217;ll start with settings for a
+standard mobile-first Susy grid.
+You can change those any way you like,
+that&#8217;s the beauty of using Sass <span class="amp">&amp;</span>&nbsp;Susy.</p>
+<p>I&#8217;m also going to establish my
+medium and large column settings right&nbsp;away:</p>
+<pre class="code scss">
+<span class="na">$medium-columns</span><span class="o">   :</span> <span class="mi">8</span><span class="p">;</span>
+<span class="na">$large-columns</span><span class="o">    :</span> <span class="mi">12</span><span class="p">;</span>
+</pre>
+<p>And I&#8217;ll set Susy&#8217;s
+<code> $container-width </code>
+override to the largest layout width,
+so the container is fluid up to that&nbsp;point:</p>
+<pre class="code scss">
+<span class="na">$container-width</span><span class="o">  :</span> <span class="nf">container-outer-width</span><span class="p">(</span><span class="nv">$large-columns</span><span class="p">);</span>
+</pre>
+</section>
+<section id="establish-the-container">
+<h2>Establish the&nbsp;Container:</h2>
+<pre class="code scss">
+<span class="nc">.container</span> <span class="p">{</span>
+  <span class="k">&#64;include</span><span class="nd"> container</span><span class="p">;</span>
+  <span class="na">overflow</span><span class="o">:</span> <span class="no">hidden</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+<p>Besides establishing the usual Susy container,
+I also set <code> overflow </code>
+to <code> hidden </code>
+so that our off-canvas elements
+don&#8217;t trigger a horizontal&nbsp;scrollbar.</p>
+</section>
+<section id="small-layout">
+<h2>Small&nbsp;Layout:</h2>
+<p>For our smallest layout
+the <code> .main </code> section is visible at all times,
+full-width by default
+or pushed to one side to make room
+for the <code> .left </code> or <code> .right </code>
+sections to&nbsp;appear.</p>
+<pre class="code scss">
+<span class="nv">$anchor</span><span class="o"> :</span> <span class="mi">1</span><span class="p">;</span>
+<span class="nv">$side</span><span class="o">   :</span> <span class="nv">$total-columns</span> <span class="o">-</span> <span class="nv">$anchor</span><span class="p">;</span>
+</pre>
+<p>I&#8217;ve created an <code> $anchor </code> setting
+to control how much of the main section
+remains visible while side-sections are displayed.
+The <code> $side </code> width of our left <span class="amp">&amp;</span> right sections
+is based on the remaining&nbsp;space.</p>
+<pre class="code scss">
+<span class="nc">.left</span> <span class="p">{</span>
+  <span class="k">&#64;include</span><span class="nd"> span-columns</span><span class="p">(</span><span class="nv">$side</span><span class="p">);</span>
+  <span class="na">margin-left</span><span class="o">:</span> <span class="mi">-100</span><span class="kt">%</span><span class="p">;</span>
+  <span class="nc">.show-left</span> <span class="k">&amp;</span> <span class="p">{</span> <span class="na">margin-left</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nc">.main</span> <span class="p">{</span>
+  <span class="k">&#64;include</span><span class="nd"> span-columns</span><span class="p">(</span><span class="nv">$total-columns</span><span class="p">);</span>
+  <span class="na">margin-right</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="nc">.show-left</span> <span class="k">&amp;</span> <span class="p">{</span> <span class="na">margin-right</span><span class="o">:</span> <span class="o">-</span> <span class="nf">space</span><span class="p">(</span><span class="nv">$side</span><span class="p">);</span> <span class="p">}</span>
+  <span class="nc">.show-right</span> <span class="k">&amp;</span> <span class="p">{</span> <span class="na">margin-left</span><span class="o">:</span> <span class="o">-</span> <span class="nf">space</span><span class="p">(</span><span class="nv">$side</span><span class="p">);</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nc">.right</span> <span class="p">{</span>
+  <span class="k">&#64;include</span><span class="nd"> span-columns</span><span class="p">(</span><span class="nv">$side</span> <span class="n">omega</span><span class="p">);</span>
+  <span class="na">margin-right</span><span class="o">:</span> <span class="mi">-100</span><span class="kt">%</span><span class="p">;</span>
+  <span class="nc">.show-right</span> <span class="k">&amp;</span> <span class="p">{</span> <span class="na">margin-right</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+<p>The <code> span-column </code> mixins establish our spacing,
+just like any other Susy site.
+The main difference here is that our total columns-spanned
+is much larger than the number of columns available.
+A few <code> margin </code> adjustments,
+and we&#8217;ve pulled the left and right sections off the canvas.
+I also removed the <code> margin-right </code> gutter
+on our main column, since it spans the full&nbsp;width.</p>
+<p>The <code> .show-left </code> and <code> .show-right </code>
+selectors allow us to move everything around
+when we want to show and hide the sidebars.
+The <code> space() </code> function is used to push
+our main section only as far as it needs to go:
+<code> space() </code> represents the space taken by
+a given number of <code> columns() </code>
+with the final <code> gutter() </code> included.</p>
+</section>
+<section id="medium-layout">
+<h2>Medium&nbsp;Layout:</h2>
+<pre class="code scss">
+<span class="nv">$main</span><span class="o"> :</span> <span class="mi">5</span><span class="p">;</span>
+<span class="nv">$side</span><span class="o"> :</span> <span class="nv">$medium-columns</span> <span class="o">-</span> <span class="nv">$main</span><span class="p">;</span>
+</pre>
+<p>These settings simply establish
+the widths we will use for our columns.
+You could, of course,
+set different right and left widths.
+I&#8217;ll leave that as an excercise for the&nbsp;reader.</p>
+<pre class="code scss">
+<span class="k">&#64;include</span><span class="nd"> at-breakpoint</span><span class="p">(</span><span class="nv">$medium-columns</span><span class="p">)</span> <span class="p">{</span>
+  <span class="o">[</span><span class="nt">href</span><span class="o">=</span><span class="s2">&quot;#left&quot;</span><span class="o">]</span> <span class="p">{</span> <span class="na">visibility</span><span class="o">:</span> <span class="no">hidden</span><span class="p">;</span> <span class="p">}</span>
+
+  <span class="nc">.left</span> <span class="p">{</span>
+    <span class="k">&#64;include</span><span class="nd"> span-columns</span><span class="p">(</span><span class="nv">$side</span><span class="p">);</span>
+    <span class="na">margin-left</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="nc">.show-right</span> <span class="k">&amp;</span> <span class="p">{</span> <span class="na">margin-left</span><span class="o">:</span> <span class="o">-</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="nc">.main</span> <span class="p">{</span>
+    <span class="na">width</span><span class="o">:</span> <span class="nf">columns</span><span class="p">(</span><span class="nv">$main</span><span class="p">);</span>
+    <span class="nc">.show-right</span> <span class="k">&amp;</span> <span class="p">{</span> <span class="na">margin-left</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
+    <span class="nc">.show-left</span> <span class="k">&amp;</span> <span class="p">{</span> <span class="na">margin-right</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="nc">.right</span> <span class="p">{</span>
+    <span class="na">width</span><span class="o">:</span> <span class="nf">columns</span><span class="p">(</span><span class="nv">$side</span><span class="p">);</span>
+    <span class="nc">.show-right</span> <span class="k">&amp;</span> <span class="p">{</span> <span class="na">margin-right</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+<p>At our medium breakpoint,
+we change the styles to show both the
+left and main sections by default.
+I used <code> width: columns() </code>
+instead of <code> span-columns </code>
+on the main <span class="amp">&amp;</span> right sections
+because only the width actually needs to change,
+while our left column needs the gutter adjusted as&nbsp;well.</p>
+<p>We also hide the left toggle
+( <code> [href=&quot;#left&quot;] </code> )
+as it is no longer&nbsp;needed.</p>
+</section>
+<section id="large-layout">
+<h2>Large&nbsp;Layout:</h2>
+<pre class="code scss">
+<span class="nv">$main</span><span class="o"> :</span> <span class="mi">6</span><span class="p">;</span>
+<span class="nv">$side</span><span class="o"> :</span> <span class="p">(</span><span class="nv">$large-columns</span> <span class="o">-</span> <span class="nv">$main</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+</pre>
+<p>Nothing new here, we&#8217;re just dividing up the space
+into variables we can&nbsp;use.</p>
+<pre class="code scss">
+<span class="k">&#64;include</span><span class="nd"> at-breakpoint</span><span class="p">(</span><span class="nv">$large-columns</span><span class="p">)</span> <span class="p">{</span>
+  <span class="o">[</span><span class="nt">href</span><span class="o">=</span><span class="s2">&quot;#right&quot;</span><span class="o">]</span> <span class="p">{</span> <span class="na">visibility</span><span class="o">:</span> <span class="no">hidden</span><span class="p">;</span> <span class="p">}</span>
+
+  <span class="nc">.left</span> <span class="p">{</span>
+    <span class="k">&#64;include</span><span class="nd"> span-columns</span><span class="p">(</span><span class="nv">$side</span><span class="p">);</span>
+    <span class="nc">.show-right</span> <span class="k">&amp;</span> <span class="p">{</span> <span class="na">margin-left</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="nc">.main</span> <span class="p">{</span>
+    <span class="na">width</span><span class="o">:</span> <span class="nf">columns</span><span class="p">(</span><span class="nv">$main</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nc">.right</span> <span class="p">{</span>
+    <span class="k">&#64;include</span><span class="nd"> span-columns</span><span class="p">(</span><span class="nv">$side</span> <span class="n">omega</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+<p>At our largest breakpoint
+we are simply overriding everything
+to get ourselves back to a normal layout.
+No more off-canvas malarky here.
+Hide the other toggle-link,
+make sure everything stays put
+even if we have leftover classes,
+and you&#8217;re&nbsp;done.</p>
+</section>
+<section id="final-tweaks">
+<h2>Final&nbsp;Tweaks</h2>
+<p>I&#8217;ve added a number of styles
+to make it obvious what is going on,
+and highlight the transitions.
+You also need a bit of <span class="caps">JS</span>
+to make the toggles work,
+but this is all you need for the Susy&nbsp;setup.</p>
+<p>Play around with all the numbers,
+it&#8217;s amazingly flexible.
+It works the same as any other Susy grid:
+any reasonable settings should&nbsp;work.</p>
 </section>
 </div>
 
