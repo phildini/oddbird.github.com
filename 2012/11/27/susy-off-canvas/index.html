@@ -7,7 +7,7 @@
   
 
   <!-- Page Info -->
-  <title>Off-canvas design with Susy | OddBird</title>
+  <title>Off-canvas layout with Susy | OddBird</title>
   <meta name="description" content="Custom-built web tools for humans" />
 
   <!-- Site Info -->
@@ -86,7 +86,7 @@
 
   
   <div class="post">
-    <h1 class="title">Off-canvas design with Susy</h1>
+    <h1 class="title">Off-canvas layout with Susy</h1>
 
 
     
@@ -112,20 +112,28 @@
 </p>
 
 
-    <div class="body"><p>The <a class="reference external" href="http://jasonweaver.name/lab/offcanvas/">off-canvas</a> design pattern
-for creating responsive websites
+    <div class="body"><p>The <a class="reference external" href="http://jasonweaver.name/lab/offcanvas/">off-canvas</a> layout pattern
+for responsive websites
 has been getting all the attention lately,
 and I&#8217;ve had several people ask
 how Susy might play&nbsp;along.</p>
 <p>The truth is,
-off-canvas design is as easy with Susy
-as any other design.
+Susy handles off-canvas layout the same
+as any other layout.
 All you need to do
 is pull some of your columns off the screen.
 I&#8217;ll show you how,
-following Jason&#8217;s directions,
-and just adding in the Susy&nbsp;bits.</p>
-<p>Check out the <a class="reference external" href="/demos/susy-off-canvas/">demo</a>.</p>
+following Jason&#8217;s lead,
+and adding in the Susy&nbsp;bits.</p>
+<p>Check out the <a class="reference external" href="/demos/susy-off-canvas/">demo</a>,
+and make sure you understand
+<a class="reference external" href="http://jasonweaver.name/lab/offcanvas/">off-canvas</a> layouts
+before you go&nbsp;on.</p>
+<p>I&#8217;ve used a few shortcuts
+that require the <a class="reference external" href="http://rubygems.org/gems/susy">latest Susy release</a>
+(1.0.5),
+but the concepts remain true
+in older versions as&nbsp;well.</p>
 <section id="basic-markup">
 <h2>Basic&nbsp;Markup:</h2>
 <pre class="code html">
@@ -146,8 +154,8 @@ with header, footer,
 and three body columns:
 left, right, and main.
 Inside the header
-we have links that we&#8217;ll hijack in JavaScript
-to toggle our active&nbsp;styles.</p>
+we have links we can hijack in JavaScript
+to toggle state&nbsp;body-classes.</p>
 </section>
 <section id="susy-settings">
 <h2>Susy&nbsp;Settings:</h2>
@@ -159,9 +167,8 @@ to toggle our active&nbsp;styles.</p>
 </pre>
 <p>Since this is a mobile-first design pattern,
 we&#8217;ll start with settings for a
-standard mobile-first Susy grid.
-You can change those any way you like,
-that&#8217;s the beauty of using Sass <span class="amp">&amp;</span>&nbsp;Susy.</p>
+typical mobile-first Susy grid.
+You can change those any way you&nbsp;like.</p>
 <p>I&#8217;m also going to establish my
 medium and large column settings right&nbsp;away:</p>
 <pre class="code scss">
@@ -202,9 +209,9 @@ sections to&nbsp;appear.</p>
 <span class="nv">$anchor</span><span class="o"> :</span> <span class="mi">1</span><span class="p">;</span>
 <span class="nv">$side</span><span class="o">   :</span> <span class="nv">$total-columns</span> <span class="o">-</span> <span class="nv">$anchor</span><span class="p">;</span>
 </pre>
-<p>I&#8217;ve created an <code> $anchor </code> setting
-to control how much of the main section
-remains visible while side-sections are displayed.
+<p>I&#8217;ve created an <code> $anchor </code> variable
+to control how many columns of the main section
+remain visible while side-sections are displayed.
 The <code> $side </code> width of our left <span class="amp">&amp;</span> right sections
 is based on the remaining&nbsp;space.</p>
 <pre class="code scss">
@@ -250,11 +257,11 @@ with the final <code> gutter() </code> included.</p>
 <span class="nv">$main</span><span class="o"> :</span> <span class="mi">5</span><span class="p">;</span>
 <span class="nv">$side</span><span class="o"> :</span> <span class="nv">$medium-columns</span> <span class="o">-</span> <span class="nv">$main</span><span class="p">;</span>
 </pre>
-<p>These settings simply establish
+<p>These variables simply establish
 the widths we will use for our columns.
 You could, of course,
 set different right and left widths.
-I&#8217;ll leave that as an excercise for the&nbsp;reader.</p>
+I&#8217;ll leave that as an exercise for the&nbsp;reader.</p>
 <pre class="code scss">
 <span class="k">&#64;include</span><span class="nd"> at-breakpoint</span><span class="p">(</span><span class="nv">$medium-columns</span><span class="p">)</span> <span class="p">{</span>
   <span class="o">[</span><span class="nt">href</span><span class="o">=</span><span class="s2">&quot;#left&quot;</span><span class="o">]</span> <span class="p">{</span> <span class="na">visibility</span><span class="o">:</span> <span class="no">hidden</span><span class="p">;</span> <span class="p">}</span>
@@ -295,7 +302,7 @@ as it is no longer&nbsp;needed.</p>
 <span class="nv">$main</span><span class="o"> :</span> <span class="mi">6</span><span class="p">;</span>
 <span class="nv">$side</span><span class="o"> :</span> <span class="p">(</span><span class="nv">$large-columns</span> <span class="o">-</span> <span class="nv">$main</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
 </pre>
-<p>Nothing new here, we&#8217;re just dividing up the space
+<p>Nothing new here; we&#8217;re just dividing up the space
 into variables we can&nbsp;use.</p>
 <pre class="code scss">
 <span class="k">&#64;include</span><span class="nd"> at-breakpoint</span><span class="p">(</span><span class="nv">$large-columns</span><span class="p">)</span> <span class="p">{</span>
@@ -318,7 +325,7 @@ into variables we can&nbsp;use.</p>
 <p>At our largest breakpoint
 we are simply overriding everything
 to get ourselves back to a normal layout.
-No more off-canvas malarky here.
+No more off-canvas malarkey here.
 Hide the other toggle-link,
 make sure everything stays put
 even if we have leftover classes,
@@ -327,15 +334,18 @@ and you&#8217;re&nbsp;done.</p>
 <section id="final-tweaks">
 <h2>Final&nbsp;Tweaks</h2>
 <p>I&#8217;ve added a number of styles
-to make it obvious what is going on,
-and highlight the transitions.
+to make it obvious what&#8217;s going on
+and highlight the transitions
+in our <a class="reference external" href="/demos/susy-off-canvas/">demo</a>.
 You also need a bit of <span class="caps">JS</span>
 to make the toggles work,
 but this is all you need for the Susy&nbsp;setup.</p>
-<p>Play around with all the numbers,
+<p>Play around with all the numbers;
 it&#8217;s amazingly flexible.
 It works the same as any other Susy grid:
 any reasonable settings should&nbsp;work.</p>
+<p>Feel free to peruse the full <a class="reference external" href="https://github.com/oddbird/oddsite/blob/master/sass/pages/susy-off-canvas.scss">sass</a>
+and <a class="reference external" href="https://github.com/oddbird/oddsite/blob/master/content/static/js/pages/susy-off-canvas.js">js</a> source at your&nbsp;leisure.</p>
 </section>
 </div>
 
@@ -351,7 +361,7 @@ any reasonable settings should&nbsp;work.</p>
     <h3 class="foottitle"><a href="/archive/" rel="archive">Blog Archive</a></h3>
     <ul>
       <li>
-        <a href="/2012/11/27/susy-off-canvas"  rel="bookmark">Off-canvas design with Susy</a>
+        <a href="/2012/11/27/susy-off-canvas"  rel="bookmark">Off-canvas layout with Susy</a>
       </li>
     </ul>
   </div>

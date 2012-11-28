@@ -277,6 +277,14 @@ header, footer {
 .main {
   background: rgba(238, 238, 238, 0.75);
 }
+.main:after {
+  margin-top: 1.5em;
+  content: " [adjust your browser width to see the demo in action]";
+  display: block;
+  text-align: center;
+  font-style: italic;
+  text-transform: none;
+}
 
 .right {
   background: rgba(255, 255, 204, 0.75);
