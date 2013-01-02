@@ -72,5 +72,249 @@ Stay&amp;nbsp;tuned!&lt;/p&gt;
 &lt;/section&gt;
 </content>
   </entry>
+  <entry xml:base="http://oddbird.net/feed.atom">
+    <title type="text">Off-canvas layout with Susy</title>
+    <id>http://oddbird.net/2012/11/27/susy-off-canvas</id>
+    <updated>2012-11-27T00:00:00Z</updated>
+    <link href="http://oddbird.net/2012/11/27/susy-off-canvas" />
+    <author>
+      <name>OddBird</name>
+    </author>
+    <content type="html">&lt;p&gt;The &lt;a class="reference external" href="http://jasonweaver.name/lab/offcanvas/"&gt;off-canvas&lt;/a&gt; layout pattern
+for responsive websites
+has been getting all the attention lately,
+and I&amp;#8217;ve had several people ask
+how &lt;a class="reference external" href="http://susy.oddbird.net/"&gt;Susy&lt;/a&gt; might play&amp;nbsp;along.&lt;/p&gt;
+&lt;p&gt;The truth is,
+Susy handles off-canvas layout the same
+as any other layout.
+All you need to do
+is pull some of your columns off the screen.
+I&amp;#8217;ll show you how,
+following Jason&amp;#8217;s lead,
+and adding in the Susy&amp;nbsp;bits.&lt;/p&gt;
+&lt;p&gt;Check out the &lt;a class="reference external" href="/demos/susy-off-canvas/"&gt;demo&lt;/a&gt;,
+and make sure you understand
+&lt;a class="reference external" href="http://jasonweaver.name/lab/offcanvas/"&gt;off-canvas&lt;/a&gt; layouts
+before you go&amp;nbsp;on.&lt;/p&gt;
+&lt;p&gt;I&amp;#8217;ve used a few shortcuts
+that require the &lt;a class="reference external" href="http://rubygems.org/gems/susy"&gt;latest Susy release&lt;/a&gt;
+(1.0.5),
+but the concepts remain true
+in older versions as&amp;nbsp;well.&lt;/p&gt;
+&lt;section id="basic-markup"&gt;
+&lt;h2&gt;Basic&amp;nbsp;Markup:&lt;/h2&gt;
+&lt;pre class="code html"&gt;
+&lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;container&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;header&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#left&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;toggle&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;show-left&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#right&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;toggle&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;show-right&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+    header
+  &lt;span class="nt"&gt;&amp;lt;/header&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;left&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;left&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;left&lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;main&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;main&lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;right&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;right&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;right&lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;footer&amp;gt;&lt;/span&gt;footer&lt;span class="nt"&gt;&amp;lt;/footer&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;We have a simple container
+with header, footer,
+and three body columns:
+left, right, and main.
+Inside the header
+we have links we can hijack in JavaScript
+to toggle state&amp;nbsp;body-classes.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="susy-settings"&gt;
+&lt;h2&gt;Susy&amp;nbsp;Settings:&lt;/h2&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nv"&gt;$total-columns&lt;/span&gt;&lt;span class="o"&gt;    :&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$column-width&lt;/span&gt;&lt;span class="o"&gt;     :&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$gutter-width&lt;/span&gt;&lt;span class="o"&gt;     :&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$grid-padding&lt;/span&gt;&lt;span class="o"&gt;     :&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Since this is a mobile-first design pattern,
+we&amp;#8217;ll start with settings for a
+typical mobile-first Susy grid.
+You can change those any way you&amp;nbsp;like.&lt;/p&gt;
+&lt;p&gt;I&amp;#8217;m also going to establish my
+medium and large column settings right&amp;nbsp;away:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nv"&gt;$medium-columns&lt;/span&gt;&lt;span class="o"&gt;   :&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$large-columns&lt;/span&gt;&lt;span class="o"&gt;    :&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;And I&amp;#8217;ll set Susy&amp;#8217;s
+&lt;code&gt;$container-width&lt;/code&gt;
+override to the largest layout width,
+so the container is fluid up to that&amp;nbsp;point:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nv"&gt;$container-width&lt;/span&gt;&lt;span class="o"&gt;  :&lt;/span&gt; &lt;span class="nf"&gt;container-outer-width&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$large-columns&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/section&gt;
+&lt;section id="establish-the-container"&gt;
+&lt;h2&gt;Establish the&amp;nbsp;Container:&lt;/h2&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nc"&gt;.container&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; container&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="na"&gt;overflow&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="no"&gt;hidden&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Besides establishing the usual Susy container,
+I also set &lt;code&gt;overflow&lt;/code&gt; to &lt;code&gt;hidden&lt;/code&gt;
+so that our off-canvas elements
+don&amp;#8217;t trigger a horizontal&amp;nbsp;scrollbar.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="small-layout"&gt;
+&lt;h2&gt;Small&amp;nbsp;Layout:&lt;/h2&gt;
+&lt;p&gt;For our smallest layout
+the &lt;code&gt;.main&lt;/code&gt; section is visible at all times,
+full-width by default
+or pushed to one side to make room
+for the &lt;code&gt;.left&lt;/code&gt; or &lt;code&gt;.right&lt;/code&gt;
+sections to&amp;nbsp;appear.&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nv"&gt;$anchor&lt;/span&gt;&lt;span class="o"&gt; :&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$side&lt;/span&gt;&lt;span class="o"&gt;   :&lt;/span&gt; &lt;span class="nv"&gt;$total-columns&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nv"&gt;$anchor&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;I&amp;#8217;ve created an &lt;code&gt;$anchor&lt;/code&gt; variable
+to control how many columns of the main section
+remain visible while side-sections are displayed.
+The &lt;code&gt;$side&lt;/code&gt; width of our left &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; right sections
+is based on the remaining&amp;nbsp;space.&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nc"&gt;.left&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span-columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$side&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="na"&gt;margin-left&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;-100&lt;/span&gt;&lt;span class="kt"&gt;%&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="nc"&gt;.show-left&lt;/span&gt; &lt;span class="k"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;margin-left&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="nc"&gt;.main&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span-columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$total-columns&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="na"&gt;margin-right&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="nc"&gt;.show-left&lt;/span&gt; &lt;span class="k"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;margin-right&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nf"&gt;space&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$side&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="nc"&gt;.show-right&lt;/span&gt; &lt;span class="k"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;margin-left&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nf"&gt;space&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$side&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="nc"&gt;.right&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span-columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$side&lt;/span&gt; &lt;span class="n"&gt;omega&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="na"&gt;margin-right&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;-100&lt;/span&gt;&lt;span class="kt"&gt;%&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="nc"&gt;.show-right&lt;/span&gt; &lt;span class="k"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;margin-right&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;span-column&lt;/code&gt; mixins establish our spacing,
+just like any other Susy site.
+The main difference here is that our total columns-spanned
+is much larger than the number of columns available.
+A few &lt;code&gt;margin&lt;/code&gt; adjustments,
+and we&amp;#8217;ve pulled the left and right sections off the canvas.
+I also removed the &lt;code&gt;margin-right&lt;/code&gt; gutter
+on our main column, since it spans the full&amp;nbsp;width.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;.show-left&lt;/code&gt; and &lt;code&gt;.show-right&lt;/code&gt;
+selectors allow us to move everything around
+when we want to show and hide the sidebars.
+The &lt;code&gt;space()&lt;/code&gt; function is used to push
+our main section only as far as it needs to go:
+&lt;code&gt;space()&lt;/code&gt; represents the space taken by
+a given number of &lt;code&gt;columns()&lt;/code&gt;
+with the final &lt;code&gt;gutter()&lt;/code&gt; included.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="medium-layout"&gt;
+&lt;h2&gt;Medium&amp;nbsp;Layout:&lt;/h2&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nv"&gt;$main&lt;/span&gt;&lt;span class="o"&gt; :&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$side&lt;/span&gt;&lt;span class="o"&gt; :&lt;/span&gt; &lt;span class="nv"&gt;$medium-columns&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nv"&gt;$main&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;These variables simply establish
+the widths we will use for our columns.
+You could, of course,
+set different right and left widths.
+I&amp;#8217;ll leave that as an exercise for the&amp;nbsp;reader.&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; at-breakpoint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$medium-columns&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="nt"&gt;href&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;#left&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;visibility&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="no"&gt;hidden&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="nc"&gt;.left&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span-columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$side&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="na"&gt;margin-left&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="nc"&gt;.show-right&lt;/span&gt; &lt;span class="k"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;margin-left&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="kt"&gt;%&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="nc"&gt;.main&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="na"&gt;width&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nf"&gt;columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$main&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nc"&gt;.show-right&lt;/span&gt; &lt;span class="k"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;margin-left&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="nc"&gt;.show-left&lt;/span&gt; &lt;span class="k"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;margin-right&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="nc"&gt;.right&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="na"&gt;width&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nf"&gt;columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$side&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nc"&gt;.show-right&lt;/span&gt; &lt;span class="k"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;margin-right&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;At our medium breakpoint,
+we change the styles to show both the
+left and main sections by default.
+I used &lt;code&gt;width: columns()&lt;/code&gt;
+instead of &lt;code&gt;span-columns&lt;/code&gt;
+on the main &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; right sections
+because only the width actually needs to change,
+while our left column needs the gutter adjusted as&amp;nbsp;well.&lt;/p&gt;
+&lt;p&gt;We also hide the left toggle
+( &lt;code&gt;[href=&amp;quot;#left&amp;quot;]&lt;/code&gt; )
+as it is no longer&amp;nbsp;needed.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="large-layout"&gt;
+&lt;h2&gt;Large&amp;nbsp;Layout:&lt;/h2&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nv"&gt;$main&lt;/span&gt;&lt;span class="o"&gt; :&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$side&lt;/span&gt;&lt;span class="o"&gt; :&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$large-columns&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nv"&gt;$main&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Nothing new here; we&amp;#8217;re just dividing up the space
+into variables we can&amp;nbsp;use.&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; at-breakpoint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$large-columns&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="nt"&gt;href&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;#right&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;visibility&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="no"&gt;hidden&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="nc"&gt;.left&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span-columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$side&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nc"&gt;.show-right&lt;/span&gt; &lt;span class="k"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;margin-left&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="nc"&gt;.main&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="na"&gt;width&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nf"&gt;columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$main&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="nc"&gt;.right&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span-columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$side&lt;/span&gt; &lt;span class="n"&gt;omega&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;At our largest breakpoint
+we are simply overriding everything
+to get ourselves back to a normal layout.
+No more off-canvas malarkey here.
+Hide the other toggle-link,
+make sure everything stays put
+even if we have leftover classes,
+and you&amp;#8217;re&amp;nbsp;done.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="final-tweaks"&gt;
+&lt;h2&gt;Final&amp;nbsp;Tweaks&lt;/h2&gt;
+&lt;p&gt;I&amp;#8217;ve added a number of styles
+to make it obvious what&amp;#8217;s going on
+and highlight the transitions
+in our &lt;a class="reference external" href="/demos/susy-off-canvas/"&gt;demo&lt;/a&gt;.
+You also need a bit of &lt;span class="caps"&gt;JS&lt;/span&gt;
+to make the toggles work,
+but this is all you need for the Susy&amp;nbsp;setup.&lt;/p&gt;
+&lt;p&gt;Play around with all the numbers;
+it&amp;#8217;s amazingly flexible.
+It works the same as any other Susy grid:
+any reasonable settings should&amp;nbsp;work.&lt;/p&gt;
+&lt;p&gt;Feel free to peruse the full &lt;a class="reference external" href="https://github.com/oddbird/oddsite/blob/master/sass/pages/susy-off-canvas.scss"&gt;sass&lt;/a&gt;
+and &lt;a class="reference external" href="https://github.com/oddbird/oddsite/blob/master/content/static/js/pages/susy-off-canvas.js"&gt;js&lt;/a&gt; source at your&amp;nbsp;leisure.&lt;/p&gt;
+&lt;/section&gt;
+</content>
+  </entry>
 </feed>
 
