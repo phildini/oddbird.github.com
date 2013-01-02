@@ -38,26 +38,39 @@ We&amp;#8217;ll be working together to design and build a
 unified layout system under the Susy&amp;nbsp;name.&lt;/p&gt;
 &lt;p&gt;Please welcome the Susy Next&amp;nbsp;team:&lt;/p&gt;
 &lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://github.com/jina/"&gt;Jina Bolton&lt;/a&gt; [&lt;a class="reference external" href="http://twitter.com/jina"&gt;&amp;#64;jina&lt;/a&gt;] is a regular speaker at web conferences,
+&lt;li&gt;&lt;a class="reference external" href="http://github.com/jina/"&gt;Jina Bolton&lt;/a&gt; [&lt;a class="reference external" href="http://twitter.com/jina"&gt;&amp;#64;jina&lt;/a&gt;]
+is a Product Designer at &lt;a class="reference external" href="http://do.com/"&gt;Do&lt;/a&gt;,
+a regular speaker at web conferences,
 co-creator of the &lt;a class="reference external" href="http://stuffandnonsense.co.uk/projects/320andup/"&gt;320 and Up&lt;/a&gt; responsive design boilerplate,
 curator of &lt;a class="reference external" href="http://artinmycoffee.com/"&gt;Art in My Coffee&lt;/a&gt;,
 and an active part of &lt;a class="reference external" href="http://teamsassdesign.tumblr.com/"&gt;Team Sass&amp;nbsp;Design&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://github.com/scottkellum/"&gt;Scott Kellum&lt;/a&gt; [&lt;a class="reference external" href="http://twitter.com/scottkellum"&gt;&amp;#64;scottkellum&lt;/a&gt;] created &lt;a class="reference external" href="http://singularity.gs/"&gt;Singularity&lt;/a&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://github.com/scottkellum/"&gt;Scott Kellum&lt;/a&gt; [&lt;a class="reference external" href="http://twitter.com/scottkellum"&gt;&amp;#64;scottkellum&lt;/a&gt;]
+is a designer at &lt;a class="reference external" href="http://voxmedia.com/"&gt;&lt;span class="caps"&gt;VOX&lt;/span&gt; Media&lt;/a&gt;.
+He created &lt;a class="reference external" href="http://singularity.gs/"&gt;Singularity&lt;/a&gt;
 for managing asymmetric grids,
 as well as &lt;a class="reference external" href="http://github.com/scottkellum/sassy-math"&gt;Sassy Math&lt;/a&gt;, &lt;a class="reference external" href="http://github.com/scottkellum/modular-scale"&gt;Modular Scale&lt;/a&gt;, and&amp;nbsp;more.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://github.com/CrowChick/"&gt;Rachel Nabors&lt;/a&gt; [&lt;a class="reference external" href="http://twitter.com/crowchick"&gt;&amp;#64;crowchick&lt;/a&gt;] is an award-winning comicker,
+&lt;li&gt;&lt;a class="reference external" href="http://github.com/CrowChick/"&gt;Rachel Nabors&lt;/a&gt; [&lt;a class="reference external" href="http://twitter.com/crowchick"&gt;&amp;#64;crowchick&lt;/a&gt;]
+is a front-ender &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; &lt;span class="caps"&gt;UI&lt;/span&gt; lead at &lt;a class="reference external" href="http://ruzuku.com/"&gt;Ruzuku&lt;/a&gt;
+an award-winning comicker,
 developer, Susy contributor, and a regular speaker at web&amp;nbsp;conferences.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://github.com/dannyprose/"&gt;Danny Palmer&lt;/a&gt; [&lt;a class="reference external" href="https://twitter.com/dannyprose/"&gt;&amp;#64;dannyprose&lt;/a&gt;] has helped
-create &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; maintain the Susy docs for the past year.
+&lt;li&gt;&lt;a class="reference external" href="http://github.com/dannyprose/"&gt;Danny Palmer&lt;/a&gt; [&lt;a class="reference external" href="https://twitter.com/dannyprose/"&gt;&amp;#64;dannyprose&lt;/a&gt;]
+is an interactive creative and cross-media art director.
+He has helped create &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; maintain the Susy docs for the past year.
 He is also the creator of &lt;a class="reference external" href="http://github.com/dannyprose/Middleman-HTML5BP-HAML"&gt;Middleman-&lt;span class="caps"&gt;HTML5BP&lt;/span&gt;-&lt;span class="caps"&gt;HAML&lt;/span&gt;&lt;/a&gt;,
 a project template using &lt;span class="caps"&gt;HTML5&lt;/span&gt; Boilerplate, &lt;span class="caps"&gt;HAML&lt;/span&gt;, Sprockets,
 Susy, and&amp;nbsp;more.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://github.com/snugug/"&gt;Sam Richard&lt;/a&gt; [&lt;a class="reference external" href="http://twitter.com/Snugug"&gt;&amp;#64;snugug&lt;/a&gt;] is an organizer for various Sass &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; &lt;span class="caps"&gt;RWD&lt;/span&gt;
-meetups in New York City, and a co-maintainer of
-&lt;a class="reference external" href="http://breakpoint-sass.com"&gt;Breakpoint&lt;/a&gt;, &lt;a class="reference external" href="http://github.com/scottkellum/sassy-math"&gt;Sassy Math&lt;/a&gt;, &lt;a class="reference external" href="http://singularity.gs/"&gt;Singularity&lt;/a&gt;, and so&amp;nbsp;on.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://github.com/tsi/"&gt;Tsachi Shlidor&lt;/a&gt; [&lt;a class="reference external" href="http://twitter.com/shlidor"&gt;&amp;#64;shlidor&lt;/a&gt;] created &lt;a class="reference external" href="http://drupal.org/project/sasson"&gt;Sasson&lt;/a&gt;
-Drupal theme (among others), and the &lt;a class="reference external" href="http://tsi.github.com/Salsa/"&gt;Salsa&lt;/a&gt; layout&amp;nbsp;system.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://github.com/canarymason/"&gt;Mason Wendell&lt;/a&gt; [&lt;a class="reference external" href="http://twitter.com/codingdesigner"&gt;&amp;#64;codingdesigner&lt;/a&gt;] is the creator of &lt;a class="reference external" href="http://breakpoint-sass.com"&gt;Breakpoint&lt;/a&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://github.com/snugug/"&gt;Sam Richard&lt;/a&gt; [&lt;a class="reference external" href="http://twitter.com/Snugug"&gt;&amp;#64;snugug&lt;/a&gt;]
+is a Senior Front End Developer for &lt;a class="reference external" href="http://www.nbcuni.com/"&gt;NBCUniversal&lt;/a&gt;,
+an organizer for various Sass &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; &lt;span class="caps"&gt;RWD&lt;/span&gt; meetups in New York City,
+and a co-maintainer of &lt;a class="reference external" href="http://breakpoint-sass.com"&gt;Breakpoint&lt;/a&gt;, &lt;a class="reference external" href="http://github.com/scottkellum/sassy-math"&gt;Sassy Math&lt;/a&gt;, &lt;a class="reference external" href="http://singularity.gs/"&gt;Singularity&lt;/a&gt;,
+and so&amp;nbsp;on.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://github.com/tsi/"&gt;Tsachi Shlidor&lt;/a&gt; [&lt;a class="reference external" href="http://twitter.com/shlidor"&gt;&amp;#64;shlidor&lt;/a&gt;]
+is a Drupalist front-end developer and themer at &lt;cite&gt;Linnovate&lt;/cite&gt;.
+He created the &lt;a class="reference external" href="http://drupal.org/project/sasson"&gt;Sasson&lt;/a&gt; Drupal theme,
+and the &lt;a class="reference external" href="http://tsi.github.com/Salsa/"&gt;Salsa&lt;/a&gt; layout&amp;nbsp;system.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://github.com/canarymason/"&gt;Mason Wendell&lt;/a&gt; [&lt;a class="reference external" href="http://twitter.com/codingdesigner"&gt;&amp;#64;codingdesigner&lt;/a&gt;]
+is a Creative Director at &lt;a class="reference external" href="http://zivtech.com"&gt;Zivtech&lt;/a&gt;,
+the creator of &lt;a class="reference external" href="http://breakpoint-sass.com"&gt;Breakpoint&lt;/a&gt;
 (simple sass media queries),
 and a contributor to various other great projects.
 He also built &amp;#8220;one of the dumbest Sass experiments&amp;#8221; —
