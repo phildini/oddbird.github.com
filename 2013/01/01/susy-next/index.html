@@ -7,7 +7,7 @@
   
 
   <!-- Page Info -->
-  <title>Entries by eric | OddBird</title>
+  <title>Sass Layout in 2013 and the Future of Susy | OddBird</title>
   <meta name="description" content="Custom-built web tools for humans" />
 
   <!-- Site Info -->
@@ -17,11 +17,8 @@
   <meta name="language" content="en-us" />
 
   
-
   <link href="/feed.atom" rel="alternate" title="OddBird blog posts" type="application/atom+xml">
   
-<link href="feed.atom" rel="alternate" title="OddBird blog posts by 'eric'" type="application/atom+xml">
-
 
   <!-- Microformat Profiles -->
   <!-- hCard, hCalendar, rel-license, rel-tag, XOXO, XFN, VoteLinks -->
@@ -75,7 +72,7 @@
   
 </head>
 
-<body id="oddsite" class="blog archive">
+<body id="oddsite" class="blog">
 
 
 <h1 role="banner"><a href="/" rel="home">OddBird</a></h1>
@@ -90,13 +87,9 @@
 <section role="main" >
 
   
-  
-  <article class="post">
-    <h1 class="title">
-      <a href="/2013/01/01/susy-next">
-        Sass Layout in 2013 and the Future of Susy
-      </a>
-    </h1>
+  <div class="post">
+    <h1 class="title">Sass Layout in 2013 and the Future of Susy</h1>
+
 
     
 <p class="byline">
@@ -121,78 +114,65 @@
 </p>
 
 
-    <div class="body">
-      
-        <p>The web is littered with grid systems and 'frameworks'
-that force your code &amp; design into narrowly defined patterns.
+    <div class="body"><p>The web is littered with grid systems and &#8216;frameworks&#8217;
+that force your code <span class="amp">&amp;</span> design into narrowly defined patterns.
 Even the most semantic of us
 have had to push specialized techniques
-in order to create a usable syntax.</p>
+in order to create a usable&nbsp;syntax.</p>
 <p>But Sass has come a long way, and
-I'm convinced that it's time for something new.</p>
+I&#8217;m convinced that it&#8217;s time for something&nbsp;new.</p>
 <p>What if you had a layout system
 that bends completely to the needs of your site?
 What if you could use one unified syntax
 for handling responsive layouts of any kind?
 What if you had a modular system
 that let you mix-and-match to customize for every site,
-and change your output with simple extensions?</p>
-
-        <a href="/2013/01/01/susy-next" class="readmore">
-          read more
-        </a>
-      
-    </div>
-  </article>
-  <article class="post">
-    <h1 class="title">
-      <a href="/2012/11/27/susy-off-canvas">
-        Off-canvas layout with Susy
-      </a>
-    </h1>
+and change your output with simple&nbsp;extensions?</p>
+<section id="susy-next-a-merger">
+<h2>Susy Next (A&nbsp;Merger)</h2>
+<p>I&#8217;m excited to announce Susy Next,
+a joint project from the creators of
+<a class="reference external" href="http://singularity.gs/">Singularity</a>, <a class="reference external" href="http://tsi.github.com/Salsa/">Salsa</a>, <a class="reference external" href="http://breakpoint-sass.com">Breakpoint</a>, and <a class="reference external" href="http://susy.oddbird.net/">Susy</a>.
+We&#8217;ll be working together to design and build a
+unified layout system under the Susy&nbsp;name.</p>
+<p>Please welcome the Susy Next&nbsp;team:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://github.com/jina/">Jina Bolton</a> [<a class="reference external" href="http://twitter.com/jina">&#64;jina</a>] is a regular speaker at web conferences,
+co-creator of the <a class="reference external" href="http://stuffandnonsense.co.uk/projects/320andup/">320 and Up</a> responsive design boilerplate,
+curator of <a class="reference external" href="http://artinmycoffee.com/">Art in My Coffee</a>,
+and an active part of <a class="reference external" href="http://teamsassdesign.tumblr.com/">Team Sass&nbsp;Design</a>.</li>
+<li><a class="reference external" href="http://github.com/scottkellum/">Scott Kellum</a> [<a class="reference external" href="http://twitter.com/scottkellum">&#64;scottkellum</a>] created <a class="reference external" href="http://singularity.gs/">Singularity</a>
+for managing asymmetric grids,
+as well as <a class="reference external" href="http://github.com/scottkellum/sassy-math">Sassy Math</a>, <a class="reference external" href="http://github.com/scottkellum/modular-scale">Modular Scale</a>, and&nbsp;more.</li>
+<li><a class="reference external" href="http://github.com/CrowChick/">Rachel Nabors</a> [<a class="reference external" href="http://twitter.com/crowchick">&#64;crowchick</a>] is an award-winning comicker,
+developer, Susy contributor, and a regular speaker at web&nbsp;conferences.</li>
+<li><a class="reference external" href="http://github.com/dannyprose/">Danny Palmer</a> [<a class="reference external" href="https://twitter.com/dannyprose/">&#64;dannyprose</a>] has helped
+create <span class="amp">&amp;</span> maintain the Susy docs for the past year.
+He is also the creator of <a class="reference external" href="http://github.com/dannyprose/Middleman-HTML5BP-HAML">Middleman-<span class="caps">HTML5BP</span>-<span class="caps">HAML</span></a>,
+a project template using <span class="caps">HTML5</span> Boilerplate, <span class="caps">HAML</span>, Sprockets,
+Susy, and&nbsp;more.</li>
+<li><a class="reference external" href="http://github.com/snugug/">Sam Richard</a> [<a class="reference external" href="http://twitter.com/Snugug">&#64;snugug</a>] is an organizer for various Sass <span class="amp">&amp;</span> <span class="caps">RWD</span>
+meetups in New York City, and a co-maintainer of
+<a class="reference external" href="http://breakpoint-sass.com">Breakpoint</a>, <a class="reference external" href="http://github.com/scottkellum/sassy-math">Sassy Math</a>, <a class="reference external" href="http://singularity.gs/">Singularity</a>, and so&nbsp;on.</li>
+<li><a class="reference external" href="http://github.com/tsi/">Tsachi Shlidor</a> [<a class="reference external" href="http://twitter.com/shlidor">&#64;shlidor</a>] created <a class="reference external" href="http://drupal.org/project/sasson">Sasson</a>
+Drupal theme (among others), and the <a class="reference external" href="http://tsi.github.com/Salsa/">Salsa</a> layout&nbsp;system.</li>
+<li><a class="reference external" href="http://github.com/canarymason/">Mason Wendell</a> [<a class="reference external" href="http://twitter.com/codingdesigner">&#64;codingdesigner</a>] is the creator of <a class="reference external" href="http://breakpoint-sass.com">Breakpoint</a>
+(simple sass media queries),
+and a contributor to various other great projects.
+He also built &#8220;one of the dumbest Sass experiments&#8221; —
+<a class="reference external" href="http://sassymothereffingtextshadow.com">sassymothereffingtextshadow</a>.</li>
+</ul>
+<p>All of us are passionate designer/developers,
+with a love for Sass <span class="amp">&amp;</span> <span class="caps">CSS</span>.
+We&#8217;re excited to build a layout syntax that spans
+existing frameworks, techniques, and systems.
+We hope you&#8217;ll get involved, and help make it a community project.
+Stay&nbsp;tuned!</p>
+</section>
+</div>
 
     
-<p class="byline">
-  
-  <time datetime="2012-11-27T00:00:00" pubdate="pubdate">
-    November 27, 2012
-  </time>
-  
-
-  
-  <span class="vcard">
-    by <a href="/authors/eric/" class="fn">eric</a>
-  </span>
-  
-
-  
-    <span class="tags">
-      in
-      <a href="/tags/demo/" rel="tag">demo</a>, <a href="/tags/rwd/" rel="tag">rwd</a>, <a href="/tags/susy/" rel="tag">susy</a>.
-    </span>
-  
-</p>
-
-
-    <div class="body">
-      
-        <p>The <a class="reference external" href="http://jasonweaver.name/lab/offcanvas/">off-canvas</a> layout pattern
-for responsive web design
-has been getting all the attention lately,
-and I've had several people ask
-how <a class="reference external" href="http://susy.oddbird.net/">Susy</a> might play along.
-I'll show you how easy it is,
-and how much flexibility Susy can add
-along the way.</p>
-
-        <a href="/2012/11/27/susy-off-canvas" class="readmore">
-          read more
-        </a>
-      
-    </div>
-  </article>
-
-  
+  </div>
 
 
 </section>
