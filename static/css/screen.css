@@ -724,8 +724,6 @@ body:after {
   }
 }
 .post {
-  margin-bottom: 44px;
-  margin-bottom: 2.44444rem;
   overflow: hidden;
 }
 
@@ -742,6 +740,10 @@ body:after {
   font-style: normal;
 }
 
+.body {
+  margin-bottom: 44px;
+  margin-bottom: 2.44444rem;
+}
 .body ul {
   list-style-type: disc;
 }
@@ -751,6 +753,24 @@ body:after {
 .body li {
   margin-bottom: 11px;
   margin-bottom: 0.61111rem;
+}
+
+.comments {
+  font-size: 15px;
+  font-size: 0.83333rem;
+  line-height: 22px;
+  line-height: 1.22222rem;
+  font-variant: small-caps;
+  border-top-width: 1px;
+  border-top-width: 0.05556rem;
+  border-top-style: solid;
+  padding-top: 10px;
+  padding-top: 0.55556rem;
+  border-top: 1px dashed deepskyblue;
+  clear: both;
+}
+.comments a:link, .comments a:visited {
+  text-transform: uppercase;
 }
 
 .readmore {
@@ -777,6 +797,11 @@ body:after {
   }
   .byline .vcard, .byline .tags {
     display: block;
+  }
+
+  .comments {
+    margin-left: 25.80645%;
+    margin-right: 8.60215%;
   }
 }
 .pagination {
