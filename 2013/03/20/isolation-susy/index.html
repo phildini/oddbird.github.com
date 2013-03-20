@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>             <html class="no-js ie" lang="en" dir="ltr">   <![endif]-->
+<!--[if (gt IE 8)|!(IE)]><!-->  <html class="no-js" lang="en" dir="ltr">      <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+
+  
+
+  <!-- Page Info -->
+  <title>Isolation and bleed in Susy | OddBird</title>
+  <meta name="description" content="Custom-built web tools for humans" />
+
+  <!-- Site Info -->
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="OddBird" />
+  <meta name="keywords" content="custom web development, web tools, open source, python, django, sass, scss, susy, javascript, jquery, js" />
+  <meta name="language" content="en-us" />
+
+  
+  <link href="/feed.atom" rel="alternate" title="OddBird blog posts" type="application/atom+xml">
+  
+
+  <!-- Microformat Profiles -->
+  <!-- hCard, hCalendar, rel-license, rel-tag, XOXO, XFN, VoteLinks -->
+  <link rel="profile" href="http://microformats.org/profile/specs/" />
+
+  <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
+  <meta http-equiv="cleartype" content="on">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1" />
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1">
+
+  <!--iOS. Delete if not required -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-startup-image" href="/static/images/favicons/splash.png">
+
+  <!-- favicon.ico -->
+  <link rel="shortcut icon" href="/static/images/favicons/favicon.ico" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/images/favicons/apple-touch-icon-114x114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/images/favicons/apple-touch-icon-72x72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="/static/images/favicons/apple-touch-icon-precomposed.png">
+
+  <!-- Styles -->
+  
+  <link rel="stylesheet" href="/static/dist/screen.min.accb177a.css" media="screen" />
+  <link rel="stylesheet" href="/static/dist/print.min.288bd9ea.css" media="print" />
+  
+
+  <!-- Modernizr -->
+  <script src="/static/js/libs/modernizr.custom.41881.js"></script>
+
+  <!-- Page-Specific Head -->
+  
+
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36510846-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+</head>
+
+<body id="oddsite" class="blog">
+
+
+<h1 role="banner"><a href="/" rel="home">OddBird</a></h1>
+
+<nav role="navigation">
+  <ul class="primary">
+    <li><a href="/" rel="home">home</a></li>
+    <li><a href="/blog/">blog</a></li>
+  </ul>
+</nav>
+
+<section role="main" >
+
+  
+  <div class="post">
+    <h1 class="title">Isolation and bleed in Susy</h1>
+
+
+    
+<p class="byline">
+  
+  <time datetime="2013-03-20T00:00:00" pubdate="pubdate">
+    March 20, 2013
+  </time>
+  
+
+  
+  <span class="vcard">
+    by <a href="/authors/eric/" class="fn">eric</a>
+  </span>
+  
+
+  
+    <span class="tags">
+      in
+      <a href="/tags/grids/" rel="tag">grids</a>, <a href="/tags/layout/" rel="tag">layout</a>, <a href="/tags/rwd/" rel="tag">rwd</a>, <a href="/tags/sub-pixel%20rounding/" rel="tag">sub-pixel rounding</a>, <a href="/tags/susy/" rel="tag">susy</a>.
+    </span>
+  
+</p>
+
+
+    <div class="body"><p>A few new features have landed in Susy 1.0.7,
+even as we work on more integrated syntaxes for&nbsp;2.0.</p>
+<section id="isolation">
+<h2>Isolation</h2>
+<p><a class="reference external" href="http://ejohn.org/blog/sub-pixel-problems-in-css/">Sub-pixel rounding</a> has always been a problem for fluid design.
+Susy takes care of the most egregious layout-breaking cases,
+but there is no way to entirely eliminate the&nbsp;problem.</p>
+<p>John Albin Wilkins has a <a class="reference external" href="http://johnalbin.github.com/fluid-grid-rounding-errors/">demo</a> of the problem,
+as well as a proposed <a class="reference external" href="http://palantir.net/blog/responsive-design-s-dirty-little-secret">solution</a>.
+He hasn&#8217;t eliminated rounding errors,
+he just found a way to keep them from piling up.
+Every float is positioned relative to its container,
+rather than the float before it.
+It&#8217;s a bit of a hack,
+and removes content from the flow,
+so I don&#8217;t recommned building your entire layout on isolated floats,
+but it can be very useful as a spot-check
+when rounding errors are really causing you a&nbsp;headache.</p>
+<p>(<em>Note that rounding errors can still stack up when you use
+a gradient background for testing.
+Gradient background grids are useful,
+but you should never trust them as a pixel-exact guide.</em>)</p>
+<p>Using John&#8217;s method,
+you can now <a class="reference external" href="http://susy.oddbird.net/guides/reference/#ref-helper-isolation">isolate any grid element in susy</a>,
+with the simple <code>isolate()</code> mixin:</p>
+<pre class="code scss">
+<span class="nc">.span</span> <span class="p">{</span>
+  <span class="k">&#64;include</span><span class="nd"> span-columns</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="p">}</span>
+</pre>
+<div class="subpixel-demo">
+  <div class="span">span 6</div>
+</div><pre class="code scss">
+<span class="nc">.isolate</span> <span class="p">{</span>
+  <span class="k">&#64;include</span><span class="nd"> span-columns</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+  <span class="k">&#64;include</span><span class="nd"> isolate</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="p">}</span>
+</pre>
+<div class="subpixel-demo">
+  <div class="isolate">span 6 isolate 3</div>
+</div><p>When you put several of those together,
+you can see how they have been removed from the&nbsp;flow:</p>
+<pre class="code scss">
+<span class="nc">.first</span> <span class="p">{</span>
+  <span class="k">&#64;include</span><span class="nd"> span-columns</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+  <span class="k">&#64;include</span><span class="nd"> isolate</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nc">.second</span> <span class="p">{</span>
+  <span class="k">&#64;include</span><span class="nd"> span-columns</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+  <span class="k">&#64;include</span><span class="nd"> isolate</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nc">.third</span> <span class="p">{</span>
+  <span class="k">&#64;include</span><span class="nd"> span-columns</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+  <span class="k">&#64;include</span><span class="nd"> isolate</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="p">}</span>
+</pre>
+<div class="subpixel-demo">
+  <div class="first">first</div>
+  <div class="second">second</div>
+  <div class="third">third</div>
+</div><p>The items can overlap, and stack in any order —
+almost as though they are positioned&nbsp;absolutely.</p>
+</section>
+<section id="isolation-grid">
+<h2>Isolation&nbsp;Grid</h2>
+<p>Isolation is most useful when
+you are repeating the same grid math again and again,
+such as image-galleries.
+To help with that use-case,
+we&#8217;ve added the <code>isolate-grid()</code> mixin.
+You just tell us how wide each item should be,
+and we&#8217;ll calculate the locations,
+applying them with nth-child&nbsp;selectors:</p>
+<pre class="code scss">
+<span class="nc">.gallery-item</span> <span class="p">{</span>
+  <span class="k">&#64;include</span><span class="nd"> isolate-grid</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre>
+<div class="subpixel-demo">
+  <div class="gallery-item">1</div>
+  <div class="gallery-item">2</div>
+  <div class="gallery-item">3</div>
+  <div class="gallery-item">4</div>
+  <div class="gallery-item">5</div>
+  <div class="gallery-item">6</div>
+  <div class="gallery-item">7</div>
+  <div class="gallery-item">8</div>
+  <div class="gallery-item">9</div>
+  <div class="gallery-item">10</div>
+  <div class="gallery-item">11</div>
+  <div class="gallery-item">12</div>
+  <div class="gallery-item">13</div>
+  <div class="gallery-item">14</div>
+  <div class="gallery-item">15</div>
+  <div class="gallery-item">16</div>
+  <div class="gallery-item">17</div>
+  <div class="gallery-item">18</div>
+  <div class="gallery-item">19</div>
+  <div class="gallery-item">20</div>
+  <div class="gallery-item">21</div>
+  <div class="gallery-item">22</div>
+  <div class="gallery-item">23</div>
+  <div class="gallery-item">24</div>
+</div><p>Change the width, and we&#8217;ll update everything for&nbsp;you:</p>
+<pre class="code scss">
+<span class="nc">.gallery-item2</span> <span class="p">{</span>
+  <span class="k">&#64;include</span><span class="nd"> isolate-grid</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="p">}</span>
+</pre>
+<div class="subpixel-demo">
+  <div class="gallery-item2">1</div>
+  <div class="gallery-item2">2</div>
+  <div class="gallery-item2">3</div>
+  <div class="gallery-item2">4</div>
+  <div class="gallery-item2">5</div>
+  <div class="gallery-item2">6</div>
+  <div class="gallery-item2">7</div>
+  <div class="gallery-item2">8</div>
+  <div class="gallery-item2">9</div>
+  <div class="gallery-item2">10</div>
+  <div class="gallery-item2">11</div>
+  <div class="gallery-item2">12</div>
+  <div class="gallery-item2">13</div>
+  <div class="gallery-item2">14</div>
+  <div class="gallery-item2">15</div>
+  <div class="gallery-item2">16</div>
+  <div class="gallery-item2">17</div>
+  <div class="gallery-item2">18</div>
+  <div class="gallery-item2">19</div>
+  <div class="gallery-item2">20</div>
+  <div class="gallery-item2">21</div>
+  <div class="gallery-item2">22</div>
+  <div class="gallery-item2">23</div>
+  <div class="gallery-item2">24</div>
+</div></section>
+<section id="bleed">
+<h2>Bleed</h2>
+<p>Bleed has nothing to do with isolation,
+it just happened to appear in the same update.
+<a class="reference external" href="http://susy.oddbird.net/guides/reference/#ref-bleed">Bleed</a> uses negative margins and equal-but-positive padding
+to let an element&#8217;s background &#8220;bleed&#8221; outside
+the area it would normally&nbsp;occupy.</p>
+<p>Here&#8217;s an element bleeding 1-column outside our 9-column page&nbsp;layout:</p>
+<pre class="code scss">
+<span class="nc">.bleed-demo</span> <span class="p">{</span>
+  <span class="k">&#64;include</span><span class="nd"> bleed</span><span class="p">(</span><span class="mi">1</span> <span class="n">of</span> <span class="mi">9</span><span class="p">);</span>
+<span class="p">}</span>
+</pre>
+<div class="bleed-demo"><span>bleed!</span></div><p>You&#8217;ll notice that the context syntax is a bit different here:
+<code>(1 of 9)</code> instead of <code>(1,9)</code>.
+That&#8217;s the direction we&#8217;re heading with Susy 2.0,
+and it&#8217;s very helpful in this case,
+because there&#8217;s another argument we want to access easily.
+Use the second argument to list which sides should do the bleeding
+(defaults to &#8220;left right&#8221;).
+You can also pass arbitrary widths in the first&nbsp;argument:</p>
+<pre class="code scss">
+<span class="nc">.bleed-sides-demo</span> <span class="p">{</span>
+  <span class="k">&#64;include</span><span class="nd"> bleed</span><span class="p">(</span><span class="mi">3</span> <span class="n">of</span> <span class="mi">9</span><span class="o">,</span> <span class="no">left</span><span class="p">);</span>
+  <span class="k">&#64;include</span><span class="nd"> bleed</span><span class="p">(</span><span class="mi">3</span><span class="kt">em</span><span class="o">,</span> <span class="no">top</span><span class="p">);</span>
+  <span class="k">&#64;include</span><span class="nd"> bleed</span><span class="p">(</span><span class="mi">6</span><span class="kt">px</span><span class="o">,</span> <span class="no">right</span> <span class="no">bottom</span><span class="p">);</span>
+<span class="p">}</span>
+</pre>
+<div class="bleed-sides-demo"><span>bleed all the sides!</span></div>
+<br /><p>This can be especially useful to bleed across <code>$grid-padding</code>.
+Simply <code>bleed($grid-padding)</code> and you&#8217;re&nbsp;there.</p>
+<p>Happy&nbsp;coding!</p>
+</section>
+</div>
+
+    
+      <aside class="comments">
+        Have a correction, addition, or feedback on this post?
+        Talk to us on
+        <a href="https://twitter.com/eriiicam">Twitter</a>,
+        email <span class="email">birds(who are 'at' the)oddbird.net</span>,
+        or comment on
+        <a href="http://www.reddit.com/submit?url=http%3A//oddbird.net/2013/03/20/isolation-susy">Reddit</a>
+        or
+        <a href="https://news.ycombinator.com/submitlink?u=http%3A//oddbird.net/2013/03/20/isolation-susy">Hacker&nbsp;News</a>.
+      </aside class="comments">
+    
+  </div>
+
+
+</section>
+
+<footer role="contentinfo">
+
+  <div class="listarchive">
+    <h3 class="foottitle"><a href="/archive/" rel="archive">Blog Archive</a></h3>
+    <ul>
+      <li>
+        <a href="/2013/03/20/isolation-susy"  rel="bookmark">Isolation and bleed in Susy</a>
+      </li>
+      <li>
+        <a href="/2013/01/29/susy-next-alpha-1"  rel="bookmark">Susy Next: The first alpha</a>
+      </li>
+      <li>
+        <a href="/2013/01/01/susy-next"  rel="bookmark">Sass Layout in 2013 and the Future of Susy</a>
+      </li>
+      <li>
+        <a href="/2012/11/27/susy-off-canvas"  rel="bookmark">Off-canvas layout with Susy</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="contact">
+    <h3 class="foottitle email">birds(who are 'at' the)oddbird.net</h3>
+    <ul>
+      <li><a href="http://twitter.com/carljm/">@carljm</a></li>
+      <li><a href="http://twitter.com/eriiicam/">@eriiicam</a></li>
+      <li><a href="http://twitter.com/jgerigmeyer/">@jgerigmeyer</a></li>
+    </ul>
+  </div>
+
+  <p class="colophon">
+    This site is built on plain old semantic <a href="http://www.w3.org/TR/html5/">HTML5</a>,
+    powered by
+    the <a href="https://github.com/mitsuhiko/rstblog/">rstblog</a> static site generator
+    for <a href="http://www.python.org">Python</a>,
+    and styled using <a href="http://www.w3.org/TR/css-2010/">CSS3</a>,
+    with help from
+    <a href="http://subtlepatterns.com/">Subtle Patterns</a>,
+    <a href="http://www.jquery.com/">jQuery</a>,
+    <a href="http://www.modernizr.com/">Modernizr</a>,
+    <a href="http://gruntjs.com/">Grunt</a>,
+    <a href="http://keyamoon.com/icomoon/">IcoMoon</a>,
+    <a href="http://susy.oddbird.net/">Susy</a>,
+    <a href="http://compass-style.org/">Compass</a>,
+    and <a href="http://sass-lang.com/">Sass</a>.
+  </p>
+
+  <p class="copyright vcard">copyright &copy; 2009-2013
+    <a href="http://oddbird.net/" class="fn org url">OddBird</a>
+  </p>
+</footer>
+
+
+<!-- JavaScript -->
+<script src="/static/js/libs/jquery-1.9.1.min.js"></script>
+<script src="/static/dist/all-js.min.3f103e83.js"></script>
+
+
+</body>
+</html>

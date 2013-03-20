@@ -2,11 +2,189 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title type="text">Recent Blog Posts</title>
   <id>http://oddbird.net/feed.atom</id>
-  <updated>2013-01-29T00:00:00Z</updated>
+  <updated>2013-03-20T00:00:00Z</updated>
   <link href="http://oddbird.net/" />
   <link href="http://oddbird.net/feed.atom" rel="self" />
   <subtitle type="text">Recent blog posts</subtitle>
   <generator>Werkzeug</generator>
+  <entry xml:base="http://oddbird.net/feed.atom">
+    <title type="text">Isolation and bleed in Susy</title>
+    <id>http://oddbird.net/2013/03/20/isolation-susy</id>
+    <updated>2013-03-20T00:00:00Z</updated>
+    <link href="http://oddbird.net/2013/03/20/isolation-susy" />
+    <author>
+      <name>OddBird</name>
+    </author>
+    <content type="html">&lt;p&gt;A few new features have landed in Susy 1.0.7,
+even as we work on more integrated syntaxes for&amp;nbsp;2.0.&lt;/p&gt;
+&lt;section id="isolation"&gt;
+&lt;h2&gt;Isolation&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://ejohn.org/blog/sub-pixel-problems-in-css/"&gt;Sub-pixel rounding&lt;/a&gt; has always been a problem for fluid design.
+Susy takes care of the most egregious layout-breaking cases,
+but there is no way to entirely eliminate the&amp;nbsp;problem.&lt;/p&gt;
+&lt;p&gt;John Albin Wilkins has a &lt;a class="reference external" href="http://johnalbin.github.com/fluid-grid-rounding-errors/"&gt;demo&lt;/a&gt; of the problem,
+as well as a proposed &lt;a class="reference external" href="http://palantir.net/blog/responsive-design-s-dirty-little-secret"&gt;solution&lt;/a&gt;.
+He hasn&amp;#8217;t eliminated rounding errors,
+he just found a way to keep them from piling up.
+Every float is positioned relative to its container,
+rather than the float before it.
+It&amp;#8217;s a bit of a hack,
+and removes content from the flow,
+so I don&amp;#8217;t recommned building your entire layout on isolated floats,
+but it can be very useful as a spot-check
+when rounding errors are really causing you a&amp;nbsp;headache.&lt;/p&gt;
+&lt;p&gt;(&lt;em&gt;Note that rounding errors can still stack up when you use
+a gradient background for testing.
+Gradient background grids are useful,
+but you should never trust them as a pixel-exact guide.&lt;/em&gt;)&lt;/p&gt;
+&lt;p&gt;Using John&amp;#8217;s method,
+you can now &lt;a class="reference external" href="http://susy.oddbird.net/guides/reference/#ref-helper-isolation"&gt;isolate any grid element in susy&lt;/a&gt;,
+with the simple &lt;code&gt;isolate()&lt;/code&gt; mixin:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nc"&gt;.span&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span-columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;div class="subpixel-demo"&gt;
+  &lt;div class="span"&gt;span 6&lt;/div&gt;
+&lt;/div&gt;&lt;pre class="code scss"&gt;
+&lt;span class="nc"&gt;.isolate&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span-columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; isolate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;div class="subpixel-demo"&gt;
+  &lt;div class="isolate"&gt;span 6 isolate 3&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;When you put several of those together,
+you can see how they have been removed from the&amp;nbsp;flow:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nc"&gt;.first&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span-columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; isolate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="nc"&gt;.second&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span-columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; isolate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="nc"&gt;.third&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span-columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; isolate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;div class="subpixel-demo"&gt;
+  &lt;div class="first"&gt;first&lt;/div&gt;
+  &lt;div class="second"&gt;second&lt;/div&gt;
+  &lt;div class="third"&gt;third&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;The items can overlap, and stack in any order —
+almost as though they are positioned&amp;nbsp;absolutely.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="isolation-grid"&gt;
+&lt;h2&gt;Isolation&amp;nbsp;Grid&lt;/h2&gt;
+&lt;p&gt;Isolation is most useful when
+you are repeating the same grid math again and again,
+such as image-galleries.
+To help with that use-case,
+we&amp;#8217;ve added the &lt;code&gt;isolate-grid()&lt;/code&gt; mixin.
+You just tell us how wide each item should be,
+and we&amp;#8217;ll calculate the locations,
+applying them with nth-child&amp;nbsp;selectors:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nc"&gt;.gallery-item&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; isolate-grid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;div class="subpixel-demo"&gt;
+  &lt;div class="gallery-item"&gt;1&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;2&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;3&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;4&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;5&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;6&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;7&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;8&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;9&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;10&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;11&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;12&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;13&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;14&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;15&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;16&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;17&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;18&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;19&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;20&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;21&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;22&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;23&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;24&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Change the width, and we&amp;#8217;ll update everything for&amp;nbsp;you:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nc"&gt;.gallery-item2&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; isolate-grid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;div class="subpixel-demo"&gt;
+  &lt;div class="gallery-item2"&gt;1&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;2&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;3&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;4&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;5&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;6&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;7&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;8&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;9&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;10&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;11&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;12&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;13&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;14&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;15&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;16&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;17&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;18&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;19&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;20&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;21&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;22&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;23&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;24&lt;/div&gt;
+&lt;/div&gt;&lt;/section&gt;
+&lt;section id="bleed"&gt;
+&lt;h2&gt;Bleed&lt;/h2&gt;
+&lt;p&gt;Bleed has nothing to do with isolation,
+it just happened to appear in the same update.
+&lt;a class="reference external" href="http://susy.oddbird.net/guides/reference/#ref-bleed"&gt;Bleed&lt;/a&gt; uses negative margins and equal-but-positive padding
+to let an element&amp;#8217;s background &amp;#8220;bleed&amp;#8221; outside
+the area it would normally&amp;nbsp;occupy.&lt;/p&gt;
+&lt;p&gt;Here&amp;#8217;s an element bleeding 1-column outside our 9-column page&amp;nbsp;layout:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nc"&gt;.bleed-demo&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; bleed&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;div class="bleed-demo"&gt;&lt;span&gt;bleed!&lt;/span&gt;&lt;/div&gt;&lt;p&gt;You&amp;#8217;ll notice that the context syntax is a bit different here:
+&lt;code&gt;(1 of 9)&lt;/code&gt; instead of &lt;code&gt;(1,9)&lt;/code&gt;.
+That&amp;#8217;s the direction we&amp;#8217;re heading with Susy 2.0,
+and it&amp;#8217;s very helpful in this case,
+because there&amp;#8217;s another argument we want to access easily.
+Use the second argument to list which sides should do the bleeding
+(defaults to &amp;#8220;left right&amp;#8221;).
+You can also pass arbitrary widths in the first&amp;nbsp;argument:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nc"&gt;.bleed-sides-demo&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; bleed&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="no"&gt;left&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; bleed&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="no"&gt;top&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; bleed&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="kt"&gt;px&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="no"&gt;right&lt;/span&gt; &lt;span class="no"&gt;bottom&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;div class="bleed-sides-demo"&gt;&lt;span&gt;bleed all the sides!&lt;/span&gt;&lt;/div&gt;
+&lt;br /&gt;&lt;p&gt;This can be especially useful to bleed across &lt;code&gt;$grid-padding&lt;/code&gt;.
+Simply &lt;code&gt;bleed($grid-padding)&lt;/code&gt; and you&amp;#8217;re&amp;nbsp;there.&lt;/p&gt;
+&lt;p&gt;Happy&amp;nbsp;coding!&lt;/p&gt;
+&lt;/section&gt;
+</content>
+  </entry>
   <entry xml:base="http://oddbird.net/feed.atom">
     <title type="text">Susy Next: The first alpha</title>
     <id>http://oddbird.net/2013/01/29/susy-next-alpha-1</id>

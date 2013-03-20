@@ -105,7 +105,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   width: 79.16667%;
   float: right;
   margin-right: 0;
-  #margin-left: -1em;
+  *margin-left: -1em;
   display: inline;
   margin-right: -100%;
 }
