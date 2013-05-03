@@ -208,6 +208,14 @@ and <code>float</code> or <code>isolate</code> to establish your default&nbsp;po
 <span class="nv">$susy-1-default</span><span class="o">:</span> <span class="mi">12</span> <span class="p">(</span><span class="mi">4</span><span class="kt">em</span> <span class="mi">1</span><span class="kt">em</span><span class="p">)</span> <span class="n">after</span><span class="p">;</span>
 <span class="nv">$960-ish</span><span class="o">:</span> <span class="mi">12</span> <span class="p">(</span><span class="mi">60</span><span class="kt">px</span> <span class="mi">20</span><span class="kt">px</span><span class="p">)</span> <span class="no">inside</span> <span class="no">static</span><span class="p">;</span>
 <span class="nv">$asymmetrical</span><span class="o">:</span> <span class="p">(</span><span class="mi">2</span> <span class="mi">8</span> <span class="mi">2</span><span class="p">)</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span> <span class="n">isolate</span><span class="p">;</span>
+
+<span class="c1">// set a grid globally
+</span><span class="k">&#64;include</span><span class="nd"> set-grid</span><span class="p">(</span><span class="nv">$susy-1-default</span><span class="p">);</span>
+
+<span class="c1">// use a grid locally
+</span><span class="k">&#64;include</span><span class="nd"> use-grid</span><span class="p">(</span><span class="nv">$960-ish</span><span class="p">)</span> <span class="p">{</span>
+  <span class="cm">/* This code will use the $960-ish grid... */</span>
+<span class="p">}</span>
 </pre>
 <p>You can use <code>set-grid()</code> to establish new grids anywhere you need,
 or <code>use-grid() { ... }</code> to use a new grid for one block of&nbsp;code.</p>

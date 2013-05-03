@@ -109,6 +109,14 @@ and &lt;code&gt;float&lt;/code&gt; or &lt;code&gt;isolate&lt;/code&gt; to establ
 &lt;span class="nv"&gt;$susy-1-default&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;after&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nv"&gt;$960-ish&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;60&lt;/span&gt;&lt;span class="kt"&gt;px&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="kt"&gt;px&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="no"&gt;inside&lt;/span&gt; &lt;span class="no"&gt;static&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="nv"&gt;$asymmetrical&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="n"&gt;isolate&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="c1"&gt;// set a grid globally
+&lt;/span&gt;&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; set-grid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$susy-1-default&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="c1"&gt;// use a grid locally
+&lt;/span&gt;&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; use-grid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$960-ish&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="cm"&gt;/* This code will use the $960-ish grid... */&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;You can use &lt;code&gt;set-grid()&lt;/code&gt; to establish new grids anywhere you need,
 or &lt;code&gt;use-grid() { ... }&lt;/code&gt; to use a new grid for one block of&amp;nbsp;code.&lt;/p&gt;
