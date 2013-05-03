@@ -145,8 +145,8 @@ for that particular&amp;nbsp;container:&lt;/p&gt;
 &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; container&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;show&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;/pre&gt;
 &lt;/section&gt;
-&lt;section id="gallerys-formerly-isolate-grid"&gt;
-&lt;h2&gt;Gallerys (formerly&amp;nbsp;&amp;#8220;isolate-grid&amp;#8221;)&lt;/h2&gt;
+&lt;section id="galleries-formerly-isolate-grid"&gt;
+&lt;h2&gt;Galleries (formerly&amp;nbsp;&amp;#8220;isolate-grid&amp;#8221;)&lt;/h2&gt;
 &lt;p&gt;You can now create a simple gallery layout
 using either isolation or basic float techniques.
 The syntax should be familiar&amp;nbsp;already:&lt;/p&gt;
