@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>             <html class="no-js ie" lang="en" dir="ltr">   <![endif]-->
+<!--[if (gt IE 8)|!(IE)]><!-->  <html class="no-js" lang="en" dir="ltr">      <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+
+  
+
+  <!-- Page Info -->
+  <title>Susy Next: The Second Alpha | OddBird</title>
+  <meta name="description" content="Custom-built web tools for humans" />
+
+  <!-- Site Info -->
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="OddBird" />
+  <meta name="keywords" content="custom web development, web tools, open source, python, django, sass, scss, susy, javascript, jquery, js" />
+  <meta name="language" content="en-us" />
+
+  
+  <link href="/feed.atom" rel="alternate" title="OddBird blog posts" type="application/atom+xml">
+  
+
+  <!-- Microformat Profiles -->
+  <!-- hCard, hCalendar, rel-license, rel-tag, XOXO, XFN, VoteLinks -->
+  <link rel="profile" href="http://microformats.org/profile/specs/" />
+
+  <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
+  <meta http-equiv="cleartype" content="on">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1" />
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1">
+
+  <!--iOS. Delete if not required -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-startup-image" href="/static/images/favicons/splash.png">
+
+  <!-- favicon.ico -->
+  <link rel="shortcut icon" href="/static/images/favicons/favicon.ico" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/images/favicons/apple-touch-icon-114x114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/images/favicons/apple-touch-icon-72x72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="/static/images/favicons/apple-touch-icon-precomposed.png">
+
+  <!-- Styles -->
+  
+  <link rel="stylesheet" href="/static/dist/screen.min.accb177a.css" media="screen" />
+  <link rel="stylesheet" href="/static/dist/print.min.288bd9ea.css" media="print" />
+  
+
+  <!-- Modernizr -->
+  <script src="/static/js/libs/modernizr.custom.41881.js"></script>
+
+  <!-- Page-Specific Head -->
+  
+
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36510846-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+</head>
+
+<body id="oddsite" class="blog">
+
+
+<h1 role="banner"><a href="/" rel="home">OddBird</a></h1>
+
+<nav role="navigation">
+  <ul class="primary">
+    <li><a href="/" rel="home">home</a></li>
+    <li><a href="/blog/">blog</a></li>
+  </ul>
+</nav>
+
+<section role="main" >
+
+  
+  <div class="post">
+    <h1 class="title">Susy Next: The Second Alpha</h1>
+
+
+    
+<p class="byline">
+  
+  <time datetime="2013-05-03T00:00:00" pubdate="pubdate">
+    May 03, 2013
+  </time>
+  
+
+  
+  <span class="vcard">
+    by <a href="/authors/eric/" class="fn">eric</a>
+  </span>
+  
+
+  
+    <span class="tags">
+      in
+      <a href="/tags/2.0/" rel="tag">2.0</a>, <a href="/tags/grids/" rel="tag">grids</a>, <a href="/tags/layout/" rel="tag">layout</a>, <a href="/tags/rwd/" rel="tag">rwd</a>, <a href="/tags/susy/" rel="tag">susy</a>.
+    </span>
+  
+</p>
+
+
+    <div class="body"><p>I&#8217;ve just released the <a class="reference external" href="http://rubygems.org/gems/susy/versions/2.0.0.alpha.2">second alpha</a> of Susy Next.
+Go download and play with&nbsp;it!</p>
+<p>The main difference you will notice from Susy 1.0
+is a &#8220;natural-language&#8221; syntax
+that allows you to adjust settings more quickly and easily
+on the fly.
+You can also go gridless,
+and we&#8217;ll still help you manage your&nbsp;layouts.</p>
+<p>We haven&#8217;t written full docs yet,
+and this blog post will be vastly incomplete,
+but I&#8217;ll give you a quick rundown of where we&#8217;re going.
+This is all open to change, of course.
+There&#8217;s a reason we&#8217;re still in&nbsp;alpha.</p>
+<section id="span-anything">
+<h2>Span&nbsp;Anything</h2>
+<p>The main layout mixin is called <code>span</code>
+and allows you to span columns on a grid,
+or span any width you want,
+and forget about grids&nbsp;entirely.</p>
+<pre class="code scss">
+<span class="c1">// span 50%
+</span><span class="k">&#64;include</span><span class="nd"> span</span><span class="p">(</span><span class="mi">50</span><span class="kt">%</span><span class="p">);</span>
+
+<span class="c1">// span 300px;
+</span><span class="k">&#64;include</span><span class="nd"> span</span><span class="p">(</span><span class="mi">300</span><span class="kt">px</span><span class="p">);</span>
+
+<span class="c1">// span 3 columns
+</span><span class="k">&#64;include</span><span class="nd"> span</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+
+<span class="c1">// span 4 of 12 columns
+</span><span class="k">&#64;include</span><span class="nd"> span</span><span class="p">(</span><span class="mi">4</span> <span class="n">of</span> <span class="mi">12</span><span class="p">);</span>
+
+<span class="c1">// span the last 3 columns in a 5-column row
+</span><span class="k">&#64;include</span><span class="nd"> span</span><span class="p">(</span><span class="n">last</span> <span class="mi">3</span> <span class="n">of</span> <span class="mi">5</span><span class="p">);</span>
+
+<span class="c1">// isolate an item in the last 3 columns of a 5-column row
+</span><span class="k">&#64;include</span><span class="nd"> span</span><span class="p">(</span><span class="n">last</span> <span class="mi">3</span> <span class="n">of</span> <span class="mi">5</span> <span class="n">isolate</span><span class="p">);</span>
+
+<span class="c1">// isolate 2-col width, in the 3rd of 12 columns
+</span><span class="k">&#64;include</span><span class="nd"> span</span><span class="p">(</span><span class="mi">2</span> <span class="n">at</span> <span class="mi">3</span> <span class="n">of</span> <span class="mi">12</span><span class="p">);</span>
+
+<span class="c1">// anything can be arbitrary: width (30em), gutter (20px), <span class="amp">&amp;</span> location (30%)!
+</span><span class="k">&#64;include</span><span class="nd"> span</span><span class="p">(</span><span class="n">isolate</span> <span class="mi">30</span><span class="kt">em</span> <span class="n">gutter</span> <span class="mi">20</span><span class="kt">px</span> <span class="n">at</span> <span class="mi">30</span><span class="kt">%</span><span class="p">);</span>
+</pre>
+<p>You can also use various keywords to change your output from the defaults.
+Output <code>static</code> or <code>fluid</code> units;
+move gutters <code>before</code>, <code>after</code>, <code>split</code>, or <code>inside</code>;
+<code>isolate</code> or <code>float</code> elements;
+and so&nbsp;on.</p>
+</section>
+<section id="establishing-grids">
+<h2>Establishing&nbsp;Grids</h2>
+<p>In Susy 2.0,
+you still can set individual settings,
+but you can also contain an entire grid in a single argument.
+That allows us to change grids&nbsp;easily:</p>
+<pre class="code scss">
+<span class="nv">$container</span><span class="o">:</span> <span class="mi">80</span><span class="kt">%</span><span class="p">;</span>
+<span class="nv">$columns</span><span class="o">:</span> <span class="mi">12</span><span class="p">;</span>
+<span class="nv">$gutters</span><span class="o">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">;</span>
+<span class="nv">$gutter-placement</span><span class="o">:</span> <span class="n">before</span><span class="p">;</span>
+
+<span class="c1">// or:
+</span>
+<span class="k">&#64;include</span><span class="nd"> set-grid</span><span class="p">(</span><span class="mi">80</span><span class="kt">%</span> <span class="mi">12</span> <span class="mi">1</span><span class="o">/</span><span class="mi">4</span> <span class="n">before</span><span class="p">);</span>
+</pre>
+<p>Let&#8217;s dissect&nbsp;that.</p>
+<ul class="simple">
+<li>A grid starts with an optional container-width,
+similar to the Susy 1.0 <code>$container-width</code> setting —
+in this case <code>80%</code>.</li>
+<li>After that we have columns,
+which can either be a simple number for symmetrical grids
+(in this case <code>12</code>)
+or a list of relative column sizes:
+<code>(1 2 3.5 2)</code> would create 4 columns of unequal&nbsp;size.</li>
+<li>Then gutters are passed as a simple fraction -
+<code>1/4</code> of a column for us.
+If you want to establish column/gutter widths
+as you did in Susy 1.0,
+you can pass your ratio as a list of two values —
+<code>(4em 1em)</code> —
+and we&#8217;ll use those values as column and gutter&nbsp;widths.</li>
+<li>Finally you can pass a number of optional keyword settings,
+such as <code>before</code>, <code>after</code>, <code>split</code>, and <code>inside</code>
+to change how we handle gutters;
+<code>static</code> or <code>fluid</code> to use either fixed or relative widths;
+and <code>float</code> or <code>isolate</code> to establish your default&nbsp;positioning.</li>
+</ul>
+<p>Here are a few&nbsp;grids:</p>
+<pre class="code scss">
+<span class="nv">$susy-1-default</span><span class="o">:</span> <span class="mi">12</span> <span class="p">(</span><span class="mi">4</span><span class="kt">em</span> <span class="mi">1</span><span class="kt">em</span><span class="p">)</span> <span class="n">after</span><span class="p">;</span>
+<span class="nv">$960-ish</span><span class="o">:</span> <span class="mi">12</span> <span class="p">(</span><span class="mi">60</span><span class="kt">px</span> <span class="mi">20</span><span class="kt">px</span><span class="p">)</span> <span class="no">inside</span> <span class="no">static</span><span class="p">;</span>
+<span class="nv">$asymmetrical</span><span class="o">:</span> <span class="p">(</span><span class="mi">2</span> <span class="mi">8</span> <span class="mi">2</span><span class="p">)</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span> <span class="n">isolate</span><span class="p">;</span>
+</pre>
+<p>You can use <code>set-grid()</code> to establish new grids anywhere you need,
+or <code>use-grid() { ... }</code> to use a new grid for one block of&nbsp;code.</p>
+<p>As you can see,
+we&#8217;re trying to make the system as flexible as possible,
+so you can create the layouts that work for&nbsp;you.</p>
+</section>
+<section id="containers-and-grid-backgrounds">
+<h2>Containers and Grid&nbsp;Backgrounds</h2>
+<p>Containers are simple with the <code>container</code> mixin,
+and the grid syntax you already&nbsp;learned.</p>
+<pre class="code scss">
+<span class="k">&#64;include</span><span class="nd"> container</span><span class="p">(</span><span class="nv">$grid</span><span class="p">);</span>
+</pre>
+<p>Of course, we&#8217;ll default to any grid you already set globally.
+you can also pass an arbitrary width,
+or add keywords to justify your container <code>left</code>, <code>right</code>, or <code>center</code>.</p>
+<pre class="code scss">
+<span class="c1">// 960 container, justified left
+</span><span class="k">&#64;include</span><span class="nd"> container</span><span class="p">(</span><span class="mi">960</span><span class="kt">px</span> <span class="no">left</span><span class="p">);</span>
+</pre>
+<p>While you&#8217;re at it,
+you can <code>show</code> or <code>hide</code> the grid background
+for that particular&nbsp;container:</p>
+<pre class="code scss">
+<span class="k">&#64;include</span><span class="nd"> container</span><span class="p">(</span><span class="no">show</span><span class="p">);</span>
+</pre>
+</section>
+<section id="gallerys-formerly-isolate-grid">
+<h2>Gallerys (formerly&nbsp;&#8220;isolate-grid&#8221;)</h2>
+<p>You can now create a simple gallery layout
+using either isolation or basic float techniques.
+The syntax should be familiar&nbsp;already:</p>
+<pre class="code scss">
+<span class="k">&#64;include</span><span class="nd"> gallery</span><span class="p">(</span><span class="mi">2</span> <span class="n">of</span> <span class="mi">12</span> <span class="n">isolate</span><span class="p">);</span>
+</pre>
+</section>
+<section id="media-queries">
+<h2>Media&nbsp;Queries</h2>
+<p>Media-query handling hasn&#8217;t been built in yet.
+We recommend that you use the brilliant
+<a class="reference external" href="http://breakpoint-sass.com/">breakpoint</a> plugin by Mason Wendell.
+We&#8217;ll add a bit of integration in before 2.0 stable,
+but for now you can just add the <cite>use-grid()</cite> mixin
+inside any media-queries to change your&nbsp;grids:</p>
+<pre class="code scss">
+<span class="c1">// using breakpoint
+</span><span class="k">&#64;include</span><span class="nd"> breakpoint</span><span class="p">(</span><span class="mi">50</span><span class="kt">em</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">&#64;include</span><span class="nd"> use-grid</span><span class="p">(</span><span class="nv">$my-grid</span><span class="p">)</span> <span class="p">{</span>
+    <span class="cm">/* Your Code Here */</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+</section>
+</div>
+
+    
+      <aside class="comments">
+        Have a correction, addition, or feedback on this post?
+        Talk to us on
+        <a href="https://twitter.com/eriiicam">Twitter</a>,
+        email <span class="email">birds(who are 'at' the)oddbird.net</span>,
+        or comment on
+        <a href="http://www.reddit.com/submit?url=http%3A//oddbird.net/2013/05/03/susy-next-alpha-2">Reddit</a>
+        or
+        <a href="https://news.ycombinator.com/submitlink?u=http%3A//oddbird.net/2013/05/03/susy-next-alpha-2">Hacker&nbsp;News</a>.
+      </aside class="comments">
+    
+  </div>
+
+
+</section>
+
+<footer role="contentinfo">
+
+  <div class="listarchive">
+    <h3 class="foottitle"><a href="/archive/" rel="archive">Blog Archive</a></h3>
+    <ul>
+      <li>
+        <a href="/2013/05/03/susy-next-alpha-2"  rel="bookmark">Susy Next: The Second Alpha</a>
+      </li>
+      <li>
+        <a href="/2013/03/20/isolation-susy"  rel="bookmark">Isolation and bleed in Susy</a>
+      </li>
+      <li>
+        <a href="/2013/01/29/susy-next-alpha-1"  rel="bookmark">Susy Next: The first alpha</a>
+      </li>
+      <li>
+        <a href="/2013/01/01/susy-next"  rel="bookmark">Sass Layout in 2013 and the Future of Susy</a>
+      </li>
+      <li>
+        <a href="/2012/11/27/susy-off-canvas"  rel="bookmark">Off-canvas layout with Susy</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="contact">
+    <h3 class="foottitle email">birds(who are 'at' the)oddbird.net</h3>
+    <ul>
+      <li><a href="http://twitter.com/carljm/">@carljm</a></li>
+      <li><a href="http://twitter.com/eriiicam/">@eriiicam</a></li>
+      <li><a href="http://twitter.com/jgerigmeyer/">@jgerigmeyer</a></li>
+    </ul>
+  </div>
+
+  <p class="colophon">
+    This site is built on plain old semantic <a href="http://www.w3.org/TR/html5/">HTML5</a>,
+    powered by
+    the <a href="https://github.com/mitsuhiko/rstblog/">rstblog</a> static site generator
+    for <a href="http://www.python.org">Python</a>,
+    and styled using <a href="http://www.w3.org/TR/css-2010/">CSS3</a>,
+    with help from
+    <a href="http://subtlepatterns.com/">Subtle Patterns</a>,
+    <a href="http://www.jquery.com/">jQuery</a>,
+    <a href="http://www.modernizr.com/">Modernizr</a>,
+    <a href="http://gruntjs.com/">Grunt</a>,
+    <a href="http://keyamoon.com/icomoon/">IcoMoon</a>,
+    <a href="http://susy.oddbird.net/">Susy</a>,
+    <a href="http://compass-style.org/">Compass</a>,
+    and <a href="http://sass-lang.com/">Sass</a>.
+  </p>
+
+  <p class="copyright vcard">copyright &copy; 2009-2013
+    <a href="http://oddbird.net/" class="fn org url">OddBird</a>
+  </p>
+</footer>
+
+
+<!-- JavaScript -->
+<script src="/static/js/libs/jquery-1.9.1.min.js"></script>
+<script src="/static/dist/all-js.min.3f103e83.js"></script>
+
+
+</body>
+</html>

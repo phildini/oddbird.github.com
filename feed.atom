@@ -2,11 +2,169 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title type="text">Recent Blog Posts</title>
   <id>http://oddbird.net/feed.atom</id>
-  <updated>2013-03-20T00:00:00Z</updated>
+  <updated>2013-05-03T00:00:00Z</updated>
   <link href="http://oddbird.net/" />
   <link href="http://oddbird.net/feed.atom" rel="self" />
   <subtitle type="text">Recent blog posts</subtitle>
   <generator>Werkzeug</generator>
+  <entry xml:base="http://oddbird.net/feed.atom">
+    <title type="text">Susy Next: The Second Alpha</title>
+    <id>http://oddbird.net/2013/05/03/susy-next-alpha-2</id>
+    <updated>2013-05-03T00:00:00Z</updated>
+    <link href="http://oddbird.net/2013/05/03/susy-next-alpha-2" />
+    <author>
+      <name>OddBird</name>
+    </author>
+    <content type="html">&lt;p&gt;I&amp;#8217;ve just released the &lt;a class="reference external" href="http://rubygems.org/gems/susy/versions/2.0.0.alpha.2"&gt;second alpha&lt;/a&gt; of Susy Next.
+Go download and play with&amp;nbsp;it!&lt;/p&gt;
+&lt;p&gt;The main difference you will notice from Susy 1.0
+is a &amp;#8220;natural-language&amp;#8221; syntax
+that allows you to adjust settings more quickly and easily
+on the fly.
+You can also go gridless,
+and we&amp;#8217;ll still help you manage your&amp;nbsp;layouts.&lt;/p&gt;
+&lt;p&gt;We haven&amp;#8217;t written full docs yet,
+and this blog post will be vastly incomplete,
+but I&amp;#8217;ll give you a quick rundown of where we&amp;#8217;re going.
+This is all open to change, of course.
+There&amp;#8217;s a reason we&amp;#8217;re still in&amp;nbsp;alpha.&lt;/p&gt;
+&lt;section id="span-anything"&gt;
+&lt;h2&gt;Span&amp;nbsp;Anything&lt;/h2&gt;
+&lt;p&gt;The main layout mixin is called &lt;code&gt;span&lt;/code&gt;
+and allows you to span columns on a grid,
+or span any width you want,
+and forget about grids&amp;nbsp;entirely.&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="c1"&gt;// span 50%
+&lt;/span&gt;&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="kt"&gt;%&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="c1"&gt;// span 300px;
+&lt;/span&gt;&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;300&lt;/span&gt;&lt;span class="kt"&gt;px&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="c1"&gt;// span 3 columns
+&lt;/span&gt;&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="c1"&gt;// span 4 of 12 columns
+&lt;/span&gt;&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="c1"&gt;// span the last 3 columns in a 5-column row
+&lt;/span&gt;&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;last&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="c1"&gt;// isolate an item in the last 3 columns of a 5-column row
+&lt;/span&gt;&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;last&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="n"&gt;isolate&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="c1"&gt;// isolate 2-col width, in the 3rd of 12 columns
+&lt;/span&gt;&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="c1"&gt;// anything can be arbitrary: width (30em), gutter (20px), &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; location (30%)!
+&lt;/span&gt;&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;isolate&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt; &lt;span class="n"&gt;gutter&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="kt"&gt;px&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="kt"&gt;%&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;You can also use various keywords to change your output from the defaults.
+Output &lt;code&gt;static&lt;/code&gt; or &lt;code&gt;fluid&lt;/code&gt; units;
+move gutters &lt;code&gt;before&lt;/code&gt;, &lt;code&gt;after&lt;/code&gt;, &lt;code&gt;split&lt;/code&gt;, or &lt;code&gt;inside&lt;/code&gt;;
+&lt;code&gt;isolate&lt;/code&gt; or &lt;code&gt;float&lt;/code&gt; elements;
+and so&amp;nbsp;on.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="establishing-grids"&gt;
+&lt;h2&gt;Establishing&amp;nbsp;Grids&lt;/h2&gt;
+&lt;p&gt;In Susy 2.0,
+you still can set individual settings,
+but you can also contain an entire grid in a single argument.
+That allows us to change grids&amp;nbsp;easily:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nv"&gt;$container&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="kt"&gt;%&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$columns&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$gutters&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$gutter-placement&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;before&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="c1"&gt;// or:
+&lt;/span&gt;
+&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; set-grid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="kt"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="n"&gt;before&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Let&amp;#8217;s dissect&amp;nbsp;that.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;A grid starts with an optional container-width,
+similar to the Susy 1.0 &lt;code&gt;$container-width&lt;/code&gt; setting —
+in this case &lt;code&gt;80%&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;After that we have columns,
+which can either be a simple number for symmetrical grids
+(in this case &lt;code&gt;12&lt;/code&gt;)
+or a list of relative column sizes:
+&lt;code&gt;(1 2 3.5 2)&lt;/code&gt; would create 4 columns of unequal&amp;nbsp;size.&lt;/li&gt;
+&lt;li&gt;Then gutters are passed as a simple fraction -
+&lt;code&gt;1/4&lt;/code&gt; of a column for us.
+If you want to establish column/gutter widths
+as you did in Susy 1.0,
+you can pass your ratio as a list of two values —
+&lt;code&gt;(4em 1em)&lt;/code&gt; —
+and we&amp;#8217;ll use those values as column and gutter&amp;nbsp;widths.&lt;/li&gt;
+&lt;li&gt;Finally you can pass a number of optional keyword settings,
+such as &lt;code&gt;before&lt;/code&gt;, &lt;code&gt;after&lt;/code&gt;, &lt;code&gt;split&lt;/code&gt;, and &lt;code&gt;inside&lt;/code&gt;
+to change how we handle gutters;
+&lt;code&gt;static&lt;/code&gt; or &lt;code&gt;fluid&lt;/code&gt; to use either fixed or relative widths;
+and &lt;code&gt;float&lt;/code&gt; or &lt;code&gt;isolate&lt;/code&gt; to establish your default&amp;nbsp;positioning.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Here are a few&amp;nbsp;grids:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nv"&gt;$susy-1-default&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;after&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$960-ish&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;60&lt;/span&gt;&lt;span class="kt"&gt;px&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="kt"&gt;px&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="no"&gt;inside&lt;/span&gt; &lt;span class="no"&gt;static&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$asymmetrical&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="n"&gt;isolate&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;You can use &lt;code&gt;set-grid()&lt;/code&gt; to establish new grids anywhere you need,
+or &lt;code&gt;use-grid() { ... }&lt;/code&gt; to use a new grid for one block of&amp;nbsp;code.&lt;/p&gt;
+&lt;p&gt;As you can see,
+we&amp;#8217;re trying to make the system as flexible as possible,
+so you can create the layouts that work for&amp;nbsp;you.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="containers-and-grid-backgrounds"&gt;
+&lt;h2&gt;Containers and Grid&amp;nbsp;Backgrounds&lt;/h2&gt;
+&lt;p&gt;Containers are simple with the &lt;code&gt;container&lt;/code&gt; mixin,
+and the grid syntax you already&amp;nbsp;learned.&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; container&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$grid&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Of course, we&amp;#8217;ll default to any grid you already set globally.
+you can also pass an arbitrary width,
+or add keywords to justify your container &lt;code&gt;left&lt;/code&gt;, &lt;code&gt;right&lt;/code&gt;, or &lt;code&gt;center&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="c1"&gt;// 960 container, justified left
+&lt;/span&gt;&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; container&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;960&lt;/span&gt;&lt;span class="kt"&gt;px&lt;/span&gt; &lt;span class="no"&gt;left&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;While you&amp;#8217;re at it,
+you can &lt;code&gt;show&lt;/code&gt; or &lt;code&gt;hide&lt;/code&gt; the grid background
+for that particular&amp;nbsp;container:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; container&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;show&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/section&gt;
+&lt;section id="gallerys-formerly-isolate-grid"&gt;
+&lt;h2&gt;Gallerys (formerly&amp;nbsp;&amp;#8220;isolate-grid&amp;#8221;)&lt;/h2&gt;
+&lt;p&gt;You can now create a simple gallery layout
+using either isolation or basic float techniques.
+The syntax should be familiar&amp;nbsp;already:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; gallery&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt; &lt;span class="n"&gt;isolate&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/section&gt;
+&lt;section id="media-queries"&gt;
+&lt;h2&gt;Media&amp;nbsp;Queries&lt;/h2&gt;
+&lt;p&gt;Media-query handling hasn&amp;#8217;t been built in yet.
+We recommend that you use the brilliant
+&lt;a class="reference external" href="http://breakpoint-sass.com/"&gt;breakpoint&lt;/a&gt; plugin by Mason Wendell.
+We&amp;#8217;ll add a bit of integration in before 2.0 stable,
+but for now you can just add the &lt;cite&gt;use-grid()&lt;/cite&gt; mixin
+inside any media-queries to change your&amp;nbsp;grids:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="c1"&gt;// using breakpoint
+&lt;/span&gt;&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; breakpoint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; use-grid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$my-grid&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="cm"&gt;/* Your Code Here */&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/section&gt;
+</content>
+  </entry>
   <entry xml:base="http://oddbird.net/feed.atom">
     <title type="text">Isolation and bleed in Susy</title>
     <id>http://oddbird.net/2013/03/20/isolation-susy</id>
