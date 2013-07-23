@@ -46,8 +46,8 @@
 
   <!-- Styles -->
   
-  <link rel="stylesheet" href="/static/dist/screen.min.accb177a.css" media="screen" />
-  <link rel="stylesheet" href="/static/dist/print.min.288bd9ea.css" media="print" />
+  <link rel="stylesheet" href="/static/dist/screen.min.8a64d99a.css" media="screen" />
+  <link rel="stylesheet" href="/static/dist/print.min.fb7f1dbe.css" media="print" />
   
 
   <!-- Modernizr -->
@@ -114,7 +114,15 @@
 </p>
 
 
-    <div class="body"><p>The <a class="reference external" href="http://jasonweaver.name/lab/offcanvas/">off-canvas</a> layout pattern
+    <div class="body"><p><strong><span class="caps">UPDATE</span></strong>:
+<em>I fixed a bug with show-left failing on small screens.
+The main area was dropping below the left sidebar,
+as floats sometimes do.
+The fix is actually simpler than the original code:
+just set and leave a 100% negative right-margin
+on the main area,
+removing all state changes to that&nbsp;margin.</em></p>
+<p>The <a class="reference external" href="http://jasonweaver.name/lab/offcanvas/">off-canvas</a> layout pattern
 for responsive websites
 has been getting all the attention lately,
 and I&#8217;ve had several people ask
@@ -224,8 +232,7 @@ is based on the remaining&nbsp;space.</p>
 
 <span class="nc">.main</span> <span class="p">{</span>
   <span class="k">&#64;include</span><span class="nd"> span-columns</span><span class="p">(</span><span class="nv">$total-columns</span><span class="p">);</span>
-  <span class="na">margin-right</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="nc">.show-left</span> <span class="k">&amp;</span> <span class="p">{</span> <span class="na">margin-right</span><span class="o">:</span> <span class="o">-</span> <span class="nf">space</span><span class="p">(</span><span class="nv">$side</span><span class="p">);</span> <span class="p">}</span>
+  <span class="na">margin-right</span><span class="o">:</span> <span class="mi">-100</span><span class="kt">%</span><span class="p">;</span>
   <span class="nc">.show-right</span> <span class="k">&amp;</span> <span class="p">{</span> <span class="na">margin-left</span><span class="o">:</span> <span class="o">-</span> <span class="nf">space</span><span class="p">(</span><span class="nv">$side</span><span class="p">);</span> <span class="p">}</span>
 <span class="p">}</span>
 
@@ -276,7 +283,6 @@ I&#8217;ll leave that as an exercise for the&nbsp;reader.</p>
   <span class="nc">.main</span> <span class="p">{</span>
     <span class="na">width</span><span class="o">:</span> <span class="nf">columns</span><span class="p">(</span><span class="nv">$main</span><span class="p">);</span>
     <span class="nc">.show-right</span> <span class="k">&amp;</span> <span class="p">{</span> <span class="na">margin-left</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
-    <span class="nc">.show-left</span> <span class="k">&amp;</span> <span class="p">{</span> <span class="na">margin-right</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
   <span class="p">}</span>
 
   <span class="nc">.right</span> <span class="p">{</span>
@@ -424,7 +430,7 @@ and <a class="reference external" href="https://github.com/oddbird/oddsite/blob/
 
 <!-- JavaScript -->
 <script src="/static/js/libs/jquery-1.9.1.min.js"></script>
-<script src="/static/dist/all-js.min.3f103e83.js"></script>
+<script src="/static/dist/all-js.min.a37c93bc.js"></script>
 
 
 </body>

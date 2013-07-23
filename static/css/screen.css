@@ -57,7 +57,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 @font-face {
   font-family: "BaskervilleFS";
   src: url('../fonts/Baskerville-Regular-webfont.eot');
-  src: url('../fonts/Baskerville-Regular-webfont.eot?#iefix') format('eot'), url('../fonts/Baskerville-Regular-webfont.woff') format('woff'), url('../fonts/Baskerville-Regular-webfont.ttf') format('truetype'), url('../fonts/Baskerville-Regular-webfont.svg#webfontSMxOInhK') format('svg');
+  src: url('../fonts/Baskerville-Regular-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Baskerville-Regular-webfont.woff') format('woff'), url('../fonts/Baskerville-Regular-webfont.ttf') format('truetype'), url('../fonts/Baskerville-Regular-webfont.svg#webfontSMxOInhK') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -65,7 +65,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 @font-face {
   font-family: "BaskervilleFS";
   src: url('../fonts/Baskerville-Italic-webfont.eot');
-  src: url('../fonts/Baskerville-Italic-webfont.eot?#iefix') format('eot'), url('../fonts/Baskerville-Italic-webfont.woff') format('woff'), url('../fonts/Baskerville-Italic-webfont.ttf') format('truetype'), url('../fonts/Baskerville-Italic-webfont.svg#webfontSMxOInhK') format('svg');
+  src: url('../fonts/Baskerville-Italic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Baskerville-Italic-webfont.woff') format('woff'), url('../fonts/Baskerville-Italic-webfont.ttf') format('truetype'), url('../fonts/Baskerville-Italic-webfont.svg#webfontSMxOInhK') format('svg');
   font-weight: normal;
   font-style: italic;
 }
@@ -73,7 +73,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 @font-face {
   font-family: "BaskervilleFS";
   src: url('../fonts/Baskerville-Bold-webfont.eot');
-  src: url('../fonts/Baskerville-Bold-webfont.eot?#iefix') format('eot'), url('../fonts/Baskerville-Bold-webfont.woff') format('woff'), url('../fonts/Baskerville-Bold-webfont.ttf') format('truetype'), url('../fonts/Baskerville-Bold-webfont.svg#webfontSMxOInhK') format('svg');
+  src: url('../fonts/Baskerville-Bold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Baskerville-Bold-webfont.woff') format('woff'), url('../fonts/Baskerville-Bold-webfont.ttf') format('truetype'), url('../fonts/Baskerville-Bold-webfont.svg#webfontSMxOInhK') format('svg');
   font-weight: bold;
   font-style: normal;
 }
@@ -81,7 +81,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 @font-face {
   font-family: "BaskervilleFS";
   src: url('../fonts/Baskerville-BoldItalic-webfont.eot');
-  src: url('../fonts/Baskerville-BoldItalic-webfont.eot?#iefix') format('eot'), url('../fonts/Baskerville-BoldItalic-webfont.woff') format('woff'), url('../fonts/Baskerville-BoldItalic-webfont.ttf') format('truetype'), url('../fonts/Baskerville-BoldItalic-webfont.svg#webfontSMxOInhK') format('svg');
+  src: url('../fonts/Baskerville-BoldItalic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Baskerville-BoldItalic-webfont.woff') format('woff'), url('../fonts/Baskerville-BoldItalic-webfont.ttf') format('truetype'), url('../fonts/Baskerville-BoldItalic-webfont.svg#webfontSMxOInhK') format('svg');
   font-weight: bold;
   font-style: italic;
 }
@@ -89,7 +89,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 @font-face {
   font-family: "FranklinGothic";
   src: url('../fonts/FranklinGothic-Book-webfont.eot');
-  src: url('../fonts/FranklinGothic-Book-webfont.eot?#iefix') format('eot'), url('../fonts/FranklinGothic-Book-webfont.woff') format('woff'), url('../fonts/FranklinGothic-Book-webfont.ttf') format('truetype'), url('../fonts/FranklinGothic-Book-webfont.svg#webfontSMxOInhK') format('svg');
+  src: url('../fonts/FranklinGothic-Book-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/FranklinGothic-Book-webfont.woff') format('woff'), url('../fonts/FranklinGothic-Book-webfont.ttf') format('truetype'), url('../fonts/FranklinGothic-Book-webfont.svg#webfontSMxOInhK') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -97,7 +97,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 @font-face {
   font-family: "FranklinGothic";
   src: url('../fonts/FranklinGothic-BookIt-webfont.eot');
-  src: url('../fonts/FranklinGothic-BookIt-webfont.eot?#iefix') format('eot'), url('../fonts/FranklinGothic-BookIt-webfont.woff') format('woff'), url('../fonts/FranklinGothic-BookIt-webfont.ttf') format('truetype'), url('../fonts/FranklinGothic-BookIt-webfont.svg#webfontSMxOInhK') format('svg');
+  src: url('../fonts/FranklinGothic-BookIt-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/FranklinGothic-BookIt-webfont.woff') format('woff'), url('../fonts/FranklinGothic-BookIt-webfont.ttf') format('truetype'), url('../fonts/FranklinGothic-BookIt-webfont.svg#webfontSMxOInhK') format('svg');
   font-weight: normal;
   font-style: italic;
 }
@@ -105,7 +105,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 @font-face {
   font-family: "FranklinGothic";
   src: url('../fonts/FranklinGothic-Med-webfont.eot');
-  src: url('../fonts/FranklinGothic-Med-webfont.eot?#iefix') format('eot'), url('../fonts/FranklinGothic-Med-webfont.woff') format('woff'), url('../fonts/FranklinGothic-Med-webfont.ttf') format('truetype'), url('../fonts/FranklinGothic-Med-webfont.svg#webfontSMxOInhK') format('svg');
+  src: url('../fonts/FranklinGothic-Med-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/FranklinGothic-Med-webfont.woff') format('woff'), url('../fonts/FranklinGothic-Med-webfont.ttf') format('truetype'), url('../fonts/FranklinGothic-Med-webfont.svg#webfontSMxOInhK') format('svg');
   font-weight: bold;
   font-style: normal;
 }
@@ -113,7 +113,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 @font-face {
   font-family: "FranklinGothic";
   src: url('../fonts/FranklinGothic-MedIt-webfont.eot');
-  src: url('../fonts/FranklinGothic-MedIt-webfont.eot?#iefix') format('eot'), url('../fonts/FranklinGothic-MedIt-webfont.woff') format('woff'), url('../fonts/FranklinGothic-MedIt-webfont.ttf') format('truetype'), url('../fonts/FranklinGothic-MedIt-webfont.svg#webfontSMxOInhK') format('svg');
+  src: url('../fonts/FranklinGothic-MedIt-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/FranklinGothic-MedIt-webfont.woff') format('woff'), url('../fonts/FranklinGothic-MedIt-webfont.ttf') format('truetype'), url('../fonts/FranklinGothic-MedIt-webfont.svg#webfontSMxOInhK') format('svg');
   font-weight: bold;
   font-style: italic;
 }
@@ -121,7 +121,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 @font-face {
   font-family: "FranklinGothicCond";
   src: url('../fonts/FranklinGothic-Cd-webfont.eot');
-  src: url('../fonts/FranklinGothic-Cd-webfont.eot?#iefix') format('eot'), url('../fonts/FranklinGothic-Cd-webfont.woff') format('woff'), url('../fonts/FranklinGothic-Cd-webfont.ttf') format('truetype'), url('../fonts/FranklinGothic-Cd-webfont.svg#webfontSMxOInhK') format('svg');
+  src: url('../fonts/FranklinGothic-Cd-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/FranklinGothic-Cd-webfont.woff') format('woff'), url('../fonts/FranklinGothic-Cd-webfont.ttf') format('truetype'), url('../fonts/FranklinGothic-Cd-webfont.svg#webfontSMxOInhK') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -129,7 +129,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 @font-face {
   font-family: "FranklinGothicCond";
   src: url('../fonts/FranklinGothic-CdIt-webfont.eot');
-  src: url('../fonts/FranklinGothic-CdIt-webfont.eot?#iefix') format('eot'), url('../fonts/FranklinGothic-CdIt-webfont.woff') format('woff'), url('../fonts/FranklinGothic-CdIt-webfont.ttf') format('truetype'), url('../fonts/FranklinGothic-CdIt-webfont.svg#webfontSMxOInhK') format('svg');
+  src: url('../fonts/FranklinGothic-CdIt-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/FranklinGothic-CdIt-webfont.woff') format('woff'), url('../fonts/FranklinGothic-CdIt-webfont.ttf') format('truetype'), url('../fonts/FranklinGothic-CdIt-webfont.svg#webfontSMxOInhK') format('svg');
   font-weight: normal;
   font-style: italic;
 }
@@ -137,7 +137,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 @font-face {
   font-family: "FranklinGothicCond";
   src: url('../fonts/FranklinGothic-MedCd-webfont.eot');
-  src: url('../fonts/FranklinGothic-MedCd-webfont.eot?#iefix') format('eot'), url('../fonts/FranklinGothic-MedCd-webfont.woff') format('woff'), url('../fonts/FranklinGothic-MedCd-webfont.ttf') format('truetype'), url('../fonts/FranklinGothic-MedCd-webfont.svg#webfontSMxOInhK') format('svg');
+  src: url('../fonts/FranklinGothic-MedCd-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/FranklinGothic-MedCd-webfont.woff') format('woff'), url('../fonts/FranklinGothic-MedCd-webfont.ttf') format('truetype'), url('../fonts/FranklinGothic-MedCd-webfont.svg#webfontSMxOInhK') format('svg');
   font-weight: bold;
   font-style: normal;
 }
@@ -145,7 +145,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 @font-face {
   font-family: "FranklinGothicCond";
   src: url('../fonts/FranklinGothic-MedCdIt-webfont.eot');
-  src: url('../fonts/FranklinGothic-MedCdIt-webfont.eot?#iefix') format('eot'), url('../fonts/FranklinGothic-MedCdIt-webfont.woff') format('woff'), url('../fonts/FranklinGothic-MedCdIt-webfont.ttf') format('truetype'), url('../fonts/FranklinGothic-MedCdIt-webfont.svg#webfontSMxOInhK') format('svg');
+  src: url('../fonts/FranklinGothic-MedCdIt-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/FranklinGothic-MedCdIt-webfont.woff') format('woff'), url('../fonts/FranklinGothic-MedCdIt-webfont.ttf') format('truetype'), url('../fonts/FranklinGothic-MedCdIt-webfont.svg#webfontSMxOInhK') format('svg');
   font-weight: bold;
   font-style: italic;
 }
@@ -166,11 +166,10 @@ html {
   text-shadow: 0px 1px 0px rgba(229, 249, 255, 0.5);
   background: #e5f9ff;
   background: rgba(204, 242, 255, 0.25), url('../images/noise.png?3aa1c67090e362f1f8a994332fe3c433d9909653');
-  background: rgba(204, 242, 255, 0.25) -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, rgba(77, 210, 255, 0.25)), color-stop(75%, rgba(204, 242, 255, 0.25))) no-repeat, url('../images/noise.png?3aa1c67090e362f1f8a994332fe3c433d9909653') repeat fixed;
   background: rgba(204, 242, 255, 0.25) -webkit-linear-gradient(bottom, rgba(77, 210, 255, 0.25), rgba(204, 242, 255, 0.25) 75%) no-repeat, url('../images/noise.png?3aa1c67090e362f1f8a994332fe3c433d9909653') repeat fixed;
   background: rgba(204, 242, 255, 0.25) -moz-linear-gradient(bottom, rgba(77, 210, 255, 0.25), rgba(204, 242, 255, 0.25) 75%) no-repeat, url('../images/noise.png?3aa1c67090e362f1f8a994332fe3c433d9909653') repeat fixed;
   background: rgba(204, 242, 255, 0.25) -o-linear-gradient(bottom, rgba(77, 210, 255, 0.25), rgba(204, 242, 255, 0.25) 75%) no-repeat, url('../images/noise.png?3aa1c67090e362f1f8a994332fe3c433d9909653') repeat fixed;
-  background: rgba(204, 242, 255, 0.25) linear-gradient(bottom, rgba(77, 210, 255, 0.25), rgba(204, 242, 255, 0.25) 75%) no-repeat, url('../images/noise.png?3aa1c67090e362f1f8a994332fe3c433d9909653') repeat fixed;
+  background: rgba(204, 242, 255, 0.25) linear-gradient(to top, rgba(77, 210, 255, 0.25), rgba(204, 242, 255, 0.25) 75%) no-repeat, url('../images/noise.png?3aa1c67090e362f1f8a994332fe3c433d9909653') repeat fixed;
   overflow-x: hidden;
   height: 100%;
   color: #595959;
@@ -247,7 +246,7 @@ a:focus, a:hover, a:active {
 @font-face {
   font-family: "IcoMoon";
   src: url('../fonts/oddsite.eot');
-  src: url('../fonts/oddsite.eot?#iefix') format('eot'), url('../fonts/oddsite.svg#oddsite') format('svg'), url('../fonts/oddsite.woff') format('woff'), url('../fonts/oddsite.ttf') format('truetype');
+  src: url('../fonts/oddsite.eot?#iefix') format('embedded-opentype'), url('../fonts/oddsite.svg#oddsite') format('svg'), url('../fonts/oddsite.woff') format('woff'), url('../fonts/oddsite.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -321,11 +320,10 @@ body:after {
   padding-left: 1em;
   margin-right: -1em;
   padding-right: 1em;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(0, 153, 204, 0.125)), color-stop(100%, rgba(0, 153, 204, 0)));
   background-image: -webkit-linear-gradient(top, rgba(0, 153, 204, 0.125), rgba(0, 153, 204, 0));
   background-image: -moz-linear-gradient(top, rgba(0, 153, 204, 0.125), rgba(0, 153, 204, 0));
   background-image: -o-linear-gradient(top, rgba(0, 153, 204, 0.125), rgba(0, 153, 204, 0));
-  background-image: linear-gradient(top, rgba(0, 153, 204, 0.125), rgba(0, 153, 204, 0));
+  background-image: linear-gradient(to bottom, rgba(0, 153, 204, 0.125), rgba(0, 153, 204, 0));
 }
 [role="banner"] [rel="home"] {
   text-indent: -119988px;
@@ -960,11 +958,10 @@ body:after {
 }
 
 .subpixel-demo {
-  background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(0%, rgba(77, 210, 255, 0.5)), color-stop(5.37634%, rgba(77, 210, 255, 0.5)), color-stop(5.37634%, rgba(0, 0, 0, 0)), color-stop(8.60215%, rgba(0, 0, 0, 0)), color-stop(8.60215%, rgba(77, 210, 255, 0.5)), color-stop(13.97849%, rgba(77, 210, 255, 0.5)), color-stop(13.97849%, rgba(0, 0, 0, 0)), color-stop(17.2043%, rgba(0, 0, 0, 0)), color-stop(17.2043%, rgba(77, 210, 255, 0.5)), color-stop(22.58065%, rgba(77, 210, 255, 0.5)), color-stop(22.58065%, rgba(0, 0, 0, 0)), color-stop(25.80645%, rgba(0, 0, 0, 0)), color-stop(25.80645%, rgba(77, 210, 255, 0.5)), color-stop(31.1828%, rgba(77, 210, 255, 0.5)), color-stop(31.1828%, rgba(0, 0, 0, 0)), color-stop(34.4086%, rgba(0, 0, 0, 0)), color-stop(34.4086%, rgba(77, 210, 255, 0.5)), color-stop(39.78495%, rgba(77, 210, 255, 0.5)), color-stop(39.78495%, rgba(0, 0, 0, 0)), color-stop(43.01075%, rgba(0, 0, 0, 0)), color-stop(43.01075%, rgba(77, 210, 255, 0.5)), color-stop(48.3871%, rgba(77, 210, 255, 0.5)), color-stop(48.3871%, rgba(0, 0, 0, 0)), color-stop(51.6129%, rgba(0, 0, 0, 0)), color-stop(51.6129%, rgba(77, 210, 255, 0.5)), color-stop(56.98925%, rgba(77, 210, 255, 0.5)), color-stop(56.98925%, rgba(0, 0, 0, 0)), color-stop(60.21505%, rgba(0, 0, 0, 0)), color-stop(60.21505%, rgba(77, 210, 255, 0.5)), color-stop(65.5914%, rgba(77, 210, 255, 0.5)), color-stop(65.5914%, rgba(0, 0, 0, 0)), color-stop(68.8172%, rgba(0, 0, 0, 0)), color-stop(68.8172%, rgba(77, 210, 255, 0.5)), color-stop(74.19355%, rgba(77, 210, 255, 0.5)), color-stop(74.19355%, rgba(0, 0, 0, 0)), color-stop(77.41935%, rgba(0, 0, 0, 0)), color-stop(77.41935%, rgba(77, 210, 255, 0.5)), color-stop(82.7957%, rgba(77, 210, 255, 0.5)), color-stop(82.7957%, rgba(0, 0, 0, 0)), color-stop(86.02151%, rgba(0, 0, 0, 0)), color-stop(86.02151%, rgba(77, 210, 255, 0.5)), color-stop(91.39785%, rgba(77, 210, 255, 0.5)), color-stop(91.39785%, rgba(0, 0, 0, 0)), color-stop(94.62366%, rgba(0, 0, 0, 0)), color-stop(94.62366%, rgba(77, 210, 255, 0.5)), color-stop(100%, rgba(77, 210, 255, 0.5)), color-stop(100%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0)));
   background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(77, 210, 255, 0.5) 0%, rgba(77, 210, 255, 0.5) 5.37634%, rgba(0, 0, 0, 0) 5.37634%, rgba(0, 0, 0, 0) 8.60215%, rgba(77, 210, 255, 0.5) 8.60215%, rgba(77, 210, 255, 0.5) 13.97849%, rgba(0, 0, 0, 0) 13.97849%, rgba(0, 0, 0, 0) 17.2043%, rgba(77, 210, 255, 0.5) 17.2043%, rgba(77, 210, 255, 0.5) 22.58065%, rgba(0, 0, 0, 0) 22.58065%, rgba(0, 0, 0, 0) 25.80645%, rgba(77, 210, 255, 0.5) 25.80645%, rgba(77, 210, 255, 0.5) 31.1828%, rgba(0, 0, 0, 0) 31.1828%, rgba(0, 0, 0, 0) 34.4086%, rgba(77, 210, 255, 0.5) 34.4086%, rgba(77, 210, 255, 0.5) 39.78495%, rgba(0, 0, 0, 0) 39.78495%, rgba(0, 0, 0, 0) 43.01075%, rgba(77, 210, 255, 0.5) 43.01075%, rgba(77, 210, 255, 0.5) 48.3871%, rgba(0, 0, 0, 0) 48.3871%, rgba(0, 0, 0, 0) 51.6129%, rgba(77, 210, 255, 0.5) 51.6129%, rgba(77, 210, 255, 0.5) 56.98925%, rgba(0, 0, 0, 0) 56.98925%, rgba(0, 0, 0, 0) 60.21505%, rgba(77, 210, 255, 0.5) 60.21505%, rgba(77, 210, 255, 0.5) 65.5914%, rgba(0, 0, 0, 0) 65.5914%, rgba(0, 0, 0, 0) 68.8172%, rgba(77, 210, 255, 0.5) 68.8172%, rgba(77, 210, 255, 0.5) 74.19355%, rgba(0, 0, 0, 0) 74.19355%, rgba(0, 0, 0, 0) 77.41935%, rgba(77, 210, 255, 0.5) 77.41935%, rgba(77, 210, 255, 0.5) 82.7957%, rgba(0, 0, 0, 0) 82.7957%, rgba(0, 0, 0, 0) 86.02151%, rgba(77, 210, 255, 0.5) 86.02151%, rgba(77, 210, 255, 0.5) 91.39785%, rgba(0, 0, 0, 0) 91.39785%, rgba(0, 0, 0, 0) 94.62366%, rgba(77, 210, 255, 0.5) 94.62366%, rgba(77, 210, 255, 0.5) 100%, rgba(0, 0, 0, 0) 100%, rgba(0, 0, 0, 0) 100%);
   background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(77, 210, 255, 0.5) 0%, rgba(77, 210, 255, 0.5) 5.37634%, rgba(0, 0, 0, 0) 5.37634%, rgba(0, 0, 0, 0) 8.60215%, rgba(77, 210, 255, 0.5) 8.60215%, rgba(77, 210, 255, 0.5) 13.97849%, rgba(0, 0, 0, 0) 13.97849%, rgba(0, 0, 0, 0) 17.2043%, rgba(77, 210, 255, 0.5) 17.2043%, rgba(77, 210, 255, 0.5) 22.58065%, rgba(0, 0, 0, 0) 22.58065%, rgba(0, 0, 0, 0) 25.80645%, rgba(77, 210, 255, 0.5) 25.80645%, rgba(77, 210, 255, 0.5) 31.1828%, rgba(0, 0, 0, 0) 31.1828%, rgba(0, 0, 0, 0) 34.4086%, rgba(77, 210, 255, 0.5) 34.4086%, rgba(77, 210, 255, 0.5) 39.78495%, rgba(0, 0, 0, 0) 39.78495%, rgba(0, 0, 0, 0) 43.01075%, rgba(77, 210, 255, 0.5) 43.01075%, rgba(77, 210, 255, 0.5) 48.3871%, rgba(0, 0, 0, 0) 48.3871%, rgba(0, 0, 0, 0) 51.6129%, rgba(77, 210, 255, 0.5) 51.6129%, rgba(77, 210, 255, 0.5) 56.98925%, rgba(0, 0, 0, 0) 56.98925%, rgba(0, 0, 0, 0) 60.21505%, rgba(77, 210, 255, 0.5) 60.21505%, rgba(77, 210, 255, 0.5) 65.5914%, rgba(0, 0, 0, 0) 65.5914%, rgba(0, 0, 0, 0) 68.8172%, rgba(77, 210, 255, 0.5) 68.8172%, rgba(77, 210, 255, 0.5) 74.19355%, rgba(0, 0, 0, 0) 74.19355%, rgba(0, 0, 0, 0) 77.41935%, rgba(77, 210, 255, 0.5) 77.41935%, rgba(77, 210, 255, 0.5) 82.7957%, rgba(0, 0, 0, 0) 82.7957%, rgba(0, 0, 0, 0) 86.02151%, rgba(77, 210, 255, 0.5) 86.02151%, rgba(77, 210, 255, 0.5) 91.39785%, rgba(0, 0, 0, 0) 91.39785%, rgba(0, 0, 0, 0) 94.62366%, rgba(77, 210, 255, 0.5) 94.62366%, rgba(77, 210, 255, 0.5) 100%, rgba(0, 0, 0, 0) 100%, rgba(0, 0, 0, 0) 100%);
   background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(77, 210, 255, 0.5) 0%, rgba(77, 210, 255, 0.5) 5.37634%, rgba(0, 0, 0, 0) 5.37634%, rgba(0, 0, 0, 0) 8.60215%, rgba(77, 210, 255, 0.5) 8.60215%, rgba(77, 210, 255, 0.5) 13.97849%, rgba(0, 0, 0, 0) 13.97849%, rgba(0, 0, 0, 0) 17.2043%, rgba(77, 210, 255, 0.5) 17.2043%, rgba(77, 210, 255, 0.5) 22.58065%, rgba(0, 0, 0, 0) 22.58065%, rgba(0, 0, 0, 0) 25.80645%, rgba(77, 210, 255, 0.5) 25.80645%, rgba(77, 210, 255, 0.5) 31.1828%, rgba(0, 0, 0, 0) 31.1828%, rgba(0, 0, 0, 0) 34.4086%, rgba(77, 210, 255, 0.5) 34.4086%, rgba(77, 210, 255, 0.5) 39.78495%, rgba(0, 0, 0, 0) 39.78495%, rgba(0, 0, 0, 0) 43.01075%, rgba(77, 210, 255, 0.5) 43.01075%, rgba(77, 210, 255, 0.5) 48.3871%, rgba(0, 0, 0, 0) 48.3871%, rgba(0, 0, 0, 0) 51.6129%, rgba(77, 210, 255, 0.5) 51.6129%, rgba(77, 210, 255, 0.5) 56.98925%, rgba(0, 0, 0, 0) 56.98925%, rgba(0, 0, 0, 0) 60.21505%, rgba(77, 210, 255, 0.5) 60.21505%, rgba(77, 210, 255, 0.5) 65.5914%, rgba(0, 0, 0, 0) 65.5914%, rgba(0, 0, 0, 0) 68.8172%, rgba(77, 210, 255, 0.5) 68.8172%, rgba(77, 210, 255, 0.5) 74.19355%, rgba(0, 0, 0, 0) 74.19355%, rgba(0, 0, 0, 0) 77.41935%, rgba(77, 210, 255, 0.5) 77.41935%, rgba(77, 210, 255, 0.5) 82.7957%, rgba(0, 0, 0, 0) 82.7957%, rgba(0, 0, 0, 0) 86.02151%, rgba(77, 210, 255, 0.5) 86.02151%, rgba(77, 210, 255, 0.5) 91.39785%, rgba(0, 0, 0, 0) 91.39785%, rgba(0, 0, 0, 0) 94.62366%, rgba(77, 210, 255, 0.5) 94.62366%, rgba(77, 210, 255, 0.5) 100%, rgba(0, 0, 0, 0) 100%, rgba(0, 0, 0, 0) 100%);
-  background-image: linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(77, 210, 255, 0.5) 0%, rgba(77, 210, 255, 0.5) 5.37634%, rgba(0, 0, 0, 0) 5.37634%, rgba(0, 0, 0, 0) 8.60215%, rgba(77, 210, 255, 0.5) 8.60215%, rgba(77, 210, 255, 0.5) 13.97849%, rgba(0, 0, 0, 0) 13.97849%, rgba(0, 0, 0, 0) 17.2043%, rgba(77, 210, 255, 0.5) 17.2043%, rgba(77, 210, 255, 0.5) 22.58065%, rgba(0, 0, 0, 0) 22.58065%, rgba(0, 0, 0, 0) 25.80645%, rgba(77, 210, 255, 0.5) 25.80645%, rgba(77, 210, 255, 0.5) 31.1828%, rgba(0, 0, 0, 0) 31.1828%, rgba(0, 0, 0, 0) 34.4086%, rgba(77, 210, 255, 0.5) 34.4086%, rgba(77, 210, 255, 0.5) 39.78495%, rgba(0, 0, 0, 0) 39.78495%, rgba(0, 0, 0, 0) 43.01075%, rgba(77, 210, 255, 0.5) 43.01075%, rgba(77, 210, 255, 0.5) 48.3871%, rgba(0, 0, 0, 0) 48.3871%, rgba(0, 0, 0, 0) 51.6129%, rgba(77, 210, 255, 0.5) 51.6129%, rgba(77, 210, 255, 0.5) 56.98925%, rgba(0, 0, 0, 0) 56.98925%, rgba(0, 0, 0, 0) 60.21505%, rgba(77, 210, 255, 0.5) 60.21505%, rgba(77, 210, 255, 0.5) 65.5914%, rgba(0, 0, 0, 0) 65.5914%, rgba(0, 0, 0, 0) 68.8172%, rgba(77, 210, 255, 0.5) 68.8172%, rgba(77, 210, 255, 0.5) 74.19355%, rgba(0, 0, 0, 0) 74.19355%, rgba(0, 0, 0, 0) 77.41935%, rgba(77, 210, 255, 0.5) 77.41935%, rgba(77, 210, 255, 0.5) 82.7957%, rgba(0, 0, 0, 0) 82.7957%, rgba(0, 0, 0, 0) 86.02151%, rgba(77, 210, 255, 0.5) 86.02151%, rgba(77, 210, 255, 0.5) 91.39785%, rgba(0, 0, 0, 0) 91.39785%, rgba(0, 0, 0, 0) 94.62366%, rgba(77, 210, 255, 0.5) 94.62366%, rgba(77, 210, 255, 0.5) 100%, rgba(0, 0, 0, 0) 100%, rgba(0, 0, 0, 0) 100%);
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(77, 210, 255, 0.5) 0%, rgba(77, 210, 255, 0.5) 5.37634%, rgba(0, 0, 0, 0) 5.37634%, rgba(0, 0, 0, 0) 8.60215%, rgba(77, 210, 255, 0.5) 8.60215%, rgba(77, 210, 255, 0.5) 13.97849%, rgba(0, 0, 0, 0) 13.97849%, rgba(0, 0, 0, 0) 17.2043%, rgba(77, 210, 255, 0.5) 17.2043%, rgba(77, 210, 255, 0.5) 22.58065%, rgba(0, 0, 0, 0) 22.58065%, rgba(0, 0, 0, 0) 25.80645%, rgba(77, 210, 255, 0.5) 25.80645%, rgba(77, 210, 255, 0.5) 31.1828%, rgba(0, 0, 0, 0) 31.1828%, rgba(0, 0, 0, 0) 34.4086%, rgba(77, 210, 255, 0.5) 34.4086%, rgba(77, 210, 255, 0.5) 39.78495%, rgba(0, 0, 0, 0) 39.78495%, rgba(0, 0, 0, 0) 43.01075%, rgba(77, 210, 255, 0.5) 43.01075%, rgba(77, 210, 255, 0.5) 48.3871%, rgba(0, 0, 0, 0) 48.3871%, rgba(0, 0, 0, 0) 51.6129%, rgba(77, 210, 255, 0.5) 51.6129%, rgba(77, 210, 255, 0.5) 56.98925%, rgba(0, 0, 0, 0) 56.98925%, rgba(0, 0, 0, 0) 60.21505%, rgba(77, 210, 255, 0.5) 60.21505%, rgba(77, 210, 255, 0.5) 65.5914%, rgba(0, 0, 0, 0) 65.5914%, rgba(0, 0, 0, 0) 68.8172%, rgba(77, 210, 255, 0.5) 68.8172%, rgba(77, 210, 255, 0.5) 74.19355%, rgba(0, 0, 0, 0) 74.19355%, rgba(0, 0, 0, 0) 77.41935%, rgba(77, 210, 255, 0.5) 77.41935%, rgba(77, 210, 255, 0.5) 82.7957%, rgba(0, 0, 0, 0) 82.7957%, rgba(0, 0, 0, 0) 86.02151%, rgba(77, 210, 255, 0.5) 86.02151%, rgba(77, 210, 255, 0.5) 91.39785%, rgba(0, 0, 0, 0) 91.39785%, rgba(0, 0, 0, 0) 94.62366%, rgba(77, 210, 255, 0.5) 94.62366%, rgba(77, 210, 255, 0.5) 100%, rgba(0, 0, 0, 0) 100%, rgba(0, 0, 0, 0) 100%);
   background-position: left top;
   -webkit-background-origin: content;
   -moz-background-origin: content;
@@ -1023,36 +1020,47 @@ body:after {
 }
 .subpixel-demo .gallery-item:nth-child(12n + 2) {
   margin-left: 8.60215%;
+  clear: none;
 }
 .subpixel-demo .gallery-item:nth-child(12n + 3) {
   margin-left: 17.2043%;
+  clear: none;
 }
 .subpixel-demo .gallery-item:nth-child(12n + 4) {
   margin-left: 25.80645%;
+  clear: none;
 }
 .subpixel-demo .gallery-item:nth-child(12n + 5) {
   margin-left: 34.4086%;
+  clear: none;
 }
 .subpixel-demo .gallery-item:nth-child(12n + 6) {
   margin-left: 43.01075%;
+  clear: none;
 }
 .subpixel-demo .gallery-item:nth-child(12n + 7) {
   margin-left: 51.6129%;
+  clear: none;
 }
 .subpixel-demo .gallery-item:nth-child(12n + 8) {
   margin-left: 60.21505%;
+  clear: none;
 }
 .subpixel-demo .gallery-item:nth-child(12n + 9) {
   margin-left: 68.8172%;
+  clear: none;
 }
 .subpixel-demo .gallery-item:nth-child(12n + 10) {
   margin-left: 77.41935%;
+  clear: none;
 }
 .subpixel-demo .gallery-item:nth-child(12n + 11) {
   margin-left: 86.02151%;
+  clear: none;
 }
 .subpixel-demo .gallery-item:nth-child(12n + 12) {
   margin-left: 94.62366%;
+  clear: none;
 }
 .subpixel-demo .gallery-item2 {
   width: 22.58065%;
@@ -1066,12 +1074,15 @@ body:after {
 }
 .subpixel-demo .gallery-item2:nth-child(4n + 2) {
   margin-left: 25.80645%;
+  clear: none;
 }
 .subpixel-demo .gallery-item2:nth-child(4n + 3) {
   margin-left: 51.6129%;
+  clear: none;
 }
 .subpixel-demo .gallery-item2:nth-child(4n + 4) {
   margin-left: 77.41935%;
+  clear: none;
 }
 
 .bleed-demo {
