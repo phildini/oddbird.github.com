@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>             <html class="no-js ie" lang="en" dir="ltr">   <![endif]-->
+<!--[if (gt IE 8)|!(IE)]><!-->  <html class="no-js" lang="en" dir="ltr">      <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+
+  
+
+  <!-- Page Info -->
+  <title>Susy Next: Alpha 4 | OddBird</title>
+  <meta name="description" content="Custom-built web tools for humans" />
+
+  <!-- Site Info -->
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="OddBird" />
+  <meta name="keywords" content="custom web development, web tools, open source, python, django, sass, scss, susy, javascript, jquery, js" />
+  <meta name="language" content="en-us" />
+
+  
+  <link href="/feed.atom" rel="alternate" title="OddBird blog posts" type="application/atom+xml">
+  
+
+  <!-- Microformat Profiles -->
+  <!-- hCard, hCalendar, rel-license, rel-tag, XOXO, XFN, VoteLinks -->
+  <link rel="profile" href="http://microformats.org/profile/specs/" />
+
+  <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
+  <meta http-equiv="cleartype" content="on">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1" />
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1">
+
+  <!--iOS. Delete if not required -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-startup-image" href="/static/images/favicons/splash.png">
+
+  <!-- favicon.ico -->
+  <link rel="shortcut icon" href="/static/images/favicons/favicon.ico" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/images/favicons/apple-touch-icon-114x114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/images/favicons/apple-touch-icon-72x72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="/static/images/favicons/apple-touch-icon-precomposed.png">
+
+  <!-- Styles -->
+  
+  <link rel="stylesheet" href="/static/dist/screen.min.bb7ee634.css" media="screen" />
+  <link rel="stylesheet" href="/static/dist/print.min.a68288b1.css" media="print" />
+  
+
+  <!-- Modernizr -->
+  <script src="/static/js/libs/modernizr.custom.41881.js"></script>
+
+  <!-- Page-Specific Head -->
+  
+
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36510846-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+</head>
+
+<body id="oddsite" class="blog">
+
+
+<h1 role="banner"><a href="/" rel="home">OddBird</a></h1>
+
+<nav role="navigation">
+  <ul class="primary">
+    <li><a href="/" rel="home">home</a></li>
+    <li><a href="/blog/">blog</a></li>
+  </ul>
+</nav>
+
+<section role="main" >
+
+  
+  <div class="post">
+    <h1 class="title">Susy Next: Alpha 4</h1>
+
+
+    
+
+    <div class="body"><p>I don&#8217;t have a lot of time to delve,
+but let me run through some of the changes
+and new features in <a class="reference external" href="http://rubygems.org/gems/susy/versions/2.0.0.alpha.2">Susy Next alpha 4</a> —
+as well as alpha 3, which never got a blog post.
+You can see the full list of changes
+in the <a class="reference external" href="https://github.com/ericam/susy/blob/susy-next/CHANGELOG-NEXT.md">Susy Next Changelog</a>,
+and we&#8217;ll work on examples as we start writing&nbsp;docs.</p>
+<p>If you haven&#8217;t already started using a Susy Next alpha,
+read the <a class="reference external" href="http://oddsite.hexxie.com:8000/2013/05/03/susy-next-alpha-2/">alpha 2</a> introduction first
+to get a sense of the new syntax and&nbsp;approach.</p>
+<p>In addition to the new features,
+we&#8217;ve added comprehensive unit test tests
+using <a class="reference external" href="http://eric.andmeyer.com/true/">True</a>,
+which we built for the occasion.
+We also have a set of &#8220;<span class="caps">AG</span> Tests&#8221;
+that show how things work in practice.
+Right now,
+the <a class="reference external" href="https://github.com/ericam/susy/blob/susy-next/test/">test folder</a>
+provides the best documentation —
+with <code>index.html</code> showing the True results
+and <code>ag.html</code> showing several standard grids.
+Explore, download, and&nbsp;play!</p>
+<section id="alpha-3">
+<h2>Alpha&nbsp;3</h2>
+<p><strong>New&nbsp;Features:</strong></p>
+<ul class="simple">
+<li>Added <code>gutters</code> mixin adds gutters to an&nbsp;element.</li>
+<li>Added <code>outer</code> keyword to include gutters in any returned width.
+This replaces the Susy 1 <code>space</code> mixin.</li>
+<li>Added <code>container</code> function to return a given container&#8217;s&nbsp;width.</li>
+<li>Added <code>auto</code> keyword to any grid argument
+as a setting for <code>$container-width</code>.
+This will use <code>$column-width</code> settings to calculate a container,
+or fallback to&nbsp;100%.</li>
+<li>Added <code>show-columns</code> and <code>show-baseline</code> keywords
+for controlling background-grids.
+The <code>show</code> keyword will display&nbsp;both.</li>
+<li>The <code>gutter</code> function now returns half-widths
+when using split or inside&nbsp;gutters.</li>
+<li>Added margin/padding mixins from Susy 1:
+<code>prefix</code>, <code>suffix</code>, <code>pad</code>,
+<code>pre</code>, <code>post</code>, <code>push</code>, <code>pull</code>, and <code>squish</code>.
+They work pretty much the way you expect them to,
+although there&#8217;s a <a class="reference external" href="https://github.com/ericam/susy/issues/204">small issue</a>
+we&#8217;ll be fixing in the next release (alpha&nbsp;5).</li>
+</ul>
+<p><strong>Backwards Incompatible&nbsp;Changes:</strong></p>
+<ul class="simple">
+<li>Renamed <code>$isolate</code> setting to <code>$layout-method</code>,
+which no longer accepts a boolean,
+only the <code>isolate</code> and <code>float</code> keywords.</li>
+<li>Renamed <code>$static</code> setting to <code>$layout-math</code>,
+which no longer accepts a boolean,
+only the <code>static</code> and <code>fluid</code> keywords.
+Fluid is used for both Susy 1 <code>fluid</code> and <code>magic</code> styles,
+depending on the presence of a <code>$column-width</code> setting.</li>
+</ul>
+</section>
+<section id="alpha-4">
+<h2>Alpha&nbsp;4</h2>
+<p><strong>New&nbsp;Features:</strong></p>
+<ul class="simple">
+<li>Added a <code>bleed</code> mixin.
+This works similar to bleed in Susy 1,
+but accounts for gutters as well
+(unless you pass the <code>no-gutters</code> keyword).
+Currently only inside gutters are being incorporated,
+but that will be fixed along with the issue linked&nbsp;above.</li>
+<li>Added a <code>$last-flow</code> setting
+to control the flow direction of row-ending elements.
+It accepts either <code>to</code> of <code>from</code>.
+This is similar to <code>$omega-float</code> in Susy&nbsp;1.</li>
+<li>The <code>span</code> mixin now accepts nested <code>&#64;content</code>,
+so you can nest styles directly in a new&nbsp;context.</li>
+<li>Added <code>inside-static</code> option for static gutters in otherwise fluid&nbsp;grids.</li>
+<li><code>gutters</code> mixin uses span syntax, accepts explicit gutter&nbsp;spans.</li>
+</ul>
+<p><strong>Backwards Incompatible&nbsp;Changes:</strong></p>
+<ul class="simple">
+<li><code>grid-background</code>, <code>grid-overlay</code>, <code>grid-background-output</code>,
+<span class="amp">&amp;</span> <code>$grid-background-color</code> have been renamed
+to remiain consistent and avoid conflicts with Compass:<ul>
+<li><code>grid-background</code> =&gt; <code>background-grid</code></li>
+<li><code>grid-overlay</code> =&gt; <code>overlay-grid</code></li>
+<li><code>grid-background-output</code> =&gt; <code>background-grid-output</code></li>
+<li><code>$grid-background-color</code> =&gt; <code>$grid-color</code></li>
+</ul>
+</li>
+</ul>
+</section>
+</div>
+
+    
+      <aside class="comments">
+        Have a correction, addition, or feedback on this post?
+        Talk to us on
+        <a href="https://twitter.com/eriiicam">Twitter</a>,
+        email <span class="email">birds(who are 'at' the)oddbird.net</span>,
+        or comment on
+        <a href="http://www.reddit.com/submit?url=http%3A//oddbird.net/2013/09/05/susy-alpha-4">Reddit</a>
+        or
+        <a href="https://news.ycombinator.com/submitlink?u=http%3A//oddbird.net/2013/09/05/susy-alpha-4">Hacker&nbsp;News</a>.
+      </aside class="comments">
+    
+  </div>
+
+
+</section>
+
+<footer role="contentinfo">
+
+  <div class="listarchive">
+    <h3 class="foottitle"><a href="/archive/" rel="archive">Blog Archive</a></h3>
+    <ul>
+      <li>
+        <a href="/2013/05/03/susy-next-alpha-2"  rel="bookmark">Susy Next: The Second Alpha</a>
+      </li>
+      <li>
+        <a href="/2013/03/20/isolation-susy"  rel="bookmark">Isolation and bleed in Susy</a>
+      </li>
+      <li>
+        <a href="/2013/01/29/susy-next-alpha-1"  rel="bookmark">Susy Next: The first alpha</a>
+      </li>
+      <li>
+        <a href="/2013/01/01/susy-next"  rel="bookmark">Sass Layout in 2013 and the Future of Susy</a>
+      </li>
+      <li>
+        <a href="/2012/11/27/susy-off-canvas"  rel="bookmark">Off-canvas layout with Susy</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="contact">
+    <h3 class="foottitle email">birds(who are 'at' the)oddbird.net</h3>
+    <ul>
+      <li><a href="http://twitter.com/carljm/">@carljm</a></li>
+      <li><a href="http://twitter.com/eriiicam/">@eriiicam</a></li>
+      <li><a href="http://twitter.com/jgerigmeyer/">@jgerigmeyer</a></li>
+    </ul>
+  </div>
+
+  <p class="colophon">
+    This site is built on plain old semantic <a href="http://www.w3.org/TR/html5/">HTML5</a>,
+    powered by
+    the <a href="https://github.com/mitsuhiko/rstblog/">rstblog</a> static site generator
+    for <a href="http://www.python.org">Python</a>,
+    and styled using <a href="http://www.w3.org/TR/css-2010/">CSS3</a>,
+    with help from
+    <a href="http://subtlepatterns.com/">Subtle Patterns</a>,
+    <a href="http://www.jquery.com/">jQuery</a>,
+    <a href="http://www.modernizr.com/">Modernizr</a>,
+    <a href="http://gruntjs.com/">Grunt</a>,
+    <a href="http://keyamoon.com/icomoon/">IcoMoon</a>,
+    <a href="http://susy.oddbird.net/">Susy</a>,
+    <a href="http://compass-style.org/">Compass</a>,
+    and <a href="http://sass-lang.com/">Sass</a>.
+  </p>
+
+  <p class="copyright vcard">copyright &copy; 2009-2013
+    <a href="http://oddbird.net/" class="fn org url">OddBird</a>
+  </p>
+</footer>
+
+
+<!-- JavaScript -->
+<script src="/static/js/libs/jquery-1.9.1.min.js"></script>
+<script src="/static/dist/all-js.min.a37c93bc.js"></script>
+
+
+</body>
+</html>
