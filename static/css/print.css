@@ -137,6 +137,9 @@ body p, body ul, body ol, body pre {
   margin-bottom: 22px;
   margin-bottom: 1.22222rem;
 }
+body ul ul, body ul ol, body ol ul, body ol ol {
+  padding-left: 1.22222rem;
+}
 body code, body .code {
   font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
   font-size: 12px;
