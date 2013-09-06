@@ -92,34 +92,55 @@
 
 
     
+<p class="byline">
+  
+  <time datetime="2013-09-05T00:00:00" pubdate="pubdate">
+    September 05, 2013
+  </time>
+  
+
+  
+  <span class="vcard">
+    by <a href="/authors/eric/" class="fn">eric</a>
+  </span>
+  
+
+  
+    <span class="tags">
+      in
+      <a href="/tags/2.0/" rel="tag">2.0</a>, <a href="/tags/grids/" rel="tag">grids</a>, <a href="/tags/layout/" rel="tag">layout</a>, <a href="/tags/rwd/" rel="tag">rwd</a>, <a href="/tags/susy/" rel="tag">susy</a>.
+    </span>
+  
+</p>
+
 
     <div class="body"><p>I don&#8217;t have a lot of time to delve,
 but let me run through some of the changes
-and new features in <a class="reference external" href="http://rubygems.org/gems/susy/versions/2.0.0.alpha.2">Susy Next alpha 4</a> —
+and new features in <a class="reference external" href="http://rubygems.org/gems/susy/versions/2.0.0.alpha.4">Susy Next alpha 4</a> —
 as well as alpha 3, which never got a blog post.
 You can see the full list of changes
 in the <a class="reference external" href="https://github.com/ericam/susy/blob/susy-next/CHANGELOG-NEXT.md">Susy Next Changelog</a>,
 and we&#8217;ll work on examples as we start writing&nbsp;docs.</p>
 <p>If you haven&#8217;t already started using a Susy Next alpha,
-read the <a class="reference external" href="http://oddsite.hexxie.com:8000/2013/05/03/susy-next-alpha-2/">alpha 2</a> introduction first
+read the <a class="reference external" href="/2013/05/03/susy-next-alpha-2/">alpha 2</a> introduction first
 to get a sense of the new syntax and&nbsp;approach.</p>
 <p>In addition to the new features,
 we&#8217;ve added comprehensive unit test tests
 using <a class="reference external" href="http://eric.andmeyer.com/true/">True</a>,
 which we built for the occasion.
-We also have a set of &#8220;<span class="caps">AG</span> Tests&#8221;
+We also have a set of complex nesting tests
 that show how things work in practice.
 Right now,
 the <a class="reference external" href="https://github.com/ericam/susy/blob/susy-next/test/">test folder</a>
 provides the best documentation —
 with <code>index.html</code> showing the True results
-and <code>ag.html</code> showing several standard grids.
+and <code>ag.html</code> showing several standard grid-types.
 Explore, download, and&nbsp;play!</p>
 <section id="alpha-3">
 <h2>Alpha&nbsp;3</h2>
 <p><strong>New&nbsp;Features:</strong></p>
 <ul class="simple">
-<li>Added <code>gutters</code> mixin adds gutters to an&nbsp;element.</li>
+<li>Added <code>gutters</code> mixin to apply gutters as margin or padding on an&nbsp;element.</li>
 <li>Added <code>outer</code> keyword to include gutters in any returned width.
 This replaces the Susy 1 <code>space</code> mixin.</li>
 <li>Added <code>container</code> function to return a given container&#8217;s&nbsp;width.</li>
@@ -207,6 +228,9 @@ to remiain consistent and avoid conflicts with Compass:<ul>
   <div class="listarchive">
     <h3 class="foottitle"><a href="/archive/" rel="archive">Blog Archive</a></h3>
     <ul>
+      <li>
+        <a href="/2013/09/05/susy-alpha-4"  rel="bookmark">Susy Next: Alpha 4</a>
+      </li>
       <li>
         <a href="/2013/05/03/susy-next-alpha-2"  rel="bookmark">Susy Next: The Second Alpha</a>
       </li>
