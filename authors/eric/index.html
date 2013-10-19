@@ -93,6 +93,60 @@
   
   <article class="post">
     <h1 class="title">
+      <a href="/2013/10/19/map-merge">
+        Map-Set vs. Map-Merge
+      </a>
+    </h1>
+
+    
+<p class="byline">
+  
+  <time datetime="2013-10-19T00:00:00" pubdate="pubdate">
+    October 19, 2013
+  </time>
+  
+
+  
+  <span class="vcard">
+    by <a href="/authors/eric/" class="fn">eric</a>
+  </span>
+  
+
+  
+    <span class="tags">
+      in
+      <a href="/tags/code/" rel="tag">code</a>, <a href="/tags/maps/" rel="tag">maps</a>, <a href="/tags/sass/" rel="tag">sass</a>.
+    </span>
+  
+</p>
+
+
+    <div class="body">
+      
+        <p>When I first heard that Sass 3.3 had no map-merge function, I was confused. Why force me to create a map, and then merge it? That sounds like two steps to accomplish one simple task! But that&#8217;s not the case. Map-merge is a much more powerful function, and using it to set a key in an existing map is quite straight-forward. In fact, I couldn&#8217;t come up with a map-set function that shaved off more than a few keystrokes. Here&#8217;s the&nbsp;comparison:</p>
+<pre class="code scss">
+<span class="c1">// a map!
+</span><span class="nv">$map</span><span class="o">:</span> <span class="p">(</span>
+  <span class="mi">1</span><span class="o">:</span> <span class="n">hello</span><span class="o">,</span>
+  <span class="mi">2</span><span class="o">:</span> <span class="n">world</span><span class="o">,</span>
+<span class="p">);</span>
+
+<span class="c1">// a map-set function (not included with Sass)
+</span><span class="k">&#64;function</span> <span class="nt">map-set</span><span class="o">(</span><span class="err">$</span><span class="nt">map</span><span class="o">,</span> <span class="err">$</span><span class="nt">key</span><span class="o">,</span> <span class="err">$</span><span class="nt">value</span><span class="o">)</span> <span class="p">{</span>
+  <span class="nv">$new</span><span class="o">:</span> <span class="p">(</span><span class="nv">$key</span><span class="o">:</span> <span class="nv">$value</span><span class="p">);</span>
+  <span class="k">&#64;return</span> <span class="nt">map-merge</span><span class="o">(</span><span class="err">$</span><span class="nt">map</span><span class="o">,</span> <span class="err">$</span><span class="nt">new</span><span class="o">);</span>
+<span class="p">}</span>
+
+<span class="c1">// the difference between map-set and map-merge: almost nothing.
+</span><span class="nv">$merge</span><span class="o">:</span> <span class="nf">map-merge</span><span class="p">(</span><span class="nv">$map</span><span class="o">,</span> <span class="p">(</span><span class="mi">2</span><span class="o">:</span> <span class="n">New</span> <span class="n">York</span><span class="p">));</span>
+<span class="nv">$set</span><span class="o">:</span> <span class="nf">map-set</span><span class="p">(</span><span class="nv">$map</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="n">New</span> <span class="n">York</span><span class="p">);</span>
+</pre>
+
+      
+    </div>
+  </article>
+  <article class="post">
+    <h1 class="title">
       <a href="/2013/09/05/susy-alpha-4">
         Susy Next: Alpha 4
       </a>
@@ -385,6 +439,9 @@ along the way.</p>
   <div class="listarchive">
     <h3 class="foottitle"><a href="/archive/" rel="archive">Blog Archive</a></h3>
     <ul>
+      <li>
+        <a href="/2013/10/19/map-merge"  rel="bookmark">Map-Set vs. Map-Merge</a>
+      </li>
       <li>
         <a href="/2013/09/05/susy-alpha-4"  rel="bookmark">Susy Next: Alpha 4</a>
       </li>
