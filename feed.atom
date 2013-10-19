@@ -15,7 +15,7 @@
     <author>
       <name>OddBird</name>
     </author>
-    <content type="html">&lt;p&gt;When I first heard that Sass 3.3 had no map-merge function, I was confused. Why force me to create a map, and then merge it? That sounds like two steps to accomplish one simple task! But that&amp;#8217;s not the case. Map-merge is a much more powerful function, and using it to set a key in an existing map is quite straight-forward. In fact, I couldn&amp;#8217;t come up with a map-set function that shaved off more than a few keystrokes. Here&amp;#8217;s the&amp;nbsp;comparison:&lt;/p&gt;
+    <content type="html">&lt;p&gt;When I first heard that Sass 3.3 had no map-set function, I was confused. Why force me to create a map, and then merge it? That sounds like two steps to accomplish one simple task! But that&amp;#8217;s not the case. Map-merge is a much more powerful function, and using it to set a key in an existing map is quite straight-forward. In fact, I couldn&amp;#8217;t come up with a map-set function that shaved off more than a few keystrokes. Here&amp;#8217;s the&amp;nbsp;comparison:&lt;/p&gt;
 &lt;pre class="code scss"&gt;
 &lt;span class="c1"&gt;// a map!
 &lt;/span&gt;&lt;span class="nv"&gt;$map&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
