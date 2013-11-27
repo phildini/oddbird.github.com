@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>             <html class="no-js ie" lang="en" dir="ltr">   <![endif]-->
+<!--[if (gt IE 8)|!(IE)]><!-->  <html class="no-js" lang="en" dir="ltr">      <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+
+  
+
+  <!-- Page Info -->
+  <title>Susy Next: Alpha 5 | OddBird</title>
+  <meta name="description" content="Custom-built web tools for humans" />
+
+  <!-- Site Info -->
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="OddBird" />
+  <meta name="keywords" content="custom web development, web tools, open source, python, django, sass, scss, susy, javascript, jquery, js" />
+  <meta name="language" content="en-us" />
+
+  
+  <link href="/feed.atom" rel="alternate" title="OddBird blog posts" type="application/atom+xml">
+  
+
+  <!-- Microformat Profiles -->
+  <!-- hCard, hCalendar, rel-license, rel-tag, XOXO, XFN, VoteLinks -->
+  <link rel="profile" href="http://microformats.org/profile/specs/" />
+
+  <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
+  <meta http-equiv="cleartype" content="on">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1" />
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1">
+
+  <!--iOS. Delete if not required -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-startup-image" href="/static/images/favicons/splash.png">
+
+  <!-- favicon.ico -->
+  <link rel="shortcut icon" href="/static/images/favicons/favicon.ico" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/images/favicons/apple-touch-icon-114x114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/images/favicons/apple-touch-icon-72x72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="/static/images/favicons/apple-touch-icon-precomposed.png">
+
+  <!-- Styles -->
+  
+  <link rel="stylesheet" href="/static/dist/screen.min.b0331b79.css" media="screen" />
+  <link rel="stylesheet" href="/static/dist/print.min.a68288b1.css" media="print" />
+  
+
+  <!-- Modernizr -->
+  <script src="/static/js/libs/modernizr.custom.41881.js"></script>
+
+  <!-- Page-Specific Head -->
+  
+
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36510846-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+</head>
+
+<body id="oddsite" class="blog">
+
+
+<h1 role="banner"><a href="/" rel="home">OddBird</a></h1>
+
+<nav role="navigation">
+  <ul class="primary">
+    <li><a href="/" rel="home">home</a></li>
+    <li><a href="/blog/">blog</a></li>
+  </ul>
+</nav>
+
+<section role="main" >
+
+  
+  <div class="post">
+    <h1 class="title">Susy Next: Alpha 5</h1>
+
+
+    
+<p class="byline">
+  
+  <time datetime="2013-11-27T00:00:00" pubdate="pubdate">
+    November 27, 2013
+  </time>
+  
+
+  
+  <span class="vcard">
+    by <a href="/authors/eric/" class="fn">eric</a>
+  </span>
+  
+
+  
+    <span class="tags">
+      in
+      <a href="/tags/2.0/" rel="tag">2.0</a>, <a href="/tags/grids/" rel="tag">grids</a>, <a href="/tags/layout/" rel="tag">layout</a>, <a href="/tags/rwd/" rel="tag">rwd</a>, <a href="/tags/susy/" rel="tag">susy</a>.
+    </span>
+  
+</p>
+
+
+    <div class="body"><p>Susy Next is almost feature complete!
+Alpha 5 is loaded with changes —
+some as a result of alpha testing,
+but mostly in response to the new power of Sass 3.3.
+This is likely to be our final alpha.
+With a bit more user testing
+and some minor cleanup,
+we hope to hit beta soon
+and then land a stable version
+along side the upcoming releases of Compass and&nbsp;Sass.</p>
+<section id="sass-and-compass">
+<h2>Sass and&nbsp;Compass</h2>
+<p>Sass 3.3 is awesome,
+and we&#8217;ve made a lot of changes in Susy
+to take full advantage of the new toys.
+We started integrating the new <a class="reference external" href="https://github.com/nex3/sass/blob/master/doc-src/SASS_CHANGELOG.md#sassscript-maps">SassScript Maps</a> data type
+(not to be confused with <a class="reference external" href="https://github.com/nex3/sass/blob/master/doc-src/SASS_CHANGELOG.md#source-maps">Source Maps</a>),
+and the side benefits were huge.
+We&#8217;re also using the new <code>variable-exists()</code>
+and <code>mixin-exists()</code> functions
+to check for the presence of various compass features,
+and degrade gracefully if they aren&#8217;t&nbsp;available.</p>
+<p>In brief:
+<strong>Sass 3.3 is now required</strong>
+and
+<strong>Compass is no longer required</strong>,
+although we do tie in with Compass features
+such as vertical-rhythms
+if they are&nbsp;available.</p>
+</section>
+<section id="settings">
+<h2>Settings</h2>
+<p>The first thing to do,
+after upgrading Sass,
+is to translate your Susy settings
+into a single map of key/value pairs.
+For a long time the only way to establish defaults
+and user overrides in a Sass plugin has been to use variables.
+In Susy 1 and the early alpha releases, we did the&nbsp;same:</p>
+<pre class="code scss">
+<span class="nv">$columns</span><span class="o">:</span> <span class="mi">6</span><span class="p">;</span>
+<span class="nv">$gutters</span><span class="o">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">;</span>
+<span class="nv">$gutter-position</span><span class="o">:</span> <span class="no">inside</span><span class="p">;</span>
+</pre>
+<p>But that clogs up the global namespace in ugly ways.
+Now, thanks to SassScript Maps,
+we have a new solution that keeps everything contained,
+and comes with side-benefits for anyone using multiple&nbsp;grids:</p>
+<pre class="code scss">
+<span class="nv">$susy</span><span class="o">:</span> <span class="p">(</span>
+  <span class="n">columns</span><span class="o">:</span> <span class="mi">6</span><span class="o">,</span>
+  <span class="n">gutters</span><span class="o">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="o">,</span>
+  <span class="n">gutter-position</span><span class="o">:</span> <span class="no">inside</span><span class="o">,</span>
+<span class="p">);</span>
+</pre>
+<p>There is only one variable, named <code>$susy</code>,
+that takes a map of all your settings.
+You can still use the grid shorthand
+with <code>set-grid</code> or <code>use-grid</code>:</p>
+<pre class="code scss">
+<span class="k">&#64;include</span><span class="nd"> set-grid</span><span class="p">(</span><span class="mi">6</span> <span class="mi">1</span><span class="o">/</span><span class="mi">4</span> <span class="no">inside</span><span class="p">);</span>
+</pre>
+<p>But you can also mix-and-match shorthand with maps,
+both for grid-settings and for&nbsp;spans:</p>
+<pre class="code scss">
+<span class="nv">$large</span><span class="o">:</span> <span class="p">(</span>
+  <span class="n">columns</span><span class="o">:</span> <span class="mi">12</span><span class="o">,</span>
+  <span class="n">container</span><span class="o">:</span> <span class="mi">90</span><span class="kt">em</span><span class="o">,</span>
+<span class="p">);</span>
+
+<span class="k">&#64;include</span><span class="nd"> use-grid</span><span class="p">(</span><span class="nv">$large</span> <span class="no">inside</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// ...
+</span><span class="p">}</span>
+
+<span class="k">&#64;include</span><span class="nd"> span</span><span class="p">(</span><span class="mi">3</span> <span class="nv">$large</span><span class="p">);</span>
+</pre>
+<p>If you need access the current value of a setting,
+just use <code>susy-get(setting-name)</code>:</p>
+<pre class="code scss">
+<span class="nv">$current-columns</span><span class="o">:</span> <span class="nf">susy-get</span><span class="p">(</span><span class="n">columns</span><span class="p">);</span>
+</pre>
+</section>
+<section id="split-gutters">
+<h2>Split&nbsp;Gutters</h2>
+<p>Susy Next supports several gutter styles:
+<code>after</code> (the Susy 1 approach), <code>before</code>, <code>inside</code>, <code>inside-static</code>,
+and <code>split</code>. Before, after, and split all use margins.
+Inside and inside-static use&nbsp;padding.</p>
+<p>In previous alphas, <code>split</code> worked like <code>before</code> and <code>after</code>,
+and you had to remove the <code>first</code> and <code>last</code> edge-gutters.
+That felt wrong, so we fixed it.
+Split gutters now work similar to inside gutters,
+and there is no reason to remove them at the edges of the grid.
+That simplifies most things, but it complicates nesting.
+You don&#8217;t want gutters added to the edges of an outer element,
+and then added again to the edges of inner&nbsp;elements.</p>
+<p>Susy is very flexible,
+and there are many ways you can work around that problem already,
+but we added a <code>container</code> shortcut to make it&nbsp;easier.</p>
+<pre class="code scss">
+<span class="nc">.outer-element</span> <span class="p">{</span>
+  <span class="k">&#64;include</span><span class="nd"> span</span><span class="p">(</span><span class="mi">6</span> <span class="n">of</span> <span class="mi">12</span> <span class="n">container</span><span class="p">);</span>
+  <span class="nc">.inner-element</span> <span class="p">{</span> <span class="k">&#64;include</span><span class="nd"> span</span><span class="p">(</span><span class="mi">3</span> <span class="n">of</span> <span class="mi">6</span><span class="p">);</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+</section>
+<section id="full">
+<h2>Full</h2>
+<p>People are often confused about spanning full widths in Susy.
+I often see <code>&#64;include span(12 of 12);</code> or the Susy 1 equivalent.
+That&#8217;s not necessary, and adds a fair amount of extra output
+that you don&#8217;t need.
+Really, in most cases you don&#8217;t need anything at all —
+block elements span the full width by default.
+Sometimes, though, you need to clear the previous floats (<code>clear: both</code>),
+or you need to clear internal floats (<code>clearfix</code>),
+but those seemed simple enough that we didn&#8217;t bake them&nbsp;in.</p>
+<p>That&#8217;s changing.
+Thanks to the added complexity of inside and split gutters,
+which also need to be applied on full-width elements,
+we&#8217;ve added a <code>full</code> mixin. Use&nbsp;it!</p>
+<pre class="code scss">
+<span class="c1">// Wrong! (usually)
+</span><span class="k">&#64;include</span><span class="nd"> span</span><span class="p">(</span><span class="mi">12</span> <span class="n">of</span> <span class="mi">12</span><span class="p">);</span>
+
+<span class="c1">// Right!
+</span><span class="k">&#64;include</span><span class="nd"> full</span><span class="p">(</span><span class="n">of</span> <span class="mi">12</span><span class="p">);</span>
+</pre>
+</section>
+<section id="other-changes">
+<h2>Other&nbsp;Changes</h2>
+<ul class="simple">
+<li><code>bleed</code> now takes standard span syntax, with multiple (<span class="caps">TRBL</span>) spans,
+e.g. <code>bleed(1em 2 of 8)</code> for 1em top/bottom and 2-columns left/right.
+Use <code>bleed-x</code> and <code>bleed-y</code> mixins for horizontal and vertical&nbsp;shortcuts.</li>
+<li>Span arguments now accept <code>narrow</code>, <code>wide</code>, or <code>wider</code> keywords.
+The <code>wide</code> keyword replaces the old <code>outer</code> keyword.
+A standard <code>span</code> is called <code>narrow</code>,
+<code>wide</code> adds the width of one gutter,
+and <code>wider</code> adds two&nbsp;gutters.</li>
+<li>Re-wrote grid debugging for more concise <span class="amp">&amp;</span> accurate output.<ul>
+<li>Changed <code>grid-background()</code> to <code>show-grid()</code>/<code>show-grids()</code>.</li>
+<li>Changed <code>overlay-grid()</code> to <code>grid-overlay()</code>.</li>
+<li>Moved settings into <code>$debug</code> map:
+<code>$debug: (color: rgba(#66f, .25), toggle: top right);</code></li>
+<li>Removed the overlay-position&nbsp;setting.</li>
+<li>Only display vertical-rhythms when <code>$base-line-height</code> is&nbsp;available.</li>
+</ul>
+</li>
+<li><code>first</code>/<code>alpha</code>/<code>last</code>/<code>omega</code>/<code>nth-</code> mixins now require grid&nbsp;context.</li>
+</ul>
+<p>We&#8217;re in the final stages here,
+working hard to get the last pieces in place
+and give it a coat of polish before it lands.
+Any help or feedback is appreciated,
+just file an issue on <a class="reference external" href="https://github.com/ericam/susy/issues?milestone=4&amp;state=open">GitHub</a>, and we&#8217;ll&nbsp;talk.</p>
+</section>
+</div>
+
+    
+      <aside class="comments">
+        Have a correction, addition, or feedback on this post?
+        Talk to us on
+        <a href="https://twitter.com/eriiicam">Twitter</a>,
+        email <span class="email">birds(who are 'at' the)oddbird.net</span>,
+        or comment on
+        <a href="http://www.reddit.com/submit?url=http%3A//oddbird.net/2013/11/27/susy-alpha-5">Reddit</a>
+        or
+        <a href="https://news.ycombinator.com/submitlink?u=http%3A//oddbird.net/2013/11/27/susy-alpha-5">Hacker&nbsp;News</a>.
+      </aside class="comments">
+    
+  </div>
+
+
+</section>
+
+<footer role="contentinfo">
+
+  <div class="listarchive">
+    <h3 class="foottitle"><a href="/archive/" rel="archive">Blog Archive</a></h3>
+    <ul>
+      <li>
+        <a href="/2013/11/27/susy-alpha-5"  rel="bookmark">Susy Next: Alpha 5</a>
+      </li>
+      <li>
+        <a href="/2013/10/19/map-merge"  rel="bookmark">Map-Set vs. Map-Merge</a>
+      </li>
+      <li>
+        <a href="/2013/09/05/susy-alpha-4"  rel="bookmark">Susy Next: Alpha 4</a>
+      </li>
+      <li>
+        <a href="/2013/05/03/susy-next-alpha-2"  rel="bookmark">Susy Next: The Second Alpha</a>
+      </li>
+      <li>
+        <a href="/2013/03/20/isolation-susy"  rel="bookmark">Isolation and bleed in Susy</a>
+      </li>
+      <li>
+        <a href="/2013/01/29/susy-next-alpha-1"  rel="bookmark">Susy Next: The first alpha</a>
+      </li>
+      <li>
+        <a href="/2013/01/01/susy-next"  rel="bookmark">Sass Layout in 2013 and the Future of Susy</a>
+      </li>
+      <li>
+        <a href="/2012/11/27/susy-off-canvas"  rel="bookmark">Off-canvas layout with Susy</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="contact">
+    <h3 class="foottitle email">birds(who are 'at' the)oddbird.net</h3>
+    <ul>
+      <li><a href="http://twitter.com/carljm/">@carljm</a></li>
+      <li><a href="http://twitter.com/eriiicam/">@eriiicam</a></li>
+      <li><a href="http://twitter.com/jgerigmeyer/">@jgerigmeyer</a></li>
+    </ul>
+  </div>
+
+  <p class="colophon">
+    This site is built on plain old semantic <a href="http://www.w3.org/TR/html5/">HTML5</a>,
+    powered by
+    the <a href="https://github.com/mitsuhiko/rstblog/">rstblog</a> static site generator
+    for <a href="http://www.python.org">Python</a>,
+    and styled using <a href="http://www.w3.org/TR/css-2010/">CSS3</a>,
+    with help from
+    <a href="http://subtlepatterns.com/">Subtle Patterns</a>,
+    <a href="http://www.jquery.com/">jQuery</a>,
+    <a href="http://www.modernizr.com/">Modernizr</a>,
+    <a href="http://gruntjs.com/">Grunt</a>,
+    <a href="http://keyamoon.com/icomoon/">IcoMoon</a>,
+    <a href="http://susy.oddbird.net/">Susy</a>,
+    <a href="http://compass-style.org/">Compass</a>,
+    and <a href="http://sass-lang.com/">Sass</a>.
+  </p>
+
+  <p class="copyright vcard">copyright &copy; 2009-2013
+    <a href="http://oddbird.net/" class="fn org url">OddBird</a>
+  </p>
+</footer>
+
+
+<!-- JavaScript -->
+<script src="/static/js/libs/jquery-1.9.1.min.js"></script>
+<script src="/static/dist/all-js.min.a37c93bc.js"></script>
+
+
+</body>
+</html>

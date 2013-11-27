@@ -2,11 +2,178 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title type="text">Recent Blog Posts</title>
   <id>http://oddbird.net/feed.atom</id>
-  <updated>2013-10-19T00:00:00Z</updated>
+  <updated>2013-11-27T00:00:00Z</updated>
   <link href="http://oddbird.net/" />
   <link href="http://oddbird.net/feed.atom" rel="self" />
   <subtitle type="text">Recent blog posts</subtitle>
   <generator>Werkzeug</generator>
+  <entry xml:base="http://oddbird.net/feed.atom">
+    <title type="text">Susy Next: Alpha 5</title>
+    <id>http://oddbird.net/2013/11/27/susy-alpha-5</id>
+    <updated>2013-11-27T00:00:00Z</updated>
+    <link href="http://oddbird.net/2013/11/27/susy-alpha-5" />
+    <author>
+      <name>OddBird</name>
+    </author>
+    <content type="html">&lt;p&gt;Susy Next is almost feature complete!
+Alpha 5 is loaded with changes —
+some as a result of alpha testing,
+but mostly in response to the new power of Sass 3.3.
+This is likely to be our final alpha.
+With a bit more user testing
+and some minor cleanup,
+we hope to hit beta soon
+and then land a stable version
+along side the upcoming releases of Compass and&amp;nbsp;Sass.&lt;/p&gt;
+&lt;section id="sass-and-compass"&gt;
+&lt;h2&gt;Sass and&amp;nbsp;Compass&lt;/h2&gt;
+&lt;p&gt;Sass 3.3 is awesome,
+and we&amp;#8217;ve made a lot of changes in Susy
+to take full advantage of the new toys.
+We started integrating the new &lt;a class="reference external" href="https://github.com/nex3/sass/blob/master/doc-src/SASS_CHANGELOG.md#sassscript-maps"&gt;SassScript Maps&lt;/a&gt; data type
+(not to be confused with &lt;a class="reference external" href="https://github.com/nex3/sass/blob/master/doc-src/SASS_CHANGELOG.md#source-maps"&gt;Source Maps&lt;/a&gt;),
+and the side benefits were huge.
+We&amp;#8217;re also using the new &lt;code&gt;variable-exists()&lt;/code&gt;
+and &lt;code&gt;mixin-exists()&lt;/code&gt; functions
+to check for the presence of various compass features,
+and degrade gracefully if they aren&amp;#8217;t&amp;nbsp;available.&lt;/p&gt;
+&lt;p&gt;In brief:
+&lt;strong&gt;Sass 3.3 is now required&lt;/strong&gt;
+and
+&lt;strong&gt;Compass is no longer required&lt;/strong&gt;,
+although we do tie in with Compass features
+such as vertical-rhythms
+if they are&amp;nbsp;available.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="settings"&gt;
+&lt;h2&gt;Settings&lt;/h2&gt;
+&lt;p&gt;The first thing to do,
+after upgrading Sass,
+is to translate your Susy settings
+into a single map of key/value pairs.
+For a long time the only way to establish defaults
+and user overrides in a Sass plugin has been to use variables.
+In Susy 1 and the early alpha releases, we did the&amp;nbsp;same:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nv"&gt;$columns&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$gutters&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$gutter-position&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="no"&gt;inside&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;But that clogs up the global namespace in ugly ways.
+Now, thanks to SassScript Maps,
+we have a new solution that keeps everything contained,
+and comes with side-benefits for anyone using multiple&amp;nbsp;grids:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nv"&gt;$susy&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+  &lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+  &lt;span class="n"&gt;gutters&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+  &lt;span class="n"&gt;gutter-position&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="no"&gt;inside&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;There is only one variable, named &lt;code&gt;$susy&lt;/code&gt;,
+that takes a map of all your settings.
+You can still use the grid shorthand
+with &lt;code&gt;set-grid&lt;/code&gt; or &lt;code&gt;use-grid&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; set-grid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="no"&gt;inside&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;But you can also mix-and-match shorthand with maps,
+both for grid-settings and for&amp;nbsp;spans:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nv"&gt;$large&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+  &lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+  &lt;span class="n"&gt;container&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;90&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; use-grid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$large&lt;/span&gt; &lt;span class="no"&gt;inside&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="c1"&gt;// ...
+&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="nv"&gt;$large&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;If you need access the current value of a setting,
+just use &lt;code&gt;susy-get(setting-name)&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nv"&gt;$current-columns&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nf"&gt;susy-get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/section&gt;
+&lt;section id="split-gutters"&gt;
+&lt;h2&gt;Split&amp;nbsp;Gutters&lt;/h2&gt;
+&lt;p&gt;Susy Next supports several gutter styles:
+&lt;code&gt;after&lt;/code&gt; (the Susy 1 approach), &lt;code&gt;before&lt;/code&gt;, &lt;code&gt;inside&lt;/code&gt;, &lt;code&gt;inside-static&lt;/code&gt;,
+and &lt;code&gt;split&lt;/code&gt;. Before, after, and split all use margins.
+Inside and inside-static use&amp;nbsp;padding.&lt;/p&gt;
+&lt;p&gt;In previous alphas, &lt;code&gt;split&lt;/code&gt; worked like &lt;code&gt;before&lt;/code&gt; and &lt;code&gt;after&lt;/code&gt;,
+and you had to remove the &lt;code&gt;first&lt;/code&gt; and &lt;code&gt;last&lt;/code&gt; edge-gutters.
+That felt wrong, so we fixed it.
+Split gutters now work similar to inside gutters,
+and there is no reason to remove them at the edges of the grid.
+That simplifies most things, but it complicates nesting.
+You don&amp;#8217;t want gutters added to the edges of an outer element,
+and then added again to the edges of inner&amp;nbsp;elements.&lt;/p&gt;
+&lt;p&gt;Susy is very flexible,
+and there are many ways you can work around that problem already,
+but we added a &lt;code&gt;container&lt;/code&gt; shortcut to make it&amp;nbsp;easier.&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nc"&gt;.outer-element&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt; &lt;span class="n"&gt;container&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="nc"&gt;.inner-element&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/section&gt;
+&lt;section id="full"&gt;
+&lt;h2&gt;Full&lt;/h2&gt;
+&lt;p&gt;People are often confused about spanning full widths in Susy.
+I often see &lt;code&gt;&amp;#64;include span(12 of 12);&lt;/code&gt; or the Susy 1 equivalent.
+That&amp;#8217;s not necessary, and adds a fair amount of extra output
+that you don&amp;#8217;t need.
+Really, in most cases you don&amp;#8217;t need anything at all —
+block elements span the full width by default.
+Sometimes, though, you need to clear the previous floats (&lt;code&gt;clear: both&lt;/code&gt;),
+or you need to clear internal floats (&lt;code&gt;clearfix&lt;/code&gt;),
+but those seemed simple enough that we didn&amp;#8217;t bake them&amp;nbsp;in.&lt;/p&gt;
+&lt;p&gt;That&amp;#8217;s changing.
+Thanks to the added complexity of inside and split gutters,
+which also need to be applied on full-width elements,
+we&amp;#8217;ve added a &lt;code&gt;full&lt;/code&gt; mixin. Use&amp;nbsp;it!&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="c1"&gt;// Wrong! (usually)
+&lt;/span&gt;&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="c1"&gt;// Right!
+&lt;/span&gt;&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; full&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/section&gt;
+&lt;section id="other-changes"&gt;
+&lt;h2&gt;Other&amp;nbsp;Changes&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;code&gt;bleed&lt;/code&gt; now takes standard span syntax, with multiple (&lt;span class="caps"&gt;TRBL&lt;/span&gt;) spans,
+e.g. &lt;code&gt;bleed(1em 2 of 8)&lt;/code&gt; for 1em top/bottom and 2-columns left/right.
+Use &lt;code&gt;bleed-x&lt;/code&gt; and &lt;code&gt;bleed-y&lt;/code&gt; mixins for horizontal and vertical&amp;nbsp;shortcuts.&lt;/li&gt;
+&lt;li&gt;Span arguments now accept &lt;code&gt;narrow&lt;/code&gt;, &lt;code&gt;wide&lt;/code&gt;, or &lt;code&gt;wider&lt;/code&gt; keywords.
+The &lt;code&gt;wide&lt;/code&gt; keyword replaces the old &lt;code&gt;outer&lt;/code&gt; keyword.
+A standard &lt;code&gt;span&lt;/code&gt; is called &lt;code&gt;narrow&lt;/code&gt;,
+&lt;code&gt;wide&lt;/code&gt; adds the width of one gutter,
+and &lt;code&gt;wider&lt;/code&gt; adds two&amp;nbsp;gutters.&lt;/li&gt;
+&lt;li&gt;Re-wrote grid debugging for more concise &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; accurate output.&lt;ul&gt;
+&lt;li&gt;Changed &lt;code&gt;grid-background()&lt;/code&gt; to &lt;code&gt;show-grid()&lt;/code&gt;/&lt;code&gt;show-grids()&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Changed &lt;code&gt;overlay-grid()&lt;/code&gt; to &lt;code&gt;grid-overlay()&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Moved settings into &lt;code&gt;$debug&lt;/code&gt; map:
+&lt;code&gt;$debug: (color: rgba(#66f, .25), toggle: top right);&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Removed the overlay-position&amp;nbsp;setting.&lt;/li&gt;
+&lt;li&gt;Only display vertical-rhythms when &lt;code&gt;$base-line-height&lt;/code&gt; is&amp;nbsp;available.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;first&lt;/code&gt;/&lt;code&gt;alpha&lt;/code&gt;/&lt;code&gt;last&lt;/code&gt;/&lt;code&gt;omega&lt;/code&gt;/&lt;code&gt;nth-&lt;/code&gt; mixins now require grid&amp;nbsp;context.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We&amp;#8217;re in the final stages here,
+working hard to get the last pieces in place
+and give it a coat of polish before it lands.
+Any help or feedback is appreciated,
+just file an issue on &lt;a class="reference external" href="https://github.com/ericam/susy/issues?milestone=4&amp;amp;state=open"&gt;GitHub&lt;/a&gt;, and we&amp;#8217;ll&amp;nbsp;talk.&lt;/p&gt;
+&lt;/section&gt;
+</content>
+  </entry>
   <entry xml:base="http://oddbird.net/feed.atom">
     <title type="text">Map-Set vs. Map-Merge</title>
     <id>http://oddbird.net/2013/10/19/map-merge</id>
