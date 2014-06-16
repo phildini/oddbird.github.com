@@ -510,6 +510,27 @@ body:after {
     clear: left;
   }
 }
+.solo h1 {
+  margin-bottom: 11px;
+  margin-bottom: 0.61111rem;
+}
+.solo ul {
+  list-style-type: disc;
+}
+.solo ol {
+  list-style-type: decimal;
+}
+.solo li {
+  margin-bottom: 6px;
+  margin-bottom: 0.30556rem;
+}
+@media (min-width: 30em) {
+  .solo {
+    padding-left: 8.60215%;
+    padding-right: 8.60215%;
+  }
+}
+
 .tagline {
   font-family: "FranklinGothicCond", "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin-bottom: 22px;

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>             <html class="no-js ie" lang="en" dir="ltr">   <![endif]-->
+<!--[if (gt IE 8)|!(IE)]><!-->  <html class="no-js" lang="en" dir="ltr">      <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+
+  
+
+  <!-- Page Info -->
+  <title>PostgreSQL, transactions, and SQLAlchemy | OddBird</title>
+  <meta name="description" content="Custom-built web tools for humans" />
+
+  <!-- Site Info -->
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="OddBird" />
+  <meta name="keywords" content="custom web development, web tools, open source, python, django, sass, scss, susy, javascript, jquery, js" />
+  <meta name="language" content="en-us" />
+
+  
+  <link href="/feed.atom" rel="alternate" title="OddBird blog posts" type="application/atom+xml">
+  
+
+  <!-- Microformat Profiles -->
+  <!-- hCard, hCalendar, rel-license, rel-tag, XOXO, XFN, VoteLinks -->
+  <link rel="profile" href="http://microformats.org/profile/specs/" />
+
+  <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
+  <meta http-equiv="cleartype" content="on">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1" />
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1">
+
+  <!--iOS. Delete if not required -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-startup-image" href="/static/images/favicons/splash.png">
+
+  <!-- favicon.ico -->
+  <link rel="shortcut icon" href="/static/images/favicons/favicon.ico" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/images/favicons/apple-touch-icon-114x114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/images/favicons/apple-touch-icon-72x72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="/static/images/favicons/apple-touch-icon-precomposed.png">
+
+  <!-- Styles -->
+  
+  <link rel="stylesheet" href="/static/dist/screen.min.e8ff32e6.css" media="screen" />
+  <link rel="stylesheet" href="/static/dist/print.min.a68288b1.css" media="print" />
+  
+
+  <!-- Modernizr -->
+  <script src="/static/js/libs/modernizr.custom.41881.js"></script>
+
+  <!-- Page-Specific Head -->
+  
+
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36510846-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+</head>
+
+<body id="oddsite" class="blog">
+
+
+<h1 role="banner"><a href="/" rel="home">OddBird</a></h1>
+
+<nav role="navigation">
+  <ul class="primary">
+    <li><a href="/" rel="home">home</a></li>
+    <li><a href="/blog/">blog</a></li>
+  </ul>
+</nav>
+
+<section role="main" >
+
+  
+  <div class="post">
+    <h1 class="title">PostgreSQL, transactions, and SQLAlchemy</h1>
+
+
+    
+
+    <div class="body"><p>SQLAlchemy (following Python&#8217;s <span class="caps">DBAPI</span>) defaults to implicitly opening a new
+transaction when you query the database. If you prefer to work in autocommit
+mode by default and start all your transactions explicitly, SQLAlchemy doesn&#8217;t
+currently offer a great deal of help. Here I&#8217;ve documented my explorations
+towards getting that to&nbsp;work.</p>
+<p>There are several different layers at play, so let&#8217;s review from the&nbsp;top:</p>
+<section id="transactions-in-postgresql">
+<h2>Transactions in&nbsp;PostgreSQL</h2>
+<p>Since version 7.4, PostgreSQL itself always operates in &#8220;autocommit&#8221; mode. This
+means that if you haven&#8217;t started a transaction, and you run a query that
+changes data, it takes effect immediately; there is no need to commit it, and
+no option to roll it&nbsp;back.</p>
+<p>If you want to group several queries together into an atomic unit of work, such
+that you can commit them all together or roll them back all together, you first
+issue a <code>BEGIN</code> statement, then your queries, and then either a <code>COMMIT</code> or
+<code>ROLLBACK</code> statement.</p>
+</section>
+<section id="transactions-in-pep-249">
+<h2>Transactions in <span class="caps">PEP</span>&nbsp;249</h2>
+<p><a class="reference external" href="http://legacy.python.org/dev/peps/pep-0249/"><span class="caps">PEP</span> 249</a> specifies a common <span class="caps">API</span> for all Python database adapter libraries,
+making it easier to write cross-database-compatible code. Almost all the
+popular Python database adapters are (or claim or try to be) <span class="caps">PEP</span> 249&nbsp;compliant.</p>
+<p>The <span class="caps">PEP</span> 249 <span class="caps">API</span> specifies a different behavior, which I will call &#8220;implicit
+transactions.&#8221; There isn&#8217;t even a way to explicitly start a transaction in the
+<span class="caps">PEP</span> 249 <span class="caps">API</span>; no <code>begin()</code> or similar. Instead, you are always in a
+transaction; one is automatically started the first time you send a query to
+the database after opening a connection, and the first time you send a new
+query after ending the previous transaction with a rollback or&nbsp;commit.</p>
+<p>Because Postgres doesn&#8217;t offer this behavior natively, the Postgres Python
+adapters (e.g. <a class="reference external" href="http://initd.org/psycopg/docs/">psycopg2</a>) have to emulate it themselves in order to be <span class="caps">PEP</span>
+249 compliant. So by default, the first time you send a query to the database,
+psycopg2 will prefix it with a <code>BEGIN</code> on your&nbsp;behalf.</p>
+<p>In order to get psycopg2 to stop sending these automatic <code>BEGIN</code> statements
+and to behave like Postgres natively does, you set the <code>autocommit</code>
+property of your connection object to <code>True</code>:</p>
+<pre class="code python">
+<span class="kn">import</span> <span class="nn">psycopg2</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">'dbname=test'</span><span class="p">)</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">autocommit</span> <span class="o">=</span> <span class="bp">True</span>
+</pre>
+</section>
+<section id="postgres-has-it-right">
+<h2>Postgres has it&nbsp;right</h2>
+<p>I prefer the &#8216;autocommit&#8217; model. It&#8217;s simple, explicit, and
+unsurprising. Queries are never grouped together into a transaction unless you
+ask for one. If you issue a <code>COMMIT</code> or <code>ROLLBACK</code>, there is never any
+doubt about which queries you are committing or rolling back, because you
+explicitly issued the <code>BEGIN</code> to start the&nbsp;transaction.</p>
+<p>I can see some advantage to the implicit-transaction model for
+interactive-shell use (you can always roll back your changes if you screw
+something up, even if you forgot to <code>BEGIN</code>), but for general use I think
+it&#8217;s more error-prone. If you save a change to the database in one place but
+forget to commit, that change will automatically be wrapped up in the same
+transaction with later, possibly completely unrelated changes, and may get
+blindly rolled back along with them. It wraps read-only <code>SELECT</code> statements
+in useless transactions. And for long-running processes, since even a simple
+<code>SELECT</code> implicitly opens a transaction (and you wouldn&#8217;t intuitively think
+you&#8217;d need to commit or rollback after a <code>SELECT</code>), it&#8217;s very easy to
+unintentionally end up with connections in the &#8220;idle in transaction&#8221; state,
+where they are doing nothing but still may be holding locks and preventing
+Postgres from compacting&nbsp;tables.</p>
+<p>The explicit-transactions (autocommit) model lends itself naturally to Python
+idioms like decorators or context managers for handling transactions. These
+clearly wrap a section of code (a function, or the block introduced by the
+<code>with</code> statement) as an atomic unit of work that will be committed or rolled
+back together. It&#8217;s more difficult to correctly implement such an idiom in the
+implicit-transactions model, because there is no explicit start point to a
+transaction, so prior queries outside the demarcated block might get wrapped up
+in the same transaction (or you have to check when entering the block whether
+there are uncommitted queries in an existing transaction, and decide what
+should be done with them &#8212; perhaps having to guess, or raise an&nbsp;error.)</p>
+</section>
+<section id="django">
+<h2>Django</h2>
+<p>Before we talk about <a class="reference external" href="http://www.sqlalchemy.org/">SQLAlchemy</a>, let&#8217;s discuss the <a class="reference external" href="http://www.djangoproject.com">Django</a> <span class="caps">ORM</span> briefly for
+comparison&nbsp;purposes.</p>
+<p>Up until Django 1.6, Django&#8217;s <a class="reference external" href="https://docs.djangoproject.com/en/1.6/topics/db/transactions/#transactions-upgrading-from-1-5">transactions <span class="caps">API</span></a> used psycopg2 in its default
+(<span class="caps">PEP</span> 249) mode, but then by default emulated a sort of Python-level
+&#8220;autocommit&#8221; mode by automatically issuing commits after <span class="caps">ORM</span>-issued&nbsp;queries.</p>
+<p>So in other words, if you were using Django pre-1.6 with Postgres, you had
+psycopg2 emulating implicit-transactions on top of Postgres&#8217; native autocommit
+by automatically issuing <code>BEGIN</code> statements on your behalf, and then Django
+emulating autocommit atop psycopg2&#8217;s emulated non-autocommit atop Postgres&#8217;
+native autocommit, by also automatically issuing <code>COMMIT</code> statements on your&nbsp;behalf.</p>
+<p>Got all&nbsp;that?</p>
+<p>Thankfully, in Django 1.6 <a class="reference external" href="https://myks.org/en/">Aymeric Augustin</a> rewrote Django&#8217;s transaction
+support (based in part on <a class="reference external" href="https://github.com/Xof/xact">prior work by Christophe Pettus</a>) to use
+database-level autocommit natively and only open transactions when explicitly
+requested. The core <span class="caps">API</span> (really, the only <span class="caps">API</span>) is <a class="reference external" href="https://docs.djangoproject.com/en/1.6/topics/db/transactions/#django.db.transaction.atomic">transactions.atomic</a>, which
+can work as either a decorator or context manager to define an atomic unit of
+database work (it can also be nested, using a stack of <a class="reference external" href="http://www.postgresql.org/docs/9.2/static/sql-savepoint.html">savepoints</a> to achieve
+the effect of nested&nbsp;transactions).</p>
+</section>
+<section id="sqlalchemy">
+<h2>SQLAlchemy</h2>
+<p><a class="reference external" href="http://www.sqlalchemy.org/">SQLAlchemy</a> follows the lead of <span class="caps">PEP</span> 249 and uses implicit-transactions as its
+primary mode. Whenever you query the database, a transaction automatically
+starts (SQLAlchemy doesn&#8217;t do anything special to make this happen, it&#8217;s just
+using the database adapter &#8212; <code>psycopg2</code> in our case &#8212; in its default
+<span class="caps">PEP</span>-249-compliant mode), and you can commit that transaction with
+<code>session.commit()</code> or roll it back with <code>session.rollback()</code>.</p>
+<p>Although I don&#8217;t prefer this mode, it&#8217;s a reasonable choice for SQLAlchemy to
+rely on <span class="caps">PEP</span> 249 consistency across the board rather than implementing custom
+code for native-autocommit mode in all its many supported&nbsp;databases.</p>
+<p>But I&#8217;m using Postgres, I know how its native autocommit mode works, and that&#8217;s
+the behavior I want to use with SQLAlchemy. Can I make that&nbsp;work?</p>
+<section id="sqlalchemy-s-autocommit-mode-not-what-you-think">
+<h3>SQLAlchemy&#8217;s autocommit mode &#8212; not what you&nbsp;think</h3>
+<p>At this point we&#8217;ll likely find <a class="reference external" href="http://docs.sqlalchemy.org/en/rel_0_9/orm/session.html#autocommit-mode">autocommit mode</a> in SQLAlchemy&#8217;s
+documentation, and we might think we have our answer &#8212; but we&#8217;d be
+wrong. SQLAlchemy&#8217;s autocommit mode is roughly parallel to the &#8220;autocommit&#8221; in
+Django pre-1.6 (albeit smarter): it emulates autocommit over top of
+non-autocommit database adapters by automatically committing the implicit
+transaction after you send queries that change the database. It doesn&#8217;t put the
+database connections into true autocommit mode, so it doesn&#8217;t avoid the
+problems with implicit&nbsp;transactions.</p>
+</section>
+<section id="turning-on-real-autocommit">
+<h3>Turning on real&nbsp;autocommit</h3>
+<p>Happily, setting all of SQLAlchemy&#8217;s psycopg2 connections to <code>autocommit =
+True</code> became quite easy in SQLAlchemy 0.8.2: SQLAlchemy&#8217;s psycopg2 &#8220;dialect&#8221;
+now exposes an <code>AUTOCOMMIT</code> transaction isolation level, and selecting it
+sets <code>autocommit=True</code> on all the psycopg2&nbsp;connections.</p>
+<pre class="code python">
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
+<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s">'postgresql://test'</span><span class="p">,</span> <span class="n">isolation_level</span><span class="o">=</span><span class="s">&quot;<span class="caps">AUTOCOMMIT</span>&quot;</span><span class="p">)</span>
+</pre>
+<p>We haven&#8217;t discussed transaction isolation levels yet (and I won&#8217;t in detail
+here). They control the visibility of changes between multiple concurrent
+transactions. The <a class="reference external" href="http://www.postgresql.org/docs/9.2/static/transaction-iso.html">Postgres documentation</a> summarizes the options it&nbsp;provides.</p>
+<p>It&#8217;s a bit odd that SQLAlchemy (<a class="reference external" href="http://initd.org/psycopg/docs/extensions.html#psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT">and psycopg2</a>) provide <code>AUTOCOMMIT</code> as a
+transaction isolation level, since Postgres has no such isolation level, and
+autocommit-mode isn&#8217;t really an isolation level at all. (In fact, if you choose
+the <code>AUTOCOMMIT</code> &#8220;isolation level&#8221; in psycopg2, it turns on the connection&#8217;s
+<code>autocommit</code> property but actually resets the real Postgres isolation level
+to &#8220;read committed&#8221;, the&nbsp;default.)</p>
+<p>But regardless, <code>isolation_level='AUTOCOMMIT'</code> is the incantation needed to
+get all of our SQLAlchemy psycopg2 connections into true autocommit&nbsp;mode.</p>
+</section>
+<section id="starting-a-transaction">
+<h3>Starting a&nbsp;transaction</h3>
+<p>If we didn&#8217;t want to use transactions at all, this would be all we
+need. SQLAlchemy would happily hum along thinking it has a transaction but
+actually not having one at all (just like it does for databases that don&#8217;t
+support&nbsp;transactions).</p>
+<p>But we do want to use transactions, and that means we need a way to start
+one. The natural <span class="caps">API</span> for this already exists in SQLAlchemy:
+<code>session.begin()</code>. Since SQLAlchemy assumes that its database adapter will
+automatically start sessions, <code>session.begin()</code> never actually issues a
+<code>BEGIN</code> to the database. But we don&#8217;t actually need to issue <code>BEGIN</code>
+ourselves either - we just need to turn off the <code>autocommit</code> property on our
+connection, and then <code>psycopg2</code> will issue the <code>BEGIN</code> for&nbsp;us.</p>
+<p>SQLAlchemy gives us a way to hook into the <code>begin()</code> call: the
+<code>after_begin</code> event, which sends along the relevant database connection. We
+have to dig through a few layers of connection-wrapping to get down to the
+actual psycopg2 connection object, but that&#8217;s not&nbsp;hard:</p>
+<pre class="code python">
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span><span class="p">,</span> <span class="n">event</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">sessionmaker</span>
+
+<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s">'postgresql://test'</span><span class="p">,</span> <span class="n">isolation_level</span><span class="o">=</span><span class="s">&quot;<span class="caps">AUTOCOMMIT</span>&quot;</span><span class="p">)</span>
+<span class="n">Session</span> <span class="o">=</span> <span class="n">sessionmaker</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span> <span class="n">autocommit</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="nd">&#64;event.listens_for</span><span class="p">(</span><span class="n">Session</span><span class="p">,</span> <span class="s">'after_begin'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">receive_after_begin</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">transaction</span><span class="p">,</span> <span class="n">connection</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;When a (non-nested) transaction begins, turn autocommit off.&quot;&quot;&quot;</span>
+    <span class="n">dbapi_connection</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">connection</span>
+    <span class="k">if</span> <span class="n">transaction</span><span class="o">.</span><span class="n">nested</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="ow">not</span> <span class="n">dbapi_connection</span><span class="o">.</span><span class="n">autocommit</span>
+        <span class="k">return</span>
+    <span class="k">assert</span> <span class="n">dbapi_connection</span><span class="o">.</span><span class="n">autocommit</span>
+    <span class="n">dbapi_connection</span><span class="o">.</span><span class="n">autocommit</span> <span class="o">=</span> <span class="bp">False</span>
+</pre>
+<p>The <code>session.begin()</code> <span class="caps">API</span> can also be used to initiate &#8220;nested transactions&#8221;
+using savepoints. In this case autocommit should already have been turned off
+on the connection by the outer &#8220;real&#8221; transaction, so we don&#8217;t need to do
+anything. We add in a couple asserts to validate our assumptions about what the
+autocommit state should be in each case, and then in the non-nested case we
+turn autocommit&nbsp;off.</p>
+<p>We also passed <code>autocommit=True</code> to the <code>Session</code>; this turns on
+SQLAlchemy&#8217;s autocommit mode that we discussed above. This is necessary to
+prevent SQLAlchemy from automatically starting a transaction (and thus
+triggering our <code>after_begin</code> listener) on the first query it gets. This is
+the part of the solution that I&#8217;m least happy with, as it means we have to
+worry about what is meant by the <a class="reference external" href="http://docs.sqlalchemy.org/en/rel_0_9/orm/session.html#autocommit-mode">vague warnings</a> in the documentation that
+autocommit is a &#8220;legacy mode of usage&#8221; that &#8220;can in some cases lead to
+concurrent connection checkouts&#8221; and that we should turn off the Session&#8217;s
+autoflush and autoexpire features. So far I haven&#8217;t done the latter; waiting to
+see what (if any) problems ensue in&nbsp;practice.</p>
+</section>
+<section id="back-to-autocommit-when-the-transaction-ends">
+<h3>Back to autocommit when the transaction&nbsp;ends</h3>
+<p>One thing remains lacking from our implementation. When a transaction ends, we
+need to restore that connection to autocommit mode&nbsp;again.</p>
+<p>This isn&#8217;t entirely straightforward. SQLAlchemy gives us three events
+corresponding to the end of a transaction: <code>after_rollback</code>,
+<code>after_commit</code>, and <code>after_transaction_end</code>. But these are all fired after
+the connection has been &#8220;closed&#8221; (that is, returned to the connection pool),
+and <code>after_transaction_end</code> is only fired once per SQLAlchemy
+<code>SessionTransaction</code> object, which can involve multiple connections. For both
+of these reasons, none of those events provide us with a connection&nbsp;object.</p>
+<p>In order to get around this, I maintain a mapping of <code>SessionTransaction</code>
+objects to the connection(s) that have had <code>autocommit</code> turned off due to
+that transaction. Then I listen to <code>after_transaction_end</code> and restore
+autocommit on all the appropriate&nbsp;connections:</p>
+<pre class="code python">
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span><span class="p">,</span> <span class="n">event</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">sessionmaker</span>
+
+<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s">'postgresql://test'</span><span class="p">,</span> <span class="n">isolation_level</span><span class="o">=</span><span class="s">&quot;<span class="caps">AUTOCOMMIT</span>&quot;</span><span class="p">)</span>
+<span class="n">Session</span> <span class="o">=</span> <span class="n">sessionmaker</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span> <span class="n">autocommit</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="n">dconns_by_transaction</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="nd">&#64;event.listens_for</span><span class="p">(</span><span class="n">Session</span><span class="p">,</span> <span class="s">'after_begin'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">receive_after_begin</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">transaction</span><span class="p">,</span> <span class="n">connection</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;When a (non-nested) transaction begins, turn autocommit off.&quot;&quot;&quot;</span>
+    <span class="n">dbapi_connection</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">connection</span>
+    <span class="k">if</span> <span class="n">transaction</span><span class="o">.</span><span class="n">nested</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="ow">not</span> <span class="n">dbapi_connection</span><span class="o">.</span><span class="n">autocommit</span>
+        <span class="k">return</span>
+    <span class="k">assert</span> <span class="n">dbapi_connection</span><span class="o">.</span><span class="n">autocommit</span>
+    <span class="n">dbapi_connection</span><span class="o">.</span><span class="n">autocommit</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">dconns_by_trans</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">transaction</span><span class="p">,</span> <span class="nb">set</span><span class="p">())</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+        <span class="n">dbapi_connection</span><span class="p">)</span>
+
+<span class="nd">&#64;event.listens_for</span><span class="p">(</span><span class="n">Session</span><span class="p">,</span> <span class="s">'after_transaction_end'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">receive_after_transaction_end</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">transaction</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Restore autocommit anywhere this transaction turned it off.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">transaction</span> <span class="ow">in</span> <span class="n">dconns_by_trans</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">dbapi_connection</span> <span class="ow">in</span> <span class="n">dconns_by_trans</span><span class="p">[</span><span class="n">transaction</span><span class="p">]:</span>
+            <span class="k">assert</span> <span class="ow">not</span> <span class="n">dbapi_connection</span><span class="o">.</span><span class="n">autocommit</span>
+            <span class="n">dbapi_connection</span><span class="o">.</span><span class="n">autocommit</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">del</span> <span class="n">dconns_by_trans</span><span class="p">[</span><span class="n">transaction</span><span class="p">]</span>
+</pre>
+</section>
+<section id="a-transaction-context-manager">
+<h3>A transaction context&nbsp;manager</h3>
+<p>I mentioned above that I like context managers and decorators (such as Django&#8217;s
+<a class="reference external" href="https://docs.djangoproject.com/en/1.6/topics/db/transactions/#django.db.transaction.atomic">transaction.atomic</a>) as an <span class="caps">API</span> for transactions. Here&#8217;s an example of how a
+rough equivalent to <a class="reference external" href="https://docs.djangoproject.com/en/1.6/topics/db/transactions/#django.db.transaction.atomic">transaction.atomic</a> can be implemented for SQLAlchemy now
+that we have an explicit-transactions mode of&nbsp;operation:</p>
+<pre class="code python">
+<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">Session</span> <span class="k">as</span> <span class="n">BaseSession</span>
+
+
+<span class="k">class</span> <span class="nc">Session</span><span class="p">(</span><span class="n">BaseSession</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Session</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_in_atomic</span> <span class="o">=</span> <span class="bp">False</span>
+
+    <span class="nd">&#64;contextmanager</span>
+    <span class="k">def</span> <span class="nf">atomic</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Transaction context manager.
+
+        Will commit the transaction on successful completion of the
+        block, or roll it back on error.
+
+        Supports nested usage (via savepoints).
+
+        &quot;&quot;&quot;</span>
+        <span class="n">nested</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_in_atomic</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">begin</span><span class="p">(</span><span class="n">nested</span><span class="o">=</span><span class="n">nested</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_in_atomic</span> <span class="o">=</span> <span class="bp">True</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">yield</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
+            <span class="k">raise</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">nested</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_in_atomic</span> <span class="o">=</span> <span class="bp">False</span>
+</pre>
+<p>It would be possible to implement this same context manager in SQLAlchemy&#8217;s
+default implicit-transactions mode: you just leave out the call to
+<code>session.begin()</code> in the non-nested case (because an implicit transaction
+will already have been created). But that implementation then suffers from the
+bug where database queries from prior to the context-managed block could be
+included within its transaction. With some further cleverness you might be able
+to figure out on entering the context manager whether the existing transaction
+is already &#8220;dirty&#8221; (though this is not trivial to determine), and then either
+raise an error or implicitly commit the existing transaction &#8212; but neither of
+these solutions are appealing compared to the conceptual simplicity of
+autocommit <span class="amp">&amp;</span> explicit&nbsp;transactions.</p>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion</h2>
+<p>Is this all worth it? Perhaps not; depends on how serious in practice the
+problems SQLAlchemy&#8217;s docs warn about&nbsp;are.</p>
+<p>While I understand why SQLAlchemy is best advised to follow <span class="caps">PEP</span> 249 for its
+default behavior, I would love if it had (scary-warning-free) support for an
+&#8220;autocommit and explicit transactions&#8221; mode on those database dialects which
+can support it without too much&nbsp;trouble.</p>
+</section>
+<section id="acknowledgments">
+<h2>Acknowledgments</h2>
+<p>Thanks to <a class="reference external" href="https://twitter.com/zzzeek">Mike Bayer</a> (author of SQLAlchemy) for pointing me towards the
+<code>AUTOCOMMIT</code> &#8220;isolation level&#8221; setting. Thanks to <a class="reference external" href="http://thebuild.com/blog/">Christophe Pettus</a> for my
+initial education in Postgres&#8217; transaction behavior, and <a class="reference external" href="https://myks.org/en/">Aymeric Augustin</a>
+for the excellent implementation in Django&nbsp;1.6+.</p>
+</section>
+</div>
+
+    
+      <aside class="comments">
+        Have a correction, addition, or feedback on this post?
+        Talk to us on
+        <a href="https://twitter.com/carljm">Twitter</a>,
+        email <span class="email">birds(who are 'at' the)oddbird.net</span>,
+        or comment on
+        <a href="http://www.reddit.com/submit?url=http%3A//oddbird.net/2014/06/14/sqlalchemy-postgres-autocommit">Reddit</a>
+        or
+        <a href="https://news.ycombinator.com/submitlink?u=http%3A//oddbird.net/2014/06/14/sqlalchemy-postgres-autocommit">Hacker&nbsp;News</a>.
+      </aside class="comments">
+    
+  </div>
+
+
+</section>
+
+<footer role="contentinfo">
+
+  <div class="listarchive">
+    <h3 class="foottitle"><a href="/archive/" rel="archive">Blog Archive</a></h3>
+    <ul>
+      <li>
+        <a href="/2013/12/30/sixth-year"  rel="bookmark">2013</a>
+      </li>
+      <li>
+        <a href="/2013/11/27/susy-alpha-5"  rel="bookmark">Susy Next: Alpha 5</a>
+      </li>
+      <li>
+        <a href="/2013/10/19/map-merge"  rel="bookmark">Map-Set vs. Map-Merge</a>
+      </li>
+      <li>
+        <a href="/2013/09/05/susy-alpha-4"  rel="bookmark">Susy Next: Alpha 4</a>
+      </li>
+      <li>
+        <a href="/2013/05/03/susy-next-alpha-2"  rel="bookmark">Susy Next: The Second Alpha</a>
+      </li>
+      <li>
+        <a href="/2013/03/20/isolation-susy"  rel="bookmark">Isolation and bleed in Susy</a>
+      </li>
+      <li>
+        <a href="/2013/01/29/susy-next-alpha-1"  rel="bookmark">Susy Next: The first alpha</a>
+      </li>
+      <li>
+        <a href="/2013/01/01/susy-next"  rel="bookmark">Sass Layout in 2013 and the Future of Susy</a>
+      </li>
+      <li>
+        <a href="/2012/11/27/susy-off-canvas"  rel="bookmark">Off-canvas layout with Susy</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="contact">
+    <h3 class="foottitle email">birds(who are 'at' the)oddbird.net</h3>
+    <ul>
+      <li><a href="http://twitter.com/carljm/">@carljm</a></li>
+      <li><a href="http://twitter.com/ericmsuzanne/">@ericmsuzanne</a></li>
+      <li><a href="http://twitter.com/jgerigmeyer/">@jgerigmeyer</a></li>
+    </ul>
+  </div>
+
+  <p class="colophon">
+    This site is built on plain old semantic <a href="http://www.w3.org/TR/html5/">HTML5</a>,
+    powered by
+    the <a href="https://github.com/mitsuhiko/rstblog/">rstblog</a> static site generator
+    for <a href="http://www.python.org">Python</a>,
+    and styled using <a href="http://www.w3.org/TR/css-2010/">CSS3</a>,
+    with help from
+    <a href="http://subtlepatterns.com/">Subtle Patterns</a>,
+    <a href="http://www.jquery.com/">jQuery</a>,
+    <a href="http://www.modernizr.com/">Modernizr</a>,
+    <a href="http://gruntjs.com/">Grunt</a>,
+    <a href="http://keyamoon.com/icomoon/">IcoMoon</a>,
+    <a href="http://susy.oddbird.net/">Susy</a>,
+    <a href="http://compass-style.org/">Compass</a>,
+    and <a href="http://sass-lang.com/">Sass</a>.
+  </p>
+
+  <p class="copyright vcard">copyright &copy; 2009-2013
+    <a href="http://oddbird.net/" class="fn org url">OddBird</a>
+  </p>
+</footer>
+
+
+<!-- JavaScript -->
+<script src="/static/js/libs/jquery-1.9.1.min.js"></script>
+<script src="/static/dist/all-js.min.a37c93bc.js"></script>
+
+
+</body>
+</html>
