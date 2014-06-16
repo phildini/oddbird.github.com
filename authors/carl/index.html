@@ -123,11 +123,9 @@
 
     <div class="body">
       
-        <p>SQLAlchemy (following Python's DBAPI) defaults to implicitly opening a new
-transaction when you query the database. If you prefer to work in autocommit
-mode by default and start all your transactions explicitly, SQLAlchemy
-doesn't currently offer a great deal of help. I show some (not yet
-battle-tested) code that seems to get this working.</p>
+        <p>SQLAlchemy defaults to implicitly opening a new transaction on your first
+database query. If you prefer to start your transactions explicitly instead,
+I've documented here my explorations in getting that to work.</p>
 
         <a href="/2014/06/14/sqlalchemy-postgres-autocommit" class="readmore">
           read more

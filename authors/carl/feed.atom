@@ -15,10 +15,9 @@
     <author>
       <name>OddBird</name>
     </author>
-    <content type="html">&lt;p&gt;SQLAlchemy defaults to implicitly opening a new transaction on your first
+    <content type="html">&lt;p&gt;&lt;a class="reference external" href="http://www.sqlalchemy.org/"&gt;SQLAlchemy&lt;/a&gt; defaults to implicitly opening a new transaction on your first
 database query. If you prefer to start your transactions explicitly instead,
-SQLAlchemy doesn&amp;#8217;t currently offer a great deal of help. I&amp;#8217;ve documented here
-my explorations in getting that to&amp;nbsp;work.&lt;/p&gt;
+I&amp;#8217;ve documented here my explorations in getting that to&amp;nbsp;work.&lt;/p&gt;
 &lt;p&gt;There are several different layers at play, so let&amp;#8217;s review from the&amp;nbsp;top:&lt;/p&gt;
 &lt;section id="transactions-in-postgresql"&gt;
 &lt;h2&gt;Transactions in&amp;nbsp;PostgreSQL&lt;/h2&gt;
