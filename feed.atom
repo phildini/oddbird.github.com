@@ -8,7 +8,7 @@
   <subtitle type="text">Recent blog posts</subtitle>
   <generator>Werkzeug</generator>
   <entry xml:base="http://oddbird.net/feed.atom">
-    <title type="text">PostgreSQL, transactions, and SQLAlchemy</title>
+    <title type="text">PostgreSQL transactions and SQLAlchemy</title>
     <id>http://oddbird.net/2014/06/14/sqlalchemy-postgres-autocommit</id>
     <updated>2014-06-14T00:00:00Z</updated>
     <link href="http://oddbird.net/2014/06/14/sqlalchemy-postgres-autocommit" />
