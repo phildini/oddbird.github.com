@@ -320,10 +320,10 @@ convinced to package it up and release it&amp;nbsp;properly.&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="acknowledgments"&gt;
 &lt;h2&gt;Acknowledgments&lt;/h2&gt;
-&lt;p&gt;Thanks to &lt;a class="reference external" href="https://twitter.com/zzzeek"&gt;Mike Bayer&lt;/a&gt; (author of SQLAlchemy) for pointing me towards the
-&lt;code&gt;AUTOCOMMIT&lt;/code&gt; &amp;#8220;isolation level&amp;#8221; setting. Thanks to &lt;a class="reference external" href="http://thebuild.com/blog/"&gt;Christophe Pettus&lt;/a&gt; for my
-initial education in Postgres&amp;#8217; transaction behavior, and &lt;a class="reference external" href="https://myks.org/en/"&gt;Aymeric Augustin&lt;/a&gt;
-for the excellent implementation in Django&amp;nbsp;1.6+.&lt;/p&gt;
+&lt;p&gt;Thanks to &lt;a class="reference external" href="https://twitter.com/zzzeek"&gt;Mike Bayer&lt;/a&gt; for writing SQLAlchemy(!) and for pointing me towards
+the &lt;code&gt;AUTOCOMMIT&lt;/code&gt; &amp;#8220;isolation level&amp;#8221; setting. Thanks to &lt;a class="reference external" href="http://thebuild.com/blog/"&gt;Christophe Pettus&lt;/a&gt;
+for my initial education in Postgres&amp;#8217; transaction behavior, and &lt;a class="reference external" href="https://myks.org/en/"&gt;Aymeric
+Augustin&lt;/a&gt; for the excellent implementation in Django&amp;nbsp;1.6+.&lt;/p&gt;
 &lt;/section&gt;
 </content>
   </entry>
