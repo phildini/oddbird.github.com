@@ -93,6 +93,50 @@
   
   <article class="post">
     <h1 class="title">
+      <a href="/2014/06/14/sqlalchemy-postgres-autocommit">
+        PostgreSQL, transactions, and SQLAlchemy
+      </a>
+    </h1>
+
+    
+<p class="byline">
+  
+  <time datetime="2014-06-14T00:00:00" pubdate="pubdate">
+    June 14, 2014
+  </time>
+  
+
+  
+  <span class="vcard">
+    by <a href="/authors/carl/" class="fn">carl</a>
+  </span>
+  
+
+  
+    <span class="tags">
+      in
+      <a href="/tags/django/" rel="tag">django</a>, <a href="/tags/postgresql/" rel="tag">postgresql</a>, <a href="/tags/python/" rel="tag">python</a>, <a href="/tags/sqlalchemy/" rel="tag">sqlalchemy</a>, <a href="/tags/transactions/" rel="tag">transactions</a>.
+    </span>
+  
+</p>
+
+
+    <div class="body">
+      
+        <p>SQLAlchemy (following Python's DBAPI) defaults to implicitly opening a new
+transaction when you query the database. If you prefer to work in autocommit
+mode by default and start all your transactions explicitly, SQLAlchemy
+doesn't currently offer a great deal of help. I show some (not yet
+battle-tested) code that seems to get this working.</p>
+
+        <a href="/2014/06/14/sqlalchemy-postgres-autocommit" class="readmore">
+          read more
+        </a>
+      
+    </div>
+  </article>
+  <article class="post">
+    <h1 class="title">
       <a href="/2013/12/30/sixth-year">
         2013
       </a>
@@ -137,6 +181,9 @@
   <div class="listarchive">
     <h3 class="foottitle"><a href="/archive/" rel="archive">Blog Archive</a></h3>
     <ul>
+      <li>
+        <a href="/2014/06/14/sqlalchemy-postgres-autocommit"  rel="bookmark">PostgreSQL, transactions, and SQLAlchemy</a>
+      </li>
       <li>
         <a href="/2013/12/30/sixth-year"  rel="bookmark">2013</a>
       </li>
