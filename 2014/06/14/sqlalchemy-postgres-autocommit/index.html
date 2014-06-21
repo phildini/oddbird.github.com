@@ -258,11 +258,11 @@ actually not having one at all (just like it does for databases that don&#8217;t
 support&nbsp;transactions).</p>
 <p>But we do want to use transactions, so we need a way to start one. The natural
 <span class="caps">API</span> for this already exists in SQLAlchemy: <code>session.begin()</code>. Since
-SQLAlchemy assumes that its database adapter will automatically start sessions,
-<code>session.begin()</code> never actually issues a <code>BEGIN</code> to the database. But we
-don&#8217;t actually need to issue <code>BEGIN</code> ourselves either - we just need to turn
-off the <code>autocommit</code> property on our connection, and then <code>psycopg2</code> will
-issue the <code>BEGIN</code> for&nbsp;us.</p>
+SQLAlchemy assumes that its database adapter will automatically start
+transactions, <code>session.begin()</code> never actually issues a <code>BEGIN</code> to the
+database. But we don&#8217;t actually need to issue <code>BEGIN</code> ourselves either - we
+just need to turn off the <code>autocommit</code> property on our connection, and then
+<code>psycopg2</code> will issue the <code>BEGIN</code> for&nbsp;us.</p>
 <p>SQLAlchemy gives us a way to hook into the <code>begin()</code> call: the
 <code>after_begin</code> event, which sends along the relevant database connection. We
 have to dig through a few layers of connection-wrapping to get down to the
@@ -349,11 +349,10 @@ autocommit on all the appropriate&nbsp;connections:</p>
 </section>
 <section id="a-transaction-context-manager">
 <h3>A transaction context&nbsp;manager</h3>
-<p>I mentioned above that I like context managers and decorators (such as Django&#8217;s
-<a class="reference external" href="https://docs.djangoproject.com/en/1.6/topics/db/transactions/#django.db.transaction.atomic">transaction.atomic</a>) as an <span class="caps">API</span> for transactions. Now that we have autocommit
-mode working, here&#8217;s an example of a rough equivalent to <a class="reference external" href="https://docs.djangoproject.com/en/1.6/topics/db/transactions/#django.db.transaction.atomic">transaction.atomic</a>
-for SQLAlchemy (unlike <a class="reference external" href="https://docs.djangoproject.com/en/1.6/topics/db/transactions/#django.db.transaction.atomic">transaction.atomic</a> this doesn&#8217;t work as a decorator,
-but adding that is just a matter of some&nbsp;boilerplate):</p>
+<p>Now that we have autocommit mode working, here&#8217;s an example of a rough
+equivalent to <a class="reference external" href="https://docs.djangoproject.com/en/1.6/topics/db/transactions/#django.db.transaction.atomic">transaction.atomic</a> for SQLAlchemy (unlike
+<a class="reference external" href="https://docs.djangoproject.com/en/1.6/topics/db/transactions/#django.db.transaction.atomic">transaction.atomic</a> this doesn&#8217;t work as a decorator, but adding that is just
+a matter of some&nbsp;boilerplate):</p>
 <pre class="code python">
 <span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">Session</span> <span class="k">as</span> <span class="n">BaseSession</span>
 
