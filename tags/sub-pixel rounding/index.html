@@ -7,7 +7,7 @@
   
 
   <!-- Page Info -->
-  <title>Entries tagged “sub-pixel rounding” | OddBird</title>
+  <title>sub-pixel rounding | Home | OddBird</title>
   <meta name="description" content="Custom-built web tools for humans" />
 
   <!-- Site Info -->
@@ -34,7 +34,7 @@
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1">
+  <meta name="viewport" content="initial-scale=1">
 
   <!--iOS. Delete if not required -->
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -43,14 +43,12 @@
 
   <!-- favicon.ico -->
   <link rel="shortcut icon" href="/static/images/favicons/favicon.ico" />
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/images/favicons/apple-touch-icon-114x114-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/images/favicons/apple-touch-icon-72x72-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" href="/static/images/favicons/apple-touch-icon-precomposed.png">
+  <link rel="apple-touch-icon" href="/static/images/favicons/apple-touch-icon.png">
 
   <!-- Styles -->
   
-  <link rel="stylesheet" href="/static/dist/screen.min.e8ff32e6.css" media="screen" />
-  <link rel="stylesheet" href="/static/dist/print.min.a68288b1.css" media="print" />
+  <link rel="stylesheet" href="/static/dist/screen.min.02e8eadb.css" media="screen" />
+  <link rel="stylesheet" href="/static/dist/print.min.3ef4e1c8.css" media="print" />
   
 
   <!-- Modernizr -->
@@ -75,106 +73,161 @@
   
 </head>
 
-<body id="oddsite" class="blog">
+<body id="oddsite" class="blog blog-index" data-location="blog">
 
-
-<h1 role="banner"><a href="/" rel="home">OddBird</a></h1>
 
 <nav role="navigation">
-  <ul class="primary">
-    <li><a href="/" rel="home">home</a></li>
-    <li><a href="/blog/">blog</a></li>
-  </ul>
+  
+    <a href="/" class="nav-link" data-active="home">
+      
+  <span data-icon="home"></span>
+
+      home
+    </a>
+  
+    <a href="/birds/" class="nav-link" data-active="birds">
+      
+  <span data-icon="egg"></span>
+
+      birds
+    </a>
+  
+    <a href="/blog/" class="nav-link" data-active="blog">
+      
+  <span data-icon="bubbles"></span>
+
+      blog
+    </a>
+  
 </nav>
 
-<section role="main" >
+<h1 role="banner">
+  <a href="/" rel="home">
+    
+  <span data-icon="oddbird"></span>
+
+    
+  <span class="is-hidden">OddBird</span>
+
+  </a>
+</h1>
+
+<main role="main"  data-default-styles="1">
+  
+
+
+  <h1 class="title">Posts tagged “sub-pixel rounding”</h1>
+
+
+    
+<article class="post--list">
+  
+    <h2 class="post-title">
+      <a href="/2013/03/20/isolation-susy">
+        Isolation and bleed in Susy
+      </a>
+    </h2>
+  
 
   
-<section class="archive tag">
+
+<div class="byline">
   
-  <h1 class="archivetitle">Entries <a href="/tags/">tagged</a> “sub-pixel rounding”</h1>
-  <ul class="archivelist">
-    <li class="archiveentry">
-        <time datetime="2013-03-20T00:00:00" pubdate="pubdate">
-          03/20/13
-        </time>
-      
-      <a href="/2013/03/20/isolation-susy" rel="bookmark">Isolation and bleed in Susy</a>
+  <time datetime="2013-03-20T00:00:00" pubdate="pubdate">
+    March 20, 2013
+  </time>
+  
+
+  
+  <span class="vcard">
+    by <a href="/authors/eric/" class="fn">eric</a>
+  </span>
+  
+
+  
+    <span class="tags">
+      in
+      <a href="/tags/grids/" rel="tag">grids</a>, <a href="/tags/layout/" rel="tag">layout</a>, <a href="/tags/rwd/" rel="tag">rwd</a>, <a href="/tags/sub-pixel%20rounding/" rel="tag">sub-pixel rounding</a>, <a href="/tags/susy/" rel="tag">susy</a>.
+    </span>
+  
+</div>
+
+
+
+  <div class="post-body">
+    
+      <p>A few new features have landed in Susy 1.0.7,
+even as we work on more integrated syntaxes for 2.0.
+The <code>isolate()</code> and <code>isolate-grid()</code> mixins
+help you manage the worst effects of
+<a class="reference external" href="http://palantir.net/blog/responsive-design-s-dirty-little-secret">sub-pixel rounding</a>,
+while <code>bleed()</code> helps you break items out of the box.</p>
+
+      <a href="/2013/03/20/isolation-susy" class="more-link">
+        read more
+      </a>
+    
+  </div>
+</article>
+
+
+
+
+</main>
+
+<aside class="fatfooter">
+<div class="fat-wrap">
+  <section class="recent-posts">
+  <h2 class="rp-title">Recent Posts</h2>
+  <ul class="rp-list">
+    <li>
+      <a href="/2014/06/14/sqlalchemy-postgres-autocommit"  rel="bookmark">PostgreSQL transactions and SQLAlchemy</a>
+    </li>
+    <li>
+      <a href="/2013/12/30/sixth-year"  rel="bookmark">2013</a>
+    </li>
+    <li>
+      <a href="/2013/11/27/susy-alpha-5"  rel="bookmark">Susy Next: Alpha 5</a>
+    </li>
+    <li>
+      <a href="/2013/10/19/map-merge"  rel="bookmark">Map-Set vs. Map-Merge</a>
+    </li>
+    <li>
+      <a href="/2013/09/05/susy-alpha-4"  rel="bookmark">Susy Next: Alpha 4</a>
     </li>
   </ul>
-
 </section>
-
-
-</section>
+  
+  
+</div>
+</aside>
 
 <footer role="contentinfo">
+<div class="footer-wrap">
 
-  <div class="listarchive">
-    <h3 class="foottitle"><a href="/archive/" rel="archive">Blog Archive</a></h3>
-    <ul>
-      <li>
-        <a href="/2014/06/14/sqlalchemy-postgres-autocommit"  rel="bookmark">PostgreSQL transactions and SQLAlchemy</a>
-      </li>
-      <li>
-        <a href="/2013/12/30/sixth-year"  rel="bookmark">2013</a>
-      </li>
-      <li>
-        <a href="/2013/11/27/susy-alpha-5"  rel="bookmark">Susy Next: Alpha 5</a>
-      </li>
-      <li>
-        <a href="/2013/10/19/map-merge"  rel="bookmark">Map-Set vs. Map-Merge</a>
-      </li>
-      <li>
-        <a href="/2013/09/05/susy-alpha-4"  rel="bookmark">Susy Next: Alpha 4</a>
-      </li>
-      <li>
-        <a href="/2013/05/03/susy-next-alpha-2"  rel="bookmark">Susy Next: The Second Alpha</a>
-      </li>
-      <li>
-        <a href="/2013/03/20/isolation-susy"  rel="bookmark">Isolation and bleed in Susy</a>
-      </li>
-      <li>
-        <a href="/2013/01/29/susy-next-alpha-1"  rel="bookmark">Susy Next: The first alpha</a>
-      </li>
-      <li>
-        <a href="/2013/01/01/susy-next"  rel="bookmark">Sass Layout in 2013 and the Future of Susy</a>
-      </li>
-      <li>
-        <a href="/2012/11/27/susy-off-canvas"  rel="bookmark">Off-canvas layout with Susy</a>
-      </li>
-    </ul>
-  </div>
+  <p class="copyright h-card">
+    Copyright &copy; 2014
+    <a href="http://oddbird.net" class="fn org url">OddBird</a>
+  </p>
 
-  <div class="contact">
-    <h3 class="foottitle email">birds(who are 'at' the)oddbird.net</h3>
-    <ul>
-      <li><a href="http://twitter.com/carljm/">@carljm</a></li>
-      <li><a href="http://twitter.com/ericmsuzanne/">@ericmsuzanne</a></li>
-      <li><a href="http://twitter.com/jgerigmeyer/">@jgerigmeyer</a></li>
-    </ul>
-  </div>
+  <p class="history">Established in 2008 by three odd brothers.</p>
 
   <p class="colophon">
-    This site is built on plain old semantic <a href="http://www.w3.org/TR/html5/">HTML5</a>,
-    powered by
-    the <a href="https://github.com/mitsuhiko/rstblog/">rstblog</a> static site generator
-    for <a href="http://www.python.org">Python</a>,
-    and styled using <a href="http://www.w3.org/TR/css-2010/">CSS3</a>,
-    with help from
-    <a href="http://subtlepatterns.com/">Subtle Patterns</a>,
+    Built with
+    <a href="http://www.w3.org/TR/html5/">HTML5</a>,
+    <a href="https://github.com/mitsuhiko/rstblog/">rstBlog</a>,
+    <a href="http://www.python.org">Python</a>,
+    <a href="http://www.w3.org/TR/css-2010/">CSS3</a>,
     <a href="http://www.jquery.com/">jQuery</a>,
-    <a href="http://www.modernizr.com/">Modernizr</a>,
     <a href="http://gruntjs.com/">Grunt</a>,
     <a href="http://keyamoon.com/icomoon/">IcoMoon</a>,
     <a href="http://susy.oddbird.net/">Susy</a>,
     <a href="http://compass-style.org/">Compass</a>,
-    and <a href="http://sass-lang.com/">Sass</a>.
+    <a href="http://breakpoint-sass.com/">Breakpoint</a>,
+    and&nbsp;<a href="http://sass-lang.com/">Sass</a>.
   </p>
 
-  <p class="copyright vcard">copyright &copy; 2009-2013
-    <a href="http://oddbird.net/" class="fn org url">OddBird</a>
-  </p>
+</div>
 </footer>
 
 

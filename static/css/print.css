@@ -1,173 +1,236 @@
-@font-face {
-  font-family: "BaskervilleFS";
-  src: url('../fonts/Baskerville-Regular-webfont.eot');
-  src: url('../fonts/Baskerville-Regular-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Baskerville-Regular-webfont.woff') format('woff'), url('../fonts/Baskerville-Regular-webfont.ttf') format('truetype'), url('../fonts/Baskerville-Regular-webfont.svg#webfontSMxOInhK') format('svg');
-  font-weight: normal;
-  font-style: normal;
+.is-hidden {
+  position: absolute;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
 }
 
-@font-face {
-  font-family: "BaskervilleFS";
-  src: url('../fonts/Baskerville-Italic-webfont.eot');
-  src: url('../fonts/Baskerville-Italic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Baskerville-Italic-webfont.woff') format('woff'), url('../fonts/Baskerville-Italic-webfont.ttf') format('truetype'), url('../fonts/Baskerville-Italic-webfont.svg#webfontSMxOInhK') format('svg');
-  font-weight: normal;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "BaskervilleFS";
-  src: url('../fonts/Baskerville-Bold-webfont.eot');
-  src: url('../fonts/Baskerville-Bold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Baskerville-Bold-webfont.woff') format('woff'), url('../fonts/Baskerville-Bold-webfont.ttf') format('truetype'), url('../fonts/Baskerville-Bold-webfont.svg#webfontSMxOInhK') format('svg');
-  font-weight: bold;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "BaskervilleFS";
-  src: url('../fonts/Baskerville-BoldItalic-webfont.eot');
-  src: url('../fonts/Baskerville-BoldItalic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Baskerville-BoldItalic-webfont.woff') format('woff'), url('../fonts/Baskerville-BoldItalic-webfont.ttf') format('truetype'), url('../fonts/Baskerville-BoldItalic-webfont.svg#webfontSMxOInhK') format('svg');
-  font-weight: bold;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "FranklinGothic";
-  src: url('../fonts/FranklinGothic-Book-webfont.eot');
-  src: url('../fonts/FranklinGothic-Book-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/FranklinGothic-Book-webfont.woff') format('woff'), url('../fonts/FranklinGothic-Book-webfont.ttf') format('truetype'), url('../fonts/FranklinGothic-Book-webfont.svg#webfontSMxOInhK') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "FranklinGothic";
-  src: url('../fonts/FranklinGothic-BookIt-webfont.eot');
-  src: url('../fonts/FranklinGothic-BookIt-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/FranklinGothic-BookIt-webfont.woff') format('woff'), url('../fonts/FranklinGothic-BookIt-webfont.ttf') format('truetype'), url('../fonts/FranklinGothic-BookIt-webfont.svg#webfontSMxOInhK') format('svg');
-  font-weight: normal;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "FranklinGothic";
-  src: url('../fonts/FranklinGothic-Med-webfont.eot');
-  src: url('../fonts/FranklinGothic-Med-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/FranklinGothic-Med-webfont.woff') format('woff'), url('../fonts/FranklinGothic-Med-webfont.ttf') format('truetype'), url('../fonts/FranklinGothic-Med-webfont.svg#webfontSMxOInhK') format('svg');
-  font-weight: bold;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "FranklinGothic";
-  src: url('../fonts/FranklinGothic-MedIt-webfont.eot');
-  src: url('../fonts/FranklinGothic-MedIt-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/FranklinGothic-MedIt-webfont.woff') format('woff'), url('../fonts/FranklinGothic-MedIt-webfont.ttf') format('truetype'), url('../fonts/FranklinGothic-MedIt-webfont.svg#webfontSMxOInhK') format('svg');
-  font-weight: bold;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "FranklinGothicCond";
-  src: url('../fonts/FranklinGothic-Cd-webfont.eot');
-  src: url('../fonts/FranklinGothic-Cd-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/FranklinGothic-Cd-webfont.woff') format('woff'), url('../fonts/FranklinGothic-Cd-webfont.ttf') format('truetype'), url('../fonts/FranklinGothic-Cd-webfont.svg#webfontSMxOInhK') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "FranklinGothicCond";
-  src: url('../fonts/FranklinGothic-CdIt-webfont.eot');
-  src: url('../fonts/FranklinGothic-CdIt-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/FranklinGothic-CdIt-webfont.woff') format('woff'), url('../fonts/FranklinGothic-CdIt-webfont.ttf') format('truetype'), url('../fonts/FranklinGothic-CdIt-webfont.svg#webfontSMxOInhK') format('svg');
-  font-weight: normal;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "FranklinGothicCond";
-  src: url('../fonts/FranklinGothic-MedCd-webfont.eot');
-  src: url('../fonts/FranklinGothic-MedCd-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/FranklinGothic-MedCd-webfont.woff') format('woff'), url('../fonts/FranklinGothic-MedCd-webfont.ttf') format('truetype'), url('../fonts/FranklinGothic-MedCd-webfont.svg#webfontSMxOInhK') format('svg');
-  font-weight: bold;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "FranklinGothicCond";
-  src: url('../fonts/FranklinGothic-MedCdIt-webfont.eot');
-  src: url('../fonts/FranklinGothic-MedCdIt-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/FranklinGothic-MedCdIt-webfont.woff') format('woff'), url('../fonts/FranklinGothic-MedCdIt-webfont.ttf') format('truetype'), url('../fonts/FranklinGothic-MedCdIt-webfont.svg#webfontSMxOInhK') format('svg');
-  font-weight: bold;
-  font-style: italic;
-}
-
-a:hover, a:active {
-  outline: none;
-}
 a:link, a:visited {
-  color: #ff6600;
+  color: #ff8b3d;
   text-decoration: none;
-}
-a:focus, a:hover, a:active {
-  color: #b30059;
+  cursor: pointer;
 }
 
-.amp {
-  font-family: "BaskervilleFS", Baskerville, Palatino, Cambria, Georgia, serif;
-  font-style: italic;
+a:hover, a:focus, a:active {
+  text-decoration: underline;
 }
 
 body h1 {
-  font-size: 26px;
-  font-size: 1.44444rem;
-  line-height: 33px;
-  line-height: 1.83333rem;
+  font-size: 2.42857rem;
+  line-height: 3.14286rem;
 }
-body h1 a:link, body h1 a:visited {
-  color: #cc5200;
-}
-body h1 a:focus, body h1 a:hover, body h1 a:active {
-  color: #b30059;
-}
+
 body h2 {
-  margin-bottom: 11px;
-  margin-bottom: 0.61111rem;
-  text-transform: uppercase;
+  font-size: 1.57143rem;
+  line-height: 2.35714rem;
 }
-body h3, body h4, body strong {
+
+body h3 {
+  font-size: 1.2381rem;
+  line-height: 1.96429rem;
+}
+
+body p,
+body ol,
+body ul {
+  margin-bottom: 1.2381rem;
+}
+body ol ol,
+body ol ul,
+body ul ol,
+body ul ul {
+  margin-left: 1.2381rem;
+}
+body ol {
+  list-style: decimal;
+}
+body ul {
+  list-style: disc;
+}
+body li {
+  margin-bottom: 0.61905rem;
+}
+body tt, body code, body pre {
+  font-size: 0.80952rem;
+  line-height: 1.57143rem;
+}
+body tt, body code {
   font-weight: bold;
 }
-body em {
+body pre {
+  border-left: 3px solid #adadad;
+  margin-bottom: 1.2381rem;
+  margin-left: -0.61905rem;
+  padding: 0.61905rem;
+  white-space: pre-wrap;
+}
+
+.btn {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  width: auto;
+  background: none;
+  color: #333;
+  font: inherit;
+  cursor: pointer;
+  overflow: visible;
+}
+.btn:hover, .btn:focus, .btn:active {
+  outline: 0;
+}
+
+@font-face {
+  font-family: "BaskervilleFS";
+  src: url('../fonts/serif/baskerville-regular-webfont.woff?1409959532') format("woff"), url('../fonts/serif/baskerville-regular-webfont.ttf?1409959532') format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "BaskervilleFS";
+  src: url('../fonts/serif/baskerville-italic-webfont.woff?1409959532') format("woff"), url('../fonts/serif/baskerville-italic-webfont.ttf?1409959532') format("truetype");
+  font-weight: normal;
   font-style: italic;
 }
-body p, body ul, body ol, body pre {
-  margin-bottom: 22px;
-  margin-bottom: 1.22222rem;
+@font-face {
+  font-family: "BaskervilleFS";
+  src: url('../fonts/serif/baskerville-bold-webfont.woff?1409959532') format("woff"), url('../fonts/serif/baskerville-bold-webfont.ttf?1409959532') format("truetype");
+  font-weight: bold;
+  font-style: normal;
 }
-body ul ul, body ul ol, body ol ul, body ol ol {
-  padding-left: 1.22222rem;
+@font-face {
+  font-family: "BaskervilleFS";
+  src: url('../fonts/serif/baskerville-bolditalic-webfont.woff?1409959532') format("woff"), url('../fonts/serif/baskerville-bolditalic-webfont.ttf?1409959532') format("truetype");
+  font-weight: bold;
+  font-style: italic;
 }
-body code, body .code {
-  font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
-  font-size: 12px;
-  font-size: 0.66667rem;
-  line-height: 22px;
-  line-height: 1.22222rem;
+@font-face {
+  font-family: "SourceSansPro";
+  src: url('../fonts/sans/sourcesanspro-regular-webfont.woff?1409959532') format("woff"), url('../fonts/sans/sourcesanspro-regular-webfont.ttf?1409959532') format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
-body code {
-  display: inline-block;
-  padding: 0 .5em;
-  background: rgba(0, 115, 153, 0.125);
+@font-face {
+  font-family: "SourceSansPro";
+  src: url('../fonts/sans/sourcesanspro-italic-webfont.woff?1409959532') format("woff"), url('../fonts/sans/sourcesanspro-italic-webfont.ttf?1409959532') format("truetype");
+  font-weight: normal;
+  font-style: italic;
 }
-body .code {
-  line-height: 17px;
-  line-height: 0.91667rem;
-  margin-bottom: 22px;
-  margin-bottom: 1.22222rem;
-  -webkit-box-shadow: #595959 0 0 0.25em inset;
-  -moz-box-shadow: #595959 0 0 0.25em inset;
-  box-shadow: #595959 0 0 0.25em inset;
-  overflow: auto;
-  padding: 0.61111rem 0.91667rem;
-  border-left: 0.30556rem solid rgba(0, 77, 102, 0.25);
+@font-face {
+  font-family: "SourceSansPro";
+  src: url('../fonts/sans/sourcesanspro-bold-webfont.woff?1409959532') format("woff"), url('../fonts/sans/sourcesanspro-bold-webfont.ttf?1409959532') format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "SourceSansPro";
+  src: url('../fonts/sans/sourcesanspro-bolditalic-webfont.woff?1409959532') format("woff"), url('../fonts/sans/sourcesanspro-bolditalic-webfont.ttf?1409959532') format("truetype");
+  font-weight: bold;
+  font-style: italic;
+}
+@font-face {
+  font-family: "SourceCodePro";
+  src: url('../fonts/code/sourcecodepro-regular-webfont.woff?1409959532') format("woff"), url('../fonts/code/sourcecodepro-regular-webfont.ttf?1409959532') format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "SourceCodePro";
+  src: url('../fonts/code/sourcecodepro-bold-webfont.woff?1409959532') format("woff"), url('../fonts/code/sourcecodepro-bold-webfont.ttf?1409959532') format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "oddsite";
+  src: url('../fonts/icons/oddsite.woff?1409959532') format("woff"), url('../fonts/icons/oddsite.ttf?1409959532') format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+body h1,
+body h2,
+body h3, .amp, body {
+  font-family: BaskervilleFS, Baskerville, Palatino, Cambria, Georgia, serif;
+}
+
+html, a:after {
+  font-family: SourceSansPro, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body tt, body code, body pre {
+  font-family: SourceCodePro, Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
 }
 
 html {
-  font-size: 112.5%;
-  line-height: 1.22222em;
+  font-size: 131.25%;
+  line-height: 1.57143em;
+}
+
+[data-icon] {
+  font-family: "oddsite";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  text-decoration: none;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[data-icon]:before {
+  content: attr(data-icon);
+}
+
+[data-icon='home']:before {
+  content: "";
+}
+
+[data-icon='tag']:before {
+  content: "";
+}
+
+[data-icon='email']:before {
+  content: "";
+}
+
+[data-icon='bubbles']:before {
+  content: "";
+}
+
+[data-icon='twitter']:before {
+  content: "";
+}
+
+[data-icon='github']:before {
+  content: "";
+}
+
+[data-icon='stackoverflow']:before {
+  content: "";
+}
+
+[data-icon='egg']:before {
+  content: "";
+}
+
+[data-icon='oddbird']:before {
+  content: "";
+}
+
+html {
+  background: #f6fcfe;
+  color: #333;
+}
+
+.amp {
+  font-style: italic;
+}
+
+html {
+  font-size: 131.25%;
+  line-height: 1.57143em;
 }
 
 * {
@@ -178,45 +241,33 @@ html {
 }
 
 body {
-  font-family: "BaskervilleFS", Baskerville, Palatino, Cambria, Georgia, serif;
   width: 100%;
   margin: 0;
   padding: 0;
 }
 
 [role="banner"] {
-  font-size: 37px;
-  font-size: 2.05556rem;
-  line-height: 44px;
-  line-height: 2.44444rem;
-  margin-bottom: 0px;
+  font-size: 2.42857rem;
+  line-height: 3.14286rem;
+  margin-bottom: 0;
 }
 
 [role="navigation"], [role="contentinfo"],
-.pagination, .readmore {
+.pagination, .readmore,
+.fatfooter {
   display: none;
 }
 
-.projects:before, .people:before, .process:before, .post:before {
-  margin-top: 22px;
-  margin-top: 1.22222rem;
-  margin-bottom: 22px;
-  margin-bottom: 1.22222rem;
+.post:before {
+  margin: 0;
   content: "* * *";
   display: block;
   text-align: center;
 }
 
-a:link, a:visited, a:focus, a:hover, a:active {
-  text-decoration: underline;
-}
-
 a:after {
-  font-family: "FranklinGothicCond", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 15px;
-  font-size: 0.83333rem;
-  line-height: 22px;
-  line-height: 1.22222rem;
+  font-size: 0.80952rem;
+  line-height: 1.57143rem;
   content: " [" attr(href) "] ";
 }
 
@@ -227,10 +278,8 @@ a[href^="/"]:after {
   display: none;
 }
 .title a[href^="/"]:after {
-  font-size: 15px;
-  font-size: 0.83333rem;
-  line-height: 22px;
-  line-height: 1.22222rem;
+  font-size: 0.80952rem;
+  line-height: 1.57143rem;
   display: block;
 }
 
@@ -249,19 +298,6 @@ p, h1, h2, h3 {
 
 p {
   margin-top: 0;
-}
-
-.tagline {
-  font-family: "FranklinGothicCond", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  text-transform: uppercase;
-}
-
-.intro {
-  font-size: 26px;
-  font-size: 1.44444rem;
-  line-height: 33px;
-  line-height: 1.83333rem;
-  font-style: italic;
 }
 
 .title {
