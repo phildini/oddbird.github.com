@@ -2,11 +2,169 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title type="text">Recent Blog Posts</title>
   <id>http://oddbird.net/feed.atom</id>
-  <updated>2014-06-14T00:00:00Z</updated>
+  <updated>2014-09-17T00:00:00Z</updated>
   <link href="http://oddbird.net/" />
   <link href="http://oddbird.net/feed.atom" rel="self" />
   <subtitle type="text">Recent blog posts</subtitle>
   <generator>Werkzeug</generator>
+  <entry xml:base="http://oddbird.net/feed.atom">
+    <title type="text">jQuery Chicago 2014</title>
+    <id>http://oddbird.net/2014/09/17/jqcon</id>
+    <updated>2014-09-17T00:00:00Z</updated>
+    <link href="http://oddbird.net/2014/09/17/jqcon" />
+    <author>
+      <name>OddBird</name>
+    </author>
+    <content type="html">&lt;p&gt;After attending conferences, I find it helpful to synthesize a few practical
+takeaways that I can immediately begin working into my code. Some of them are
+new, while others are common techniques that I&amp;#8217;m just not in the habit of&amp;nbsp;doing.&lt;/p&gt;
+&lt;p&gt;So what got my attention at &lt;a class="reference external" href="http://events.jquery.org/2014/chicago/"&gt;jQuery Conference Chicago 2014&lt;/a&gt;? In no
+particular&amp;nbsp;order:&lt;/p&gt;
+&lt;section id="web-workers"&gt;
+&lt;h2&gt;Web&amp;nbsp;Workers&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/Guide/Performance/Using_web_workers"&gt;Web Workers&lt;/a&gt; are here and ready for primetime (or at least
+&lt;a class="reference external" href="http://caniuse.com/#feat=webworkers"&gt;close enough to ready&lt;/a&gt;)! It would be nice to get some abstractions to make
+them easier to work with (and it&amp;#8217;ll be great when &lt;a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker"&gt;SharedWorkers&lt;/a&gt; and
+&lt;a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorker_API"&gt;ServiceWorkers&lt;/a&gt; get to the same level of &lt;a class="reference external" href="http://caniuse.com/#feat=sharedworkers"&gt;support&lt;/a&gt;), but I&amp;#8217;m not waiting&amp;nbsp;around.&lt;/p&gt;
+&lt;p&gt;Basically, Workers provide the ability to run computationally intensive tasks
+in a background thread, without blocking the &lt;span class="caps"&gt;UI&lt;/span&gt; or other scripts. Workers don&amp;#8217;t
+have access to the &lt;code&gt;window&lt;/code&gt; object or the &lt;span class="caps"&gt;DOM&lt;/span&gt;, but they can pass data back
+and forth from the main client&amp;nbsp;script.&lt;/p&gt;
+&lt;p&gt;Keep the &lt;span class="caps"&gt;UI&lt;/span&gt; responsive, and let Workers do difficult tasks in the background.
+(Aside: This is awesome. Why isn&amp;#8217;t everyone using it&amp;nbsp;already?)&lt;/p&gt;
+&lt;pre class="code js"&gt;
+&lt;span class="c1"&gt;// main script
+&lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;worker&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;Worker&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'my_worker.js'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="nx"&gt;worker&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;addEventListener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'message'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;e&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'The worker said: '&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;e&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="nx"&gt;worker&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;postMessage&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Hello Worker!'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;pre class="code js"&gt;
+&lt;span class="c1"&gt;// worker script ('my_worker.js')
+&lt;/span&gt;&lt;span class="nx"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;addEventListener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'message'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;e&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'The client said: '&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;e&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="nx"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;postMessage&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Hello Client!'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Check out &lt;a class="reference external" href="http://codepen.io/jgerigmeyer/pen/vKixI"&gt;another (contrived) example&lt;/a&gt; to see it in action. Notice that the
+timer (and the entire &lt;span class="caps"&gt;UI&lt;/span&gt;) locks up while running the task without Workers, but
+continues smoothly when Workers are used. (I&amp;#8217;m also using the
+&lt;a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/Blob.Blob"&gt;Blob() constructor&lt;/a&gt; to allow for inline Worker scripts, instead of importing
+from another&amp;nbsp;file.)&lt;/p&gt;
+&lt;p&gt;So when might I actually use Workers? From this helpful &lt;a class="reference external" href="http://www.html5rocks.com/en/tutorials/workers/basics/"&gt;&lt;span class="caps"&gt;HTML5&lt;/span&gt; Rocks article&lt;/a&gt;:&lt;/p&gt;
+&lt;pre&gt;
+- Prefetching and/or caching data for later use
+- Code syntax highlighting or other real-time text formatting
+- Spell checker
+- Analyzing video or audio data
+- Background I/O or polling of webservices
+- Processing large arrays or humungous JSON responses
+- Image filtering in &amp;lt;canvas&amp;gt;
+- Updating many rows of a local web database
+&lt;/pre&gt;
+&lt;p&gt;Do you already use Web Workers, or have additional suggestions or&amp;nbsp;warnings?&lt;/p&gt;
+&lt;p&gt;&lt;span class="caps"&gt;HT&lt;/span&gt;: &lt;a class="reference external" href="http://twitter.com/potch"&gt;&amp;#64;potch&lt;/a&gt; for the &lt;a class="reference external" href="http://potch.github.io/workers-talk/"&gt;talk&lt;/a&gt;
+that got me&amp;nbsp;started.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="ecmascript6"&gt;
+&lt;h2&gt;ECMAScript6&lt;/h2&gt;
+&lt;p&gt;You know what else is here, and (mostly) ready for primetime? &lt;a class="reference external" href="http://wiki.ecmascript.org/doku.php?id=harmony:specification_drafts#draft_specification_for_es.next_ecma-262_edition_6"&gt;ECMAScript 6&lt;/a&gt;!
+Some of the new features I&amp;#8217;m most excited&amp;nbsp;about:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;code&gt;String.prototype.contains()&lt;/code&gt; instead of &lt;code&gt;indexOf()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;native&amp;nbsp;promises&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Object.assign()&lt;/code&gt; for merging&amp;nbsp;objects&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Map()&lt;/code&gt; and &lt;code&gt;Set()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;blocked scope variables using &lt;code&gt;let&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;template&amp;nbsp;strings(!):&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="code js"&gt;
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'Jonny'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;company&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'OddBird'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="nx"&gt;I&lt;/span&gt;&lt;span class="err"&gt;'&lt;/span&gt;&lt;span class="nx"&gt;m&lt;/span&gt; &lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="nx"&gt;and&lt;/span&gt; &lt;span class="nx"&gt;I&lt;/span&gt; &lt;span class="nx"&gt;work&lt;/span&gt; &lt;span class="nx"&gt;at&lt;/span&gt; &lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="nx"&gt;company&lt;/span&gt;&lt;span class="p"&gt;}.&lt;/span&gt;&lt;span class="err"&gt;`&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;default function&amp;nbsp;parameters&lt;/li&gt;
+&lt;li&gt;modules, exports, and a system&amp;nbsp;loader&lt;/li&gt;
+&lt;li&gt;expanded &lt;code&gt;class&lt;/code&gt; syntax&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This just scratches the surface. Check out a &lt;a class="reference external" href="http://git.io/es6features"&gt;helpful summary&lt;/a&gt;, and keep a
+close eye on the &lt;a class="reference external" href="http://kangax.github.io/compat-table/es6/"&gt;browser support&amp;nbsp;chart&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;So how can I use these features without waiting for full browser&amp;nbsp;implementation?&lt;/p&gt;
+&lt;p&gt;A subset of &lt;span class="caps"&gt;ES6&lt;/span&gt; can be used by simply adding Paul Miller&amp;#8217;s &lt;a class="reference external" href="http://github.com/paulmillr/es6-shim/"&gt;&lt;span class="caps"&gt;ES6&lt;/span&gt; Shim&lt;/a&gt;. To use
+the more substantive features (e.g. template strings, default parameters,
+modules), compile &lt;span class="caps"&gt;ES6&lt;/span&gt; code into &lt;span class="caps"&gt;ES5&lt;/span&gt; using Google&amp;#8217;s &lt;a class="reference external" href="http://github.com/google/traceur-compiler"&gt;Traceur&lt;/a&gt; (probably with
+&lt;a class="reference external" href="http://github.com/sindresorhus/gulp-traceur"&gt;gulp-traceur&lt;/a&gt; or &lt;a class="reference external" href="http://github.com/aaronfrost/grunt-traceur"&gt;grunt-traceur&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;&lt;span class="caps"&gt;HT&lt;/span&gt;: &lt;a class="reference external" href="http://twitter.com/johnkpaul"&gt;John K. Paul&lt;/a&gt; for his
+&lt;a class="reference external" href="http://johnkpaul.github.io/presentations/jqcon/2014/es6-now/"&gt;talk&lt;/a&gt;
+encouraging devs to use &lt;span class="caps"&gt;ES6&lt;/span&gt;&amp;nbsp;now.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="throw-more-errors"&gt;
+&lt;h2&gt;Throw More&amp;nbsp;Errors&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error"&gt;Error objects&lt;/a&gt; have been around forever, and aren&amp;#8217;t difficult to&amp;nbsp;use:&lt;/p&gt;
+&lt;pre class="code js"&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;user&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="c1"&gt;// do the thing
+&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;throw&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nb"&gt;Error&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'User &lt;span class="caps"&gt;ID&lt;/span&gt; not found.'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;But I&amp;#8217;m not very good at actually doing this. When I&amp;#8217;m writing code, I usually
+default to the &amp;#8220;fail silently&amp;#8221;&amp;nbsp;approach:&lt;/p&gt;
+&lt;pre class="code js"&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;user&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="c1"&gt;// do the thing
+&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;There are times when failing silently is exactly what I want: when the code
+will continue to work correctly regardless. But often it&amp;#8217;d be better
+(especially in development, and maybe even in production) to throw an error
+with a descriptive message stating what went wrong. Not only does this speed
+debugging, but it also lets me know that something went wrong in the first&amp;nbsp;place.&lt;/p&gt;
+&lt;p&gt;To make this simpler, I&amp;#8217;ve started using runtime&amp;nbsp;assertions:&lt;/p&gt;
+&lt;pre class="code js"&gt;
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;assert&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;test&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="nx"&gt;test&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;throw&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nb"&gt;Error&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Assertion failed: '&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;message&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="nx"&gt;assert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'User has an &lt;span class="caps"&gt;ID&lt;/span&gt;'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;user&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;id&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;When to consider throwing&amp;nbsp;Errors?&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;When a function requires a specific argument&amp;nbsp;type&lt;/li&gt;
+&lt;li&gt;When a function requires a specific number of&amp;nbsp;arguments&lt;/li&gt;
+&lt;li&gt;For unexpected code paths (i.e. code that should never be&amp;nbsp;executed)&lt;/li&gt;
+&lt;li&gt;When using promises (every promise should have an error handler using
+&lt;code&gt;.catch()&lt;/code&gt; or &lt;code&gt;.then()&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class="caps"&gt;HT&lt;/span&gt;: &lt;a class="reference external" href="http://twitter.com/rlph"&gt;Ralph Holzmann&lt;/a&gt; for his helpful
+&lt;a class="reference external" href="http://blog.ralphholzmann.com/presentations/2014/jquerychicago/throw_new_error.pdf"&gt;talk&lt;/a&gt;.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="debugging-by-proxy"&gt;
+&lt;h2&gt;Debugging by&amp;nbsp;Proxy&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://twitter.com/brianarn"&gt;Brian Arnold&lt;/a&gt; &lt;a class="reference external" href="http://www.randomthink.net/presentations/jqcon-chicago-2014-beyond-devtools/presentation/"&gt;demoed&lt;/a&gt; how to use proxy tools for development and&amp;nbsp;debugging.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://www.charlesproxy.com/"&gt;Charles&lt;/a&gt; is a really powerful tool for anything from Ajax debugging and
+bandwidth throttling to &lt;span class="caps"&gt;DNS&lt;/span&gt; spoofing and local/remote resource mapping. I can
+view or modify outgoing requests or incoming responses (even from another
+device on the same network connected through Charles), essentially turn my
+computer into a dev environment for any website with resource mapping, throttle
+my bandwidth to mimic 3G or &lt;span class="caps"&gt;LTE&lt;/span&gt;, or disable caching or cookies&amp;nbsp;entirely.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="js-testing-with-intern"&gt;
+&lt;h2&gt;&lt;span class="caps"&gt;JS&lt;/span&gt; Testing With&amp;nbsp;Intern&lt;/h2&gt;
+&lt;p&gt;I&amp;#8217;ve been using &lt;a class="reference external" href="http://karma-runner.github.io/"&gt;Karma&lt;/a&gt; as a test-runner, and I&amp;#8217;m mostly satisfied with what
+it can do (notably: run tests quickly using &lt;a class="reference external" href="http://phantomjs.org/"&gt;PhantomJS&lt;/a&gt; to mimic a browser
+environment, and generate &lt;a class="reference external" href="http://gotwarlost.github.io/istanbul/"&gt;istanbul&lt;/a&gt; coverage&amp;nbsp;reports).&lt;/p&gt;
+&lt;p&gt;But I&amp;#8217;m intrigued by some of the features that &lt;a class="reference external" href="http://theintern.io/"&gt;Intern&lt;/a&gt; offers (notably:
+integration with &lt;a class="reference external" href="http://www.seleniumhq.org/"&gt;Selenium&lt;/a&gt;, support for true browser events and running tests
+in standalone browsers, and built-in &lt;a class="reference external" href="https://travis-ci.com/"&gt;Travis &lt;span class="caps"&gt;CI&lt;/span&gt;&lt;/a&gt;&amp;nbsp;integration).&lt;/p&gt;
+&lt;p&gt;Have you used either of these tools, or have further pros/cons to&amp;nbsp;offer?&lt;/p&gt;
+&lt;/section&gt;
+</content>
+  </entry>
   <entry xml:base="http://oddbird.net/feed.atom">
     <title type="text">PostgreSQL transactions and SQLAlchemy</title>
     <id>http://oddbird.net/2014/06/14/sqlalchemy-postgres-autocommit</id>
@@ -1112,256 +1270,6 @@ We&amp;#8217;re excited to build a layout syntax that spans
 existing frameworks, techniques, and systems.
 We hope you&amp;#8217;ll get involved, and help make it a community project.
 Stay&amp;nbsp;tuned!&lt;/p&gt;
-&lt;/section&gt;
-</content>
-  </entry>
-  <entry xml:base="http://oddbird.net/feed.atom">
-    <title type="text">Off-canvas layout with Susy</title>
-    <id>http://oddbird.net/2012/11/27/susy-off-canvas</id>
-    <updated>2012-11-27T00:00:00Z</updated>
-    <link href="http://oddbird.net/2012/11/27/susy-off-canvas" />
-    <author>
-      <name>OddBird</name>
-    </author>
-    <content type="html">&lt;p&gt;&lt;strong&gt;&lt;span class="caps"&gt;UPDATE&lt;/span&gt;&lt;/strong&gt;:
-&lt;em&gt;I fixed a bug with show-left failing on small screens.
-The main area was dropping below the left sidebar,
-as floats sometimes do.
-The fix is actually simpler than the original code:
-just set and leave a 100% negative right-margin
-on the main area,
-removing all state changes to that&amp;nbsp;margin.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;The &lt;a class="reference external" href="http://jasonweaver.name/lab/offcanvas/"&gt;off-canvas&lt;/a&gt; layout pattern
-for responsive websites
-has been getting all the attention lately,
-and I&amp;#8217;ve had several people ask
-how &lt;a class="reference external" href="http://susy.oddbird.net/"&gt;Susy&lt;/a&gt; might play&amp;nbsp;along.&lt;/p&gt;
-&lt;p&gt;The truth is,
-Susy handles off-canvas layout the same
-as any other layout.
-All you need to do
-is pull some of your columns off the screen.
-I&amp;#8217;ll show you how,
-following Jason&amp;#8217;s lead,
-and adding in the Susy&amp;nbsp;bits.&lt;/p&gt;
-&lt;p&gt;Check out the &lt;a class="reference external" href="/demos/susy-off-canvas/"&gt;demo&lt;/a&gt;,
-and make sure you understand
-&lt;a class="reference external" href="http://jasonweaver.name/lab/offcanvas/"&gt;off-canvas&lt;/a&gt; layouts
-before you go&amp;nbsp;on.&lt;/p&gt;
-&lt;p&gt;I&amp;#8217;ve used a few shortcuts
-that require the &lt;a class="reference external" href="http://rubygems.org/gems/susy"&gt;latest Susy release&lt;/a&gt;
-(1.0.5),
-but the concepts remain true
-in older versions as&amp;nbsp;well.&lt;/p&gt;
-&lt;section id="basic-markup"&gt;
-&lt;h2&gt;Basic&amp;nbsp;Markup:&lt;/h2&gt;
-&lt;pre class="code html"&gt;
-&lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;container&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class="nt"&gt;&amp;lt;header&amp;gt;&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#left&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;toggle&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;show-left&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#right&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;toggle&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;show-right&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-    header
-  &lt;span class="nt"&gt;&amp;lt;/header&amp;gt;&lt;/span&gt;
-  &lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;left&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;left&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;left&lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-  &lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;main&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;main&lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-  &lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;right&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;right&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;right&lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-  &lt;span class="nt"&gt;&amp;lt;footer&amp;gt;&lt;/span&gt;footer&lt;span class="nt"&gt;&amp;lt;/footer&amp;gt;&lt;/span&gt;
-&lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;We have a simple container
-with header, footer,
-and three body columns:
-left, right, and main.
-Inside the header
-we have links we can hijack in JavaScript
-to toggle state&amp;nbsp;body-classes.&lt;/p&gt;
-&lt;/section&gt;
-&lt;section id="susy-settings"&gt;
-&lt;h2&gt;Susy&amp;nbsp;Settings:&lt;/h2&gt;
-&lt;pre class="code scss"&gt;
-&lt;span class="nv"&gt;$total-columns&lt;/span&gt;&lt;span class="o"&gt;    :&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="nv"&gt;$column-width&lt;/span&gt;&lt;span class="o"&gt;     :&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="nv"&gt;$gutter-width&lt;/span&gt;&lt;span class="o"&gt;     :&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="nv"&gt;$grid-padding&lt;/span&gt;&lt;span class="o"&gt;     :&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;Since this is a mobile-first design pattern,
-we&amp;#8217;ll start with settings for a
-typical mobile-first Susy grid.
-You can change those any way you&amp;nbsp;like.&lt;/p&gt;
-&lt;p&gt;I&amp;#8217;m also going to establish my
-medium and large column settings right&amp;nbsp;away:&lt;/p&gt;
-&lt;pre class="code scss"&gt;
-&lt;span class="nv"&gt;$medium-columns&lt;/span&gt;&lt;span class="o"&gt;   :&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="nv"&gt;$large-columns&lt;/span&gt;&lt;span class="o"&gt;    :&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;And I&amp;#8217;ll set Susy&amp;#8217;s
-&lt;code&gt;$container-width&lt;/code&gt;
-override to the largest layout width,
-so the container is fluid up to that&amp;nbsp;point:&lt;/p&gt;
-&lt;pre class="code scss"&gt;
-&lt;span class="nv"&gt;$container-width&lt;/span&gt;&lt;span class="o"&gt;  :&lt;/span&gt; &lt;span class="nf"&gt;container-outer-width&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$large-columns&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;/pre&gt;
-&lt;/section&gt;
-&lt;section id="establish-the-container"&gt;
-&lt;h2&gt;Establish the&amp;nbsp;Container:&lt;/h2&gt;
-&lt;pre class="code scss"&gt;
-&lt;span class="nc"&gt;.container&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; container&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="na"&gt;overflow&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="no"&gt;hidden&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;Besides establishing the usual Susy container,
-I also set &lt;code&gt;overflow&lt;/code&gt; to &lt;code&gt;hidden&lt;/code&gt;
-so that our off-canvas elements
-don&amp;#8217;t trigger a horizontal&amp;nbsp;scrollbar.&lt;/p&gt;
-&lt;/section&gt;
-&lt;section id="small-layout"&gt;
-&lt;h2&gt;Small&amp;nbsp;Layout:&lt;/h2&gt;
-&lt;p&gt;For our smallest layout
-the &lt;code&gt;.main&lt;/code&gt; section is visible at all times,
-full-width by default
-or pushed to one side to make room
-for the &lt;code&gt;.left&lt;/code&gt; or &lt;code&gt;.right&lt;/code&gt;
-sections to&amp;nbsp;appear.&lt;/p&gt;
-&lt;pre class="code scss"&gt;
-&lt;span class="nv"&gt;$anchor&lt;/span&gt;&lt;span class="o"&gt; :&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="nv"&gt;$side&lt;/span&gt;&lt;span class="o"&gt;   :&lt;/span&gt; &lt;span class="nv"&gt;$total-columns&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nv"&gt;$anchor&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;I&amp;#8217;ve created an &lt;code&gt;$anchor&lt;/code&gt; variable
-to control how many columns of the main section
-remain visible while side-sections are displayed.
-The &lt;code&gt;$side&lt;/code&gt; width of our left &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; right sections
-is based on the remaining&amp;nbsp;space.&lt;/p&gt;
-&lt;pre class="code scss"&gt;
-&lt;span class="nc"&gt;.left&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span-columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$side&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="na"&gt;margin-left&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;-100&lt;/span&gt;&lt;span class="kt"&gt;%&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="nc"&gt;.show-left&lt;/span&gt; &lt;span class="k"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;margin-left&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-
-&lt;span class="nc"&gt;.main&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span-columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$total-columns&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="na"&gt;margin-right&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;-100&lt;/span&gt;&lt;span class="kt"&gt;%&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="nc"&gt;.show-right&lt;/span&gt; &lt;span class="k"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;margin-left&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nf"&gt;space&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$side&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-
-&lt;span class="nc"&gt;.right&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span-columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$side&lt;/span&gt; &lt;span class="n"&gt;omega&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="na"&gt;margin-right&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;-100&lt;/span&gt;&lt;span class="kt"&gt;%&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="nc"&gt;.show-right&lt;/span&gt; &lt;span class="k"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;margin-right&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;The &lt;code&gt;span-column&lt;/code&gt; mixins establish our spacing,
-just like any other Susy site.
-The main difference here is that our total columns-spanned
-is much larger than the number of columns available.
-A few &lt;code&gt;margin&lt;/code&gt; adjustments,
-and we&amp;#8217;ve pulled the left and right sections off the canvas.
-I also removed the &lt;code&gt;margin-right&lt;/code&gt; gutter
-on our main column, since it spans the full&amp;nbsp;width.&lt;/p&gt;
-&lt;p&gt;The &lt;code&gt;.show-left&lt;/code&gt; and &lt;code&gt;.show-right&lt;/code&gt;
-selectors allow us to move everything around
-when we want to show and hide the sidebars.
-The &lt;code&gt;space()&lt;/code&gt; function is used to push
-our main section only as far as it needs to go:
-&lt;code&gt;space()&lt;/code&gt; represents the space taken by
-a given number of &lt;code&gt;columns()&lt;/code&gt;
-with the final &lt;code&gt;gutter()&lt;/code&gt; included.&lt;/p&gt;
-&lt;/section&gt;
-&lt;section id="medium-layout"&gt;
-&lt;h2&gt;Medium&amp;nbsp;Layout:&lt;/h2&gt;
-&lt;pre class="code scss"&gt;
-&lt;span class="nv"&gt;$main&lt;/span&gt;&lt;span class="o"&gt; :&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="nv"&gt;$side&lt;/span&gt;&lt;span class="o"&gt; :&lt;/span&gt; &lt;span class="nv"&gt;$medium-columns&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nv"&gt;$main&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;These variables simply establish
-the widths we will use for our columns.
-You could, of course,
-set different right and left widths.
-I&amp;#8217;ll leave that as an exercise for the&amp;nbsp;reader.&lt;/p&gt;
-&lt;pre class="code scss"&gt;
-&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; at-breakpoint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$medium-columns&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="nt"&gt;href&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;#left&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;visibility&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="no"&gt;hidden&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
-
-  &lt;span class="nc"&gt;.left&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span-columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$side&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-    &lt;span class="na"&gt;margin-left&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="nc"&gt;.show-right&lt;/span&gt; &lt;span class="k"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;margin-left&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="kt"&gt;%&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
-  &lt;span class="p"&gt;}&lt;/span&gt;
-
-  &lt;span class="nc"&gt;.main&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="na"&gt;width&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nf"&gt;columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$main&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-    &lt;span class="nc"&gt;.show-right&lt;/span&gt; &lt;span class="k"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;margin-left&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
-  &lt;span class="p"&gt;}&lt;/span&gt;
-
-  &lt;span class="nc"&gt;.right&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="na"&gt;width&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nf"&gt;columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$side&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-    &lt;span class="nc"&gt;.show-right&lt;/span&gt; &lt;span class="k"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;margin-right&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
-  &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;At our medium breakpoint,
-we change the styles to show both the
-left and main sections by default.
-I used &lt;code&gt;width: columns()&lt;/code&gt;
-instead of &lt;code&gt;span-columns&lt;/code&gt;
-on the main &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; right sections
-because only the width actually needs to change,
-while our left column needs the gutter adjusted as&amp;nbsp;well.&lt;/p&gt;
-&lt;p&gt;We also hide the left toggle
-( &lt;code&gt;[href=&amp;quot;#left&amp;quot;]&lt;/code&gt; )
-as it is no longer&amp;nbsp;needed.&lt;/p&gt;
-&lt;/section&gt;
-&lt;section id="large-layout"&gt;
-&lt;h2&gt;Large&amp;nbsp;Layout:&lt;/h2&gt;
-&lt;pre class="code scss"&gt;
-&lt;span class="nv"&gt;$main&lt;/span&gt;&lt;span class="o"&gt; :&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="nv"&gt;$side&lt;/span&gt;&lt;span class="o"&gt; :&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$large-columns&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nv"&gt;$main&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;Nothing new here; we&amp;#8217;re just dividing up the space
-into variables we can&amp;nbsp;use.&lt;/p&gt;
-&lt;pre class="code scss"&gt;
-&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; at-breakpoint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$large-columns&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="nt"&gt;href&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;#right&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;visibility&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="no"&gt;hidden&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
-
-  &lt;span class="nc"&gt;.left&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span-columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$side&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-    &lt;span class="nc"&gt;.show-right&lt;/span&gt; &lt;span class="k"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;margin-left&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
-  &lt;span class="p"&gt;}&lt;/span&gt;
-
-  &lt;span class="nc"&gt;.main&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="na"&gt;width&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nf"&gt;columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$main&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="p"&gt;}&lt;/span&gt;
-
-  &lt;span class="nc"&gt;.right&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span-columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$side&lt;/span&gt; &lt;span class="n"&gt;omega&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;At our largest breakpoint
-we are simply overriding everything
-to get ourselves back to a normal layout.
-No more off-canvas malarkey here.
-Hide the other toggle-link,
-make sure everything stays put
-even if we have leftover classes,
-and you&amp;#8217;re&amp;nbsp;done.&lt;/p&gt;
-&lt;/section&gt;
-&lt;section id="final-tweaks"&gt;
-&lt;h2&gt;Final&amp;nbsp;Tweaks&lt;/h2&gt;
-&lt;p&gt;I&amp;#8217;ve added a number of styles
-to make it obvious what&amp;#8217;s going on
-and highlight the transitions
-in our &lt;a class="reference external" href="/demos/susy-off-canvas/"&gt;demo&lt;/a&gt;.
-You also need a bit of &lt;span class="caps"&gt;JS&lt;/span&gt;
-to make the toggles work,
-but this is all you need for the Susy&amp;nbsp;setup.&lt;/p&gt;
-&lt;p&gt;Play around with all the numbers;
-it&amp;#8217;s amazingly flexible.
-It works the same as any other Susy grid:
-any reasonable settings should&amp;nbsp;work.&lt;/p&gt;
-&lt;p&gt;Feel free to peruse the full &lt;a class="reference external" href="https://github.com/oddbird/oddsite/blob/master/sass/pages/susy-off-canvas.scss"&gt;sass&lt;/a&gt;
-and &lt;a class="reference external" href="https://github.com/oddbird/oddsite/blob/master/content/static/js/pages/susy-off-canvas.js"&gt;js&lt;/a&gt; source at your&amp;nbsp;leisure.&lt;/p&gt;
 &lt;/section&gt;
 </content>
   </entry>

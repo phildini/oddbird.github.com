@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>             <html class="no-js ie" lang="en" dir="ltr">   <![endif]-->
+<!--[if (gt IE 8)|!(IE)]><!-->  <html class="no-js" lang="en" dir="ltr">      <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+
+  
+
+  <!-- Page Info -->
+  <title>jQuery Chicago 2014 | OddBird</title>
+  <meta name="description" content="Custom-built web tools for humans" />
+
+  <!-- Site Info -->
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="OddBird" />
+  <meta name="keywords" content="custom web development, web tools, open source, python, django, sass, scss, susy, javascript, jquery, js" />
+  <meta name="language" content="en-us" />
+
+  
+  <link href="/feed.atom" rel="alternate" title="OddBird blog posts" type="application/atom+xml">
+  
+
+  <!-- Microformat Profiles -->
+  <!-- hCard, hCalendar, rel-license, rel-tag, XOXO, XFN, VoteLinks -->
+  <link rel="profile" href="http://microformats.org/profile/specs/" />
+
+  <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
+  <meta http-equiv="cleartype" content="on">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1" />
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="initial-scale=1">
+
+  <!--iOS. Delete if not required -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-startup-image" href="/static/images/favicons/splash.png">
+
+  <!-- favicon.ico -->
+  <link rel="shortcut icon" href="/static/images/favicons/favicon.ico" />
+  <link rel="apple-touch-icon" href="/static/images/favicons/apple-touch-icon.png">
+
+  <!-- Styles -->
+  
+  <link rel="stylesheet" href="/static/dist/screen.min.99b4d86e.css" media="screen" />
+  <link rel="stylesheet" href="/static/dist/print.min.217092bf.css" media="print" />
+  
+
+  <!-- Modernizr -->
+  <script src="/static/js/libs/modernizr.custom.41881.js"></script>
+
+  <!-- Page-Specific Head -->
+  
+
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36510846-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+</head>
+
+<body id="oddsite" class="" data-location="blog">
+
+
+<nav role="navigation">
+  
+    <a href="/" class="nav-link" data-active="home">
+      
+  <span data-icon="home"></span>
+
+      home
+    </a>
+  
+    <a href="/birds/" class="nav-link" data-active="birds">
+      
+  <span data-icon="egg"></span>
+
+      birds
+    </a>
+  
+    <a href="/blog/" class="nav-link" data-active="blog">
+      
+  <span data-icon="bubbles"></span>
+
+      blog
+    </a>
+  
+</nav>
+
+<h1 role="banner">
+  <a href="/" rel="home">
+    
+  <span data-icon="oddbird"></span>
+
+    
+  <span class="is-hidden">OddBird</span>
+
+  </a>
+</h1>
+
+<main role="main"  data-default-styles="1">
+  
+  
+  <h1 class="title">jQuery Chicago 2014</h1>
+
+
+
+
+<div class="byline">
+  
+  <time datetime="2014-09-17T00:00:00" pubdate="pubdate">
+    September 17, 2014
+  </time>
+  
+
+  
+  <span class="vcard">
+    by <a href="/authors/jonny/" class="fn">jonny</a>
+  </span>
+  
+
+  
+    <span class="tags">
+      in
+      <a href="/tags/code/" rel="tag">code</a>, <a href="/tags/conferences/" rel="tag">conferences</a>, <a href="/tags/javascript/" rel="tag">javascript</a>, <a href="/tags/jquery/" rel="tag">jquery</a>.
+    </span>
+  
+</div>
+
+<div class="body">
+  <p>After attending conferences, I find it helpful to synthesize a few practical
+takeaways that I can immediately begin working into my code. Some of them are
+new, while others are common techniques that I&#8217;m just not in the habit of&nbsp;doing.</p>
+<p>So what got my attention at <a class="reference external" href="http://events.jquery.org/2014/chicago/">jQuery Conference Chicago 2014</a>? In no
+particular&nbsp;order:</p>
+<section id="web-workers">
+<h2>Web&nbsp;Workers</h2>
+<p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/Guide/Performance/Using_web_workers">Web Workers</a> are here and ready for primetime (or at least
+<a class="reference external" href="http://caniuse.com/#feat=webworkers">close enough to ready</a>)! It would be nice to get some abstractions to make
+them easier to work with (and it&#8217;ll be great when <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker">SharedWorkers</a> and
+<a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorker_API">ServiceWorkers</a> get to the same level of <a class="reference external" href="http://caniuse.com/#feat=sharedworkers">support</a>), but I&#8217;m not waiting&nbsp;around.</p>
+<p>Basically, Workers provide the ability to run computationally intensive tasks
+in a background thread, without blocking the <span class="caps">UI</span> or other scripts. Workers don&#8217;t
+have access to the <code>window</code> object or the <span class="caps">DOM</span>, but they can pass data back
+and forth from the main client&nbsp;script.</p>
+<p>Keep the <span class="caps">UI</span> responsive, and let Workers do difficult tasks in the background.
+(Aside: This is awesome. Why isn&#8217;t everyone using it&nbsp;already?)</p>
+<pre class="code js">
+<span class="c1">// main script
+</span><span class="kd">var</span> <span class="nx">worker</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Worker</span><span class="p">(</span><span class="s1">'my_worker.js'</span><span class="p">);</span>
+<span class="nx">worker</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'message'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'The worker said: '</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nx">worker</span><span class="p">.</span><span class="nx">postMessage</span><span class="p">(</span><span class="s1">'Hello Worker!'</span><span class="p">);</span>
+</pre>
+<pre class="code js">
+<span class="c1">// worker script ('my_worker.js')
+</span><span class="nx">self</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'message'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'The client said: '</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+  <span class="nx">self</span><span class="p">.</span><span class="nx">postMessage</span><span class="p">(</span><span class="s1">'Hello Client!'</span><span class="p">);</span>
+<span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+</pre>
+<p>Check out <a class="reference external" href="http://codepen.io/jgerigmeyer/pen/vKixI">another (contrived) example</a> to see it in action. Notice that the
+timer (and the entire <span class="caps">UI</span>) locks up while running the task without Workers, but
+continues smoothly when Workers are used. (I&#8217;m also using the
+<a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/Blob.Blob">Blob() constructor</a> to allow for inline Worker scripts, instead of importing
+from another&nbsp;file.)</p>
+<p>So when might I actually use Workers? From this helpful <a class="reference external" href="http://www.html5rocks.com/en/tutorials/workers/basics/"><span class="caps">HTML5</span> Rocks article</a>:</p>
+<pre>
+- Prefetching and/or caching data for later use
+- Code syntax highlighting or other real-time text formatting
+- Spell checker
+- Analyzing video or audio data
+- Background I/O or polling of webservices
+- Processing large arrays or humungous JSON responses
+- Image filtering in &lt;canvas&gt;
+- Updating many rows of a local web database
+</pre>
+<p>Do you already use Web Workers, or have additional suggestions or&nbsp;warnings?</p>
+<p><span class="caps">HT</span>: <a class="reference external" href="http://twitter.com/potch">&#64;potch</a> for the <a class="reference external" href="http://potch.github.io/workers-talk/">talk</a>
+that got me&nbsp;started.</p>
+</section>
+<section id="ecmascript6">
+<h2>ECMAScript6</h2>
+<p>You know what else is here, and (mostly) ready for primetime? <a class="reference external" href="http://wiki.ecmascript.org/doku.php?id=harmony:specification_drafts#draft_specification_for_es.next_ecma-262_edition_6">ECMAScript 6</a>!
+Some of the new features I&#8217;m most excited&nbsp;about:</p>
+<ul class="simple">
+<li><code>String.prototype.contains()</code> instead of <code>indexOf()</code></li>
+<li>native&nbsp;promises</li>
+<li><code>Object.assign()</code> for merging&nbsp;objects</li>
+<li><code>Map()</code> and <code>Set()</code></li>
+<li>blocked scope variables using <code>let</code></li>
+<li>template&nbsp;strings(!):</li>
+</ul>
+<pre class="code js">
+<span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">'Jonny'</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">company</span> <span class="o">=</span> <span class="s1">'OddBird'</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="err">`</span><span class="nx">I</span><span class="err">'</span><span class="nx">m</span> <span class="nx">$</span><span class="p">{</span><span class="nx">name</span><span class="p">},</span> <span class="nx">and</span> <span class="nx">I</span> <span class="nx">work</span> <span class="nx">at</span> <span class="nx">$</span><span class="p">{</span><span class="nx">company</span><span class="p">}.</span><span class="err">`</span><span class="p">);</span>
+</pre>
+<ul class="simple">
+<li>default function&nbsp;parameters</li>
+<li>modules, exports, and a system&nbsp;loader</li>
+<li>expanded <code>class</code> syntax</li>
+</ul>
+<p>This just scratches the surface. Check out a <a class="reference external" href="http://git.io/es6features">helpful summary</a>, and keep a
+close eye on the <a class="reference external" href="http://kangax.github.io/compat-table/es6/">browser support&nbsp;chart</a>.</p>
+<p>So how can I use these features without waiting for full browser&nbsp;implementation?</p>
+<p>A subset of <span class="caps">ES6</span> can be used by simply adding Paul Miller&#8217;s <a class="reference external" href="http://github.com/paulmillr/es6-shim/"><span class="caps">ES6</span> Shim</a>. To use
+the more substantive features (e.g. template strings, default parameters,
+modules), compile <span class="caps">ES6</span> code into <span class="caps">ES5</span> using Google&#8217;s <a class="reference external" href="http://github.com/google/traceur-compiler">Traceur</a> (probably with
+<a class="reference external" href="http://github.com/sindresorhus/gulp-traceur">gulp-traceur</a> or <a class="reference external" href="http://github.com/aaronfrost/grunt-traceur">grunt-traceur</a>).</p>
+<p><span class="caps">HT</span>: <a class="reference external" href="http://twitter.com/johnkpaul">John K. Paul</a> for his
+<a class="reference external" href="http://johnkpaul.github.io/presentations/jqcon/2014/es6-now/">talk</a>
+encouraging devs to use <span class="caps">ES6</span>&nbsp;now.</p>
+</section>
+<section id="throw-more-errors">
+<h2>Throw More&nbsp;Errors</h2>
+<p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error">Error objects</a> have been around forever, and aren&#8217;t difficult to&nbsp;use:</p>
+<pre class="code js">
+<span class="k">if</span> <span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// do the thing
+</span><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'User <span class="caps">ID</span> not found.'</span><span class="p">)</span>
+<span class="p">}</span>
+</pre>
+<p>But I&#8217;m not very good at actually doing this. When I&#8217;m writing code, I usually
+default to the &#8220;fail silently&#8221;&nbsp;approach:</p>
+<pre class="code js">
+<span class="k">if</span> <span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// do the thing
+</span><span class="p">}</span>
+</pre>
+<p>There are times when failing silently is exactly what I want: when the code
+will continue to work correctly regardless. But often it&#8217;d be better
+(especially in development, and maybe even in production) to throw an error
+with a descriptive message stating what went wrong. Not only does this speed
+debugging, but it also lets me know that something went wrong in the first&nbsp;place.</p>
+<p>To make this simpler, I&#8217;ve started using runtime&nbsp;assertions:</p>
+<pre class="code js">
+<span class="kd">var</span> <span class="nx">assert</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">message</span><span class="p">,</span> <span class="nx">test</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">test</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'Assertion failed: '</span> <span class="o">+</span> <span class="nx">message</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">assert</span><span class="p">(</span><span class="s1">'User has an <span class="caps">ID</span>'</span><span class="p">,</span> <span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+</pre>
+<p>When to consider throwing&nbsp;Errors?</p>
+<ul class="simple">
+<li>When a function requires a specific argument&nbsp;type</li>
+<li>When a function requires a specific number of&nbsp;arguments</li>
+<li>For unexpected code paths (i.e. code that should never be&nbsp;executed)</li>
+<li>When using promises (every promise should have an error handler using
+<code>.catch()</code> or <code>.then()</code>)</li>
+</ul>
+<p><span class="caps">HT</span>: <a class="reference external" href="http://twitter.com/rlph">Ralph Holzmann</a> for his helpful
+<a class="reference external" href="http://blog.ralphholzmann.com/presentations/2014/jquerychicago/throw_new_error.pdf">talk</a>.</p>
+</section>
+<section id="debugging-by-proxy">
+<h2>Debugging by&nbsp;Proxy</h2>
+<p><a class="reference external" href="http://twitter.com/brianarn">Brian Arnold</a> <a class="reference external" href="http://www.randomthink.net/presentations/jqcon-chicago-2014-beyond-devtools/presentation/">demoed</a> how to use proxy tools for development and&nbsp;debugging.</p>
+<p><a class="reference external" href="http://www.charlesproxy.com/">Charles</a> is a really powerful tool for anything from Ajax debugging and
+bandwidth throttling to <span class="caps">DNS</span> spoofing and local/remote resource mapping. I can
+view or modify outgoing requests or incoming responses (even from another
+device on the same network connected through Charles), essentially turn my
+computer into a dev environment for any website with resource mapping, throttle
+my bandwidth to mimic 3G or <span class="caps">LTE</span>, or disable caching or cookies&nbsp;entirely.</p>
+</section>
+<section id="js-testing-with-intern">
+<h2><span class="caps">JS</span> Testing With&nbsp;Intern</h2>
+<p>I&#8217;ve been using <a class="reference external" href="http://karma-runner.github.io/">Karma</a> as a test-runner, and I&#8217;m mostly satisfied with what
+it can do (notably: run tests quickly using <a class="reference external" href="http://phantomjs.org/">PhantomJS</a> to mimic a browser
+environment, and generate <a class="reference external" href="http://gotwarlost.github.io/istanbul/">istanbul</a> coverage&nbsp;reports).</p>
+<p>But I&#8217;m intrigued by some of the features that <a class="reference external" href="http://theintern.io/">Intern</a> offers (notably:
+integration with <a class="reference external" href="http://www.seleniumhq.org/">Selenium</a>, support for true browser events and running tests
+in standalone browsers, and built-in <a class="reference external" href="https://travis-ci.com/">Travis <span class="caps">CI</span></a>&nbsp;integration).</p>
+<p>Have you used either of these tools, or have further pros/cons to&nbsp;offer?</p>
+</section>
+
+</div>
+  <aside class="comments">
+  Have feedback on this post?
+  Talk to us on
+  <a href="https://twitter.com/oddestbirds">Twitter</a>,
+  or email <span class="email">birds(who are &#39;at&#39; the)oddbird.net</span>.
+</aside class="comments">
+
+
+</main>
+
+<aside class="fatfooter">
+<div class="fat-wrap">
+  <section class="recent-posts">
+  <h2 class="rp-title">Recent Posts</h2>
+  <ul class="rp-list">
+    <li>
+      <a href="/2014/09/17/jqcon"  rel="bookmark">jQuery Chicago 2014</a>
+    </li>
+    <li>
+      <a href="/2014/06/14/sqlalchemy-postgres-autocommit"  rel="bookmark">PostgreSQL transactions and SQLAlchemy</a>
+    </li>
+    <li>
+      <a href="/2013/12/30/sixth-year"  rel="bookmark">2013</a>
+    </li>
+    <li>
+      <a href="/2013/11/27/susy-alpha-5"  rel="bookmark">Susy Next: Alpha 5</a>
+    </li>
+    <li>
+      <a href="/2013/10/19/map-merge"  rel="bookmark">Map-Set vs. Map-Merge</a>
+    </li>
+  </ul>
+</section>
+  
+  
+</div>
+</aside>
+
+<footer role="contentinfo">
+<div class="footer-wrap">
+
+  <p class="copyright h-card">
+    Copyright &copy; 2014
+    <a href="http://oddbird.net" class="fn org url">OddBird</a>
+  </p>
+
+  <p class="history">Established in 2008 by three odd brothers.</p>
+
+  <p class="colophon">
+    Built with
+    <a href="http://www.w3.org/TR/html5/">HTML5</a>,
+    <a href="https://github.com/mitsuhiko/rstblog/">rstBlog</a>,
+    <a href="http://www.python.org">Python</a>,
+    <a href="http://www.w3.org/TR/css-2010/">CSS3</a>,
+    <a href="http://www.jquery.com/">jQuery</a>,
+    <a href="http://gruntjs.com/">Grunt</a>,
+    <a href="http://keyamoon.com/icomoon/">IcoMoon</a>,
+    <a href="http://susy.oddbird.net/">Susy</a>,
+    <a href="http://compass-style.org/">Compass</a>,
+    <a href="http://breakpoint-sass.com/">Breakpoint</a>,
+    and&nbsp;<a href="http://sass-lang.com/">Sass</a>.
+  </p>
+
+</div>
+</footer>
+
+
+<!-- JavaScript -->
+<script src="/static/js/libs/jquery-1.9.1.min.js"></script>
+<script src="/static/dist/all-js.min.a37c93bc.js"></script>
+
+
+</body>
+</html>
