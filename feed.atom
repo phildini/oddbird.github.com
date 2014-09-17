@@ -23,7 +23,7 @@ particular&amp;nbsp;order:&lt;/p&gt;
 &lt;section id="web-workers"&gt;
 &lt;h2&gt;Web&amp;nbsp;Workers&lt;/h2&gt;
 &lt;p&gt;&lt;a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/Guide/Performance/Using_web_workers"&gt;Web Workers&lt;/a&gt; are here and ready for primetime (or at least
-&lt;a class="reference external" href="http://caniuse.com/#feat=webworkers"&gt;close enough to ready&lt;/a&gt;)! It would be nice to get some abstractions to make
+&lt;a class="reference external" href="http://caniuse.com/#feat=webworkers"&gt;close enough to ready&lt;/a&gt;). It would be nice to get some abstractions to make
 them easier to work with (and it&amp;#8217;ll be great when &lt;a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker"&gt;SharedWorkers&lt;/a&gt; and
 &lt;a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorker_API"&gt;ServiceWorkers&lt;/a&gt; get to the same level of &lt;a class="reference external" href="http://caniuse.com/#feat=sharedworkers"&gt;support&lt;/a&gt;), but I&amp;#8217;m not waiting&amp;nbsp;around.&lt;/p&gt;
 &lt;p&gt;Basically, Workers provide the ability to run computationally intensive tasks
@@ -67,9 +67,9 @@ from another&amp;nbsp;file.)&lt;/p&gt;
 &lt;p&gt;&lt;span class="caps"&gt;HT&lt;/span&gt;: &lt;a class="reference external" href="http://twitter.com/potch"&gt;&amp;#64;potch&lt;/a&gt; for the &lt;a class="reference external" href="http://potch.github.io/workers-talk/"&gt;talk&lt;/a&gt;
 that got me&amp;nbsp;started.&lt;/p&gt;
 &lt;/section&gt;
-&lt;section id="ecmascript6"&gt;
-&lt;h2&gt;ECMAScript6&lt;/h2&gt;
-&lt;p&gt;You know what else is here, and (mostly) ready for primetime? &lt;a class="reference external" href="http://wiki.ecmascript.org/doku.php?id=harmony:specification_drafts#draft_specification_for_es.next_ecma-262_edition_6"&gt;ECMAScript 6&lt;/a&gt;!
+&lt;section id="ecmascript-6"&gt;
+&lt;h2&gt;ECMAScript&amp;nbsp;6&lt;/h2&gt;
+&lt;p&gt;You know what else is here, and (mostly) ready for primetime? &lt;a class="reference external" href="http://wiki.ecmascript.org/doku.php?id=harmony:specification_drafts#draft_specification_for_es.next_ecma-262_edition_6"&gt;ECMAScript 6&lt;/a&gt;.
 Some of the new features I&amp;#8217;m most excited&amp;nbsp;about:&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;&lt;code&gt;String.prototype.contains()&lt;/code&gt; instead of &lt;code&gt;indexOf()&lt;/code&gt;&lt;/li&gt;
