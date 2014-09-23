@@ -2,11 +2,71 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title type="text">Recent Blog Posts</title>
   <id>http://oddbird.net/feed.atom</id>
-  <updated>2014-09-17T00:00:00Z</updated>
+  <updated>2014-09-23T00:00:00Z</updated>
   <link href="http://oddbird.net/" />
   <link href="http://oddbird.net/feed.atom" rel="self" />
   <subtitle type="text">Recent blog posts</subtitle>
   <generator>Werkzeug</generator>
+  <entry xml:base="http://oddbird.net/feed.atom">
+    <title type="text">Python for Ada</title>
+    <id>http://oddbird.net/2014/09/23/python-supports-the-ada-initiative</id>
+    <updated>2014-09-23T00:00:00Z</updated>
+    <link href="http://oddbird.net/2014/09/23/python-supports-the-ada-initiative" />
+    <author>
+      <name>OddBird</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;a class="reference external" href="https://supportada.org/?campaign=python"&gt;&lt;img width="600" height="175" src="https://adainitiative.org/counters/2014counter-python.svg"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://supportada.org/?campaign=python"&gt;&lt;img style="float: right;" src="/static/images/Ada-Initiative-color-sticker-208x300.png"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://supportada.org/?campaign=python"&gt;Donate&lt;/a&gt; to the &lt;a class="reference external" href="http://adainitiative.org/"&gt;Ada Initiative&lt;/a&gt; today to support women in
+open technology and culture. If we hit $7500 by Friday, &lt;a class="reference external" href="http://jacobian.org/"&gt;Jacob&lt;/a&gt; and &lt;a class="reference external" href="http://alexgaynor.net/"&gt;Alex&lt;/a&gt;
+and I will match your donations to make it a nice round $15k. Life is short, go
+&lt;a class="reference external" href="https://supportada.org/?campaign=python"&gt;donate now&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;I&amp;#8217;ve spent most of my working life with Python and open technology. Python and
+open source have been good to me. They&amp;#8217;ve helped me &lt;a class="reference external" href="http://oddbird.net/2013/12/30/sixth-year/"&gt;start a company&lt;/a&gt;, &lt;a class="reference external" href="http://pyvideo.org/speaker/35/carl-meyer"&gt;become
+a public speaker&lt;/a&gt;, be &lt;a class="reference external" href="https://docs.djangoproject.com/en/dev/internals/team/"&gt;recognized for my contributions&lt;/a&gt;, and make friends all
+over the&amp;nbsp;world.&lt;/p&gt;
+&lt;p&gt;I attended my first PyCon in 2008, and I&amp;#8217;ve been to every one since. I gave my
+&lt;a class="reference external" href="http://pyvideo.org/video/389/pycon-2011--reverse-engineering-ian-bicking--39-s"&gt;first PyCon talk&lt;/a&gt; in 2011. That year, 1% of the talks were by women;
+ninety-five out of ninety-six by men. Being one of those ninety-five helped me
+to launch a career in open-source software. Ninety-odd other men got that same
+opportunity that year; one woman&amp;nbsp;did.&lt;/p&gt;
+&lt;p&gt;Three years later, thanks to the incredible outreach efforts of Jessica
+McKellar, the amazing &lt;a class="reference external" href="http://www.pyladies.com/"&gt;PyLadies&lt;/a&gt;, the Ada Initiative, and many others, women
+gave a &lt;strong&gt;full third&lt;/strong&gt; of the talks at PyCon&amp;nbsp;2014.&lt;/p&gt;
+&lt;hr class="docutils" /&gt;
+&lt;p&gt;&lt;a href="https://supportada.org/?campaign=python"&gt;&lt;img width="200" style="float: left; margin: 12px;" src="/static/images/miko.jpg"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I have two sons, a seven-year-old and a four-month-old (yep, that&amp;#8217;s him). With
+the second just arrived, I think a lot these days about the work I do. I want
+it to be work that will make them proud, that I will be happy to tell them&amp;nbsp;about.&lt;/p&gt;
+&lt;p&gt;I am ashamed to admit to being part of this industry when I see Kathy Sierra or
+Adria Richards or Anita Sarkeesian or &lt;a class="reference external" href="http://www.cracked.com/blog/5-things-i-learned-as-internets-most-hated-person/"&gt;Zoe Quinn&lt;/a&gt; or &lt;a class="reference external" href="http://geekfeminism.wikia.com/wiki/Timeline_of_incidents"&gt;any number of other
+women&lt;/a&gt; systematically harassed, threatened, and attacked by gangs of abusive
+men for the crime of speaking their minds as&amp;nbsp;women.&lt;/p&gt;
+&lt;p&gt;I am ashamed to be part of this industry because of &lt;a class="reference external" href="http://anontechlady.wordpress.com/2014/08/04/my-first-oscon/"&gt;pervasive sexual
+harassment&lt;/a&gt; and sexism at tech conferences, in the workplace, and at&amp;nbsp;meetups.&lt;/p&gt;
+&lt;p&gt;I want to be able to wholeheartedly celebrate my successes and recommend
+open-source software communities, but I know that I&amp;#8217;ve been &lt;a class="reference external" href="http://whatever.scalzi.com/2012/05/15/straight-white-male-the-lowest-difficulty-setting-there-is/"&gt;playing on the
+easy setting&lt;/a&gt;: paid more and presumed competent because of my gender, skin
+color, cultural similarity to those in positions of power, and &lt;a class="reference external" href="http://www.confreaks.com/videos/4454-DjangoCon2014-all-you-need-is-l"&gt;other
+attributes that I did nothing to&amp;nbsp;earn&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;But I know we can change our industry. I&amp;#8217;m proud to be a part of the Python
+community when I see it &lt;a class="reference external" href="http://www.forbes.com/sites/women2/2013/04/09/record-number-of-women-give-tech-talks-at-pycon-2013/"&gt;leading&lt;/a&gt; the &lt;a class="reference external" href="http://adainitiative.org/2012/10/leading-open-source-conference-pycon-us-shares-responsereport-guidelines-for-harassment/"&gt;way&lt;/a&gt; in working towards being
+welcoming to people who don&amp;#8217;t all look, talk, and act like me. I&amp;#8217;m happy to be
+in the Python community (and humbled by all the hard work it took to get here)
+when I see&amp;nbsp;this:&lt;/p&gt;
+&lt;p&gt;&lt;blockquote class="twitter-tweet" lang="en"&gt;&lt;p&gt;Hello from your &lt;a href="https://twitter.com/pycon"&gt;@PyCon&lt;/a&gt; Diversity Outreach Chair. % PyCon talks by women: (2011: 1%), (2012: 7%), (2013: 15%), (2014: 33%). Outreach&amp;nbsp;works.&lt;/p&gt;&amp;mdash; Jessica McKellar (@jessicamckellar) &lt;a href="https://twitter.com/jessicamckellar/status/413009020522221568"&gt;December 17, 2013&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;&lt;/p&gt;
+&lt;p&gt;I&amp;#8217;m proud to be part of the Django community when we adopt a strong &lt;a class="reference external" href="https://www.djangoproject.com/conduct/"&gt;Code of
+Conduct&lt;/a&gt; (in consultation with Ada Initiative!), and when &lt;a class="reference external" href="http://geekfeminism.org/2013/08/15/that-time-i-wasnt-harassed-at-a-conference/"&gt;&amp;#8220;that time I wasn&amp;#8217;t
+harassed at a conference&amp;#8221;&lt;/a&gt; is a description of&amp;nbsp;DjangoCon.&lt;/p&gt;
+&lt;p&gt;That&amp;#8217;s the community that I want to be a part of, and the Ada Initiative is
+&lt;a class="reference external" href="http://adainitiative.org/what-we-do/workshops-and-training/"&gt;working every day&lt;/a&gt; to &lt;a class="reference external" href="http://adacamp.org/"&gt;make it a reality&lt;/a&gt;. If that&amp;#8217;s the community you want
+too, join me and &lt;a class="reference external" href="https://supportada.org/?campaign=python"&gt;donate today&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://supportada.org/?campaign=python"&gt;&lt;img width="600" height="175" src="https://adainitiative.org/counters/2014counter-python.svg"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Thanks for&amp;nbsp;listening,&lt;/p&gt;
+&lt;p&gt;Carl&lt;/p&gt;
+</content>
+  </entry>
   <entry xml:base="http://oddbird.net/feed.atom">
     <title type="text">jQuery Chicago 2014</title>
     <id>http://oddbird.net/2014/09/17/jqcon</id>
@@ -1193,84 +1253,6 @@ We still have a long way to go,
 but we&amp;#8217;re very excited about the power and flexability
 this engine has to&amp;nbsp;offer.&lt;/p&gt;
 &lt;p&gt;Check out the &lt;a class="reference external" href="https://github.com/ericam/susy/tree/susy-next"&gt;susy-next branch on&amp;nbsp;GitHub&lt;/a&gt;.&lt;/p&gt;
-</content>
-  </entry>
-  <entry xml:base="http://oddbird.net/feed.atom">
-    <title type="text">Sass Layout in 2013 and the Future of Susy</title>
-    <id>http://oddbird.net/2013/01/01/susy-next</id>
-    <updated>2013-01-01T00:00:00Z</updated>
-    <link href="http://oddbird.net/2013/01/01/susy-next" />
-    <author>
-      <name>OddBird</name>
-    </author>
-    <content type="html">&lt;p&gt;The web is littered with grid systems and &amp;#8216;frameworks&amp;#8217;
-that force your code &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; design into narrowly defined patterns.
-Even the most semantic of us
-have had to push specialized techniques
-in order to create a usable&amp;nbsp;syntax.&lt;/p&gt;
-&lt;p&gt;But Sass has come a long way, and
-I&amp;#8217;m convinced that it&amp;#8217;s time for something&amp;nbsp;new.&lt;/p&gt;
-&lt;p&gt;What if you had a layout system
-that bends completely to the needs of your site?
-What if you could use one unified syntax
-for handling responsive layouts of any kind?
-What if you had a modular system
-that let you mix-and-match to customize for every site,
-and change your output with simple&amp;nbsp;extensions?&lt;/p&gt;
-&lt;section id="susy-next-a-merger"&gt;
-&lt;h2&gt;Susy Next (A&amp;nbsp;Merger)&lt;/h2&gt;
-&lt;p&gt;I&amp;#8217;m excited to announce Susy Next,
-a joint project from the creators of
-&lt;a class="reference external" href="http://singularity.gs/"&gt;Singularity&lt;/a&gt;, &lt;a class="reference external" href="http://tsi.github.com/Salsa/"&gt;Salsa&lt;/a&gt;, &lt;a class="reference external" href="http://breakpoint-sass.com"&gt;Breakpoint&lt;/a&gt;, and &lt;a class="reference external" href="http://susy.oddbird.net/"&gt;Susy&lt;/a&gt;.
-We&amp;#8217;ll be working together to design and build a
-unified layout system under the Susy&amp;nbsp;name.&lt;/p&gt;
-&lt;p&gt;Please welcome the Susy Next&amp;nbsp;team:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://github.com/jina/"&gt;Jina Bolton&lt;/a&gt; [&lt;a class="reference external" href="http://twitter.com/jina"&gt;&amp;#64;jina&lt;/a&gt;]
-is a Product Designer at &lt;a class="reference external" href="http://do.com/"&gt;Do&lt;/a&gt;,
-a regular speaker at web conferences,
-co-creator of the &lt;a class="reference external" href="http://stuffandnonsense.co.uk/projects/320andup/"&gt;320 and Up&lt;/a&gt; responsive design boilerplate,
-curator of &lt;a class="reference external" href="http://artinmycoffee.com/"&gt;Art in My Coffee&lt;/a&gt;,
-and an active part of &lt;a class="reference external" href="http://teamsassdesign.tumblr.com/"&gt;Team Sass&amp;nbsp;Design&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://github.com/scottkellum/"&gt;Scott Kellum&lt;/a&gt; [&lt;a class="reference external" href="http://twitter.com/scottkellum"&gt;&amp;#64;scottkellum&lt;/a&gt;]
-is a designer at &lt;a class="reference external" href="http://voxmedia.com/"&gt;&lt;span class="caps"&gt;VOX&lt;/span&gt; Media&lt;/a&gt;.
-He created &lt;a class="reference external" href="http://singularity.gs/"&gt;Singularity&lt;/a&gt;
-for managing asymmetric grids,
-as well as &lt;a class="reference external" href="http://github.com/scottkellum/sassy-math"&gt;Sassy Math&lt;/a&gt;, &lt;a class="reference external" href="http://github.com/scottkellum/modular-scale"&gt;Modular Scale&lt;/a&gt;, and&amp;nbsp;more.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://github.com/CrowChick/"&gt;Rachel Nabors&lt;/a&gt; [&lt;a class="reference external" href="http://twitter.com/crowchick"&gt;&amp;#64;crowchick&lt;/a&gt;]
-is a front-ender &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; &lt;span class="caps"&gt;UI&lt;/span&gt; lead at &lt;a class="reference external" href="http://ruzuku.com/"&gt;Ruzuku&lt;/a&gt;
-an award-winning comicker,
-developer, Susy contributor, and a regular speaker at web&amp;nbsp;conferences.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://github.com/dannyprose/"&gt;Danny Palmer&lt;/a&gt; [&lt;a class="reference external" href="https://twitter.com/dannyprose/"&gt;&amp;#64;dannyprose&lt;/a&gt;]
-is an interactive creative and cross-media art director.
-He has helped create &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; maintain the Susy docs for the past year.
-He is also the creator of &lt;a class="reference external" href="http://github.com/dannyprose/Middleman-HTML5BP-HAML"&gt;Middleman-&lt;span class="caps"&gt;HTML5BP&lt;/span&gt;-&lt;span class="caps"&gt;HAML&lt;/span&gt;&lt;/a&gt;,
-a project template using &lt;span class="caps"&gt;HTML5&lt;/span&gt; Boilerplate, &lt;span class="caps"&gt;HAML&lt;/span&gt;, Sprockets,
-Susy, and&amp;nbsp;more.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://github.com/snugug/"&gt;Sam Richard&lt;/a&gt; [&lt;a class="reference external" href="http://twitter.com/Snugug"&gt;&amp;#64;snugug&lt;/a&gt;]
-is a Senior Front End Developer for &lt;a class="reference external" href="http://www.nbcuni.com/"&gt;NBCUniversal&lt;/a&gt;,
-an organizer for various Sass &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; &lt;span class="caps"&gt;RWD&lt;/span&gt; meetups in New York City,
-and a co-maintainer of &lt;a class="reference external" href="http://breakpoint-sass.com"&gt;Breakpoint&lt;/a&gt;, &lt;a class="reference external" href="http://github.com/scottkellum/sassy-math"&gt;Sassy Math&lt;/a&gt;, &lt;a class="reference external" href="http://singularity.gs/"&gt;Singularity&lt;/a&gt;,
-and so&amp;nbsp;on.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://github.com/tsi/"&gt;Tsachi Shlidor&lt;/a&gt; [&lt;a class="reference external" href="http://twitter.com/shlidor"&gt;&amp;#64;shlidor&lt;/a&gt;]
-is a Drupalist front-end developer and themer.
-He created the &lt;a class="reference external" href="http://drupal.org/project/sasson"&gt;Sasson&lt;/a&gt; Drupal theme,
-and the &lt;a class="reference external" href="http://tsi.github.com/Salsa/"&gt;Salsa&lt;/a&gt; layout&amp;nbsp;system.&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="http://github.com/canarymason/"&gt;Mason Wendell&lt;/a&gt; [&lt;a class="reference external" href="http://twitter.com/codingdesigner"&gt;&amp;#64;codingdesigner&lt;/a&gt;]
-is a Creative Director at &lt;a class="reference external" href="http://zivtech.com"&gt;Zivtech&lt;/a&gt;,
-the creator of &lt;a class="reference external" href="http://breakpoint-sass.com"&gt;Breakpoint&lt;/a&gt;
-(simple sass media queries),
-and a contributor to various other great projects.
-He also built &amp;#8220;one of the dumbest Sass experiments&amp;#8221; —
-&lt;a class="reference external" href="http://sassymothereffingtextshadow.com"&gt;sassymothereffingtextshadow&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;All of us are passionate designer/developers,
-with a love for Sass &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; &lt;span class="caps"&gt;CSS&lt;/span&gt;.
-We&amp;#8217;re excited to build a layout syntax that spans
-existing frameworks, techniques, and systems.
-We hope you&amp;#8217;ll get involved, and help make it a community project.
-Stay&amp;nbsp;tuned!&lt;/p&gt;
-&lt;/section&gt;
 </content>
   </entry>
 </feed>
