@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>             <html class="no-js ie" lang="en" dir="ltr">   <![endif]-->
+<!--[if (gt IE 8)|!(IE)]><!-->  <html class="no-js" lang="en" dir="ltr">      <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+
+  
+
+  <!-- Page Info -->
+  <title>Python for Ada | OddBird</title>
+  <meta name="description" content="Custom-built web tools for humans" />
+
+  <!-- Site Info -->
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="OddBird" />
+  <meta name="keywords" content="custom web development, web tools, open source, python, django, sass, scss, susy, javascript, jquery, js" />
+  <meta name="language" content="en-us" />
+
+  
+  <link href="/feed.atom" rel="alternate" title="OddBird blog posts" type="application/atom+xml">
+  
+
+  <!-- Microformat Profiles -->
+  <!-- hCard, hCalendar, rel-license, rel-tag, XOXO, XFN, VoteLinks -->
+  <link rel="profile" href="http://microformats.org/profile/specs/" />
+
+  <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
+  <meta http-equiv="cleartype" content="on">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1" />
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="initial-scale=1">
+
+  <!--iOS. Delete if not required -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-startup-image" href="/static/images/favicons/splash.png">
+
+  <!-- favicon.ico -->
+  <link rel="shortcut icon" href="/static/images/favicons/favicon.ico" />
+  <link rel="apple-touch-icon" href="/static/images/favicons/apple-touch-icon.png">
+
+  <!-- Styles -->
+  
+  <link rel="stylesheet" href="/static/dist/screen.min.47e648a5.css" media="screen" />
+  <link rel="stylesheet" href="/static/dist/print.min.02ca6e7a.css" media="print" />
+  
+
+  <!-- Modernizr -->
+  <script src="/static/js/libs/modernizr.custom.41881.js"></script>
+
+  <!-- Page-Specific Head -->
+  
+
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36510846-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  
+</head>
+
+<body id="oddsite" class="" data-location="blog">
+
+
+<nav role="navigation">
+  
+    <a href="/" class="nav-link" data-active="home">
+      
+  <span data-icon="home"></span>
+
+      home
+    </a>
+  
+    <a href="/birds/" class="nav-link" data-active="birds">
+      
+  <span data-icon="egg"></span>
+
+      birds
+    </a>
+  
+    <a href="/blog/" class="nav-link" data-active="blog">
+      
+  <span data-icon="bubbles"></span>
+
+      blog
+    </a>
+  
+</nav>
+
+<h1 role="banner">
+  <a href="/" rel="home">
+    
+  <span data-icon="oddbird"></span>
+
+    
+  <span class="is-hidden">OddBird</span>
+
+  </a>
+</h1>
+
+<main role="main"  data-default-styles="1">
+  
+  
+  <h1 class="title">Python for Ada</h1>
+
+
+
+
+<div class="body">
+  <p><a href="https://supportada.org/?campaign=python"><img height="300" style="float: right;" src="/static/images/Ada-Initiative-color-sticker-208x300.png"></a></p>
+<p>Short version: <a class="reference external" href="https://supportada.org/?campaign=python">donate</a> to the <a class="reference external" href="http://adainitiative.org/">Ada Initiative</a> today to support women in
+open technology and culture. If we hit $7500 by Friday, <a class="reference external" href="http://jacobian.org/">Jacob</a> and <a class="reference external" href="http://alexgaynor.net/">Alex</a>
+and I will match your donations to make it a nice round $15k. Life is short, go
+<a class="reference external" href="https://supportada.org/?campaign=python">donate now</a>!</p>
+<p><a class="reference external" href="https://supportada.org/?campaign=python"><img width="400" align="center" src="https://adainitiative.org/counters/2014counter-python.svg"></a></p>
+<p>I&#8217;ve spent most of my working life with Python and open technology. Python and
+open source have been very good to me. They&#8217;ve helped me <a class="reference external" href="http://oddbird.net/2013/12/30/sixth-year/">start a company</a>,
+<a class="reference external" href="http://pyvideo.org/speaker/35/carl-meyer">become a public speaker</a>, be <a class="reference external" href="https://docs.djangoproject.com/en/dev/internals/team/">recognized for my contributions</a>, and make
+friends all over the&nbsp;world.</p>
+<p>I attended my first PyCon in 2008, and I&#8217;ve been to every one since. I gave my
+<a class="reference external" href="http://pyvideo.org/video/389/pycon-2011--reverse-engineering-ian-bicking--39-s">first PyCon talk</a> in 2011. That year, 1% of the talks at PyCon were by women;
+ninety-five out of ninety-six by men. I was one of the ninety-five; being one
+of those ninety-five helped me to launch a career in open-source
+software. Ninety or so other men got that same opportunity that year (some gave
+multiple talks); one woman&nbsp;did.</p>
+<p>Three years later, thanks to the incredible outreach efforts of Jessica
+McKellar, the amazing <a class="reference external" href="http://www.pyladies.com/">PyLadies</a>, the Ada Initiative, and many others, a full
+third of the talks at PyCon 2014 were by&nbsp;women.</p>
+<p>I have two sons, a seven-year-old and a four-month-old. With the second just
+recently arrived, I think a lot these days about the work I do; I want it to be
+work that will make them proud, that I will be happy to tell them&nbsp;about.</p>
+<p>I am ashamed to admit to being part of this industry when I see Kathy Sierra or
+Adria Richards or Anita Sarkeesian or <a class="reference external" href="http://www.cracked.com/blog/5-things-i-learned-as-internets-most-hated-person/">Zoe Quinn</a> or <a class="reference external" href="http://geekfeminism.wikia.com/wiki/Timeline_of_incidents">any number of other
+women</a> systematically harassed, threatened, and attacked by gangs of abusive
+men for the crime of speaking their minds as&nbsp;women.</p>
+<p>I am ashamed to be part of this industry because of <a class="reference external" href="http://anontechlady.wordpress.com/2014/08/04/my-first-oscon/">pervasive sexual
+harassment</a> and sexism at tech conferences, in the workplace, and at&nbsp;meetups.</p>
+<p>I want to be able to wholeheartedly celebrate my successes and recommend
+open-source software communities, but I know that I&#8217;ve been <a class="reference external" href="http://whatever.scalzi.com/2012/05/15/straight-white-male-the-lowest-difficulty-setting-there-is/">playing on the
+easy setting</a>: paid more, given the benefit of the doubt, presumed competent,
+because of my gender, skin color, cultural similarity to those in positions of
+power, and other attributes that I did nothing to&nbsp;earn.</p>
+<p>But I also believe all that can change. I&#8217;m proud to be a part of the Python
+community when I see it <a class="reference external" href="http://www.forbes.com/sites/women2/2013/04/09/record-number-of-women-give-tech-talks-at-pycon-2013/">leading</a> the <a class="reference external" href="http://adainitiative.org/2012/10/leading-open-source-conference-pycon-us-shares-responsereport-guidelines-for-harassment/">way</a> in working towards becoming a
+welcoming space for people who don&#8217;t all look, talk, and act like me. I&#8217;m happy
+to be in the Python community (and humbled by all the hard work it took to get
+here) when I see&nbsp;this:</p>
+<p><blockquote class="twitter-tweet" lang="en"><p>Hello from your <a href="https://twitter.com/pycon">@PyCon</a> Diversity Outreach Chair. % PyCon talks by women: (2011: 1%), (2012: 7%), (2013: 15%), (2014: 33%). Outreach&nbsp;works.</p>&mdash; Jessica McKellar (@jessicamckellar) <a href="https://twitter.com/jessicamckellar/status/413009020522221568">December 17, 2013</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+<p>I&#8217;m proud to be part of the Django community when we adopt a strong <a class="reference external" href="https://www.djangoproject.com/conduct/">Code of
+Conduct</a> (based on <a class="reference external" href="http://geekfeminism.wikia.com/index.php?title=Conference_anti-harassment_policy">an Ada Initiative example</a>!), and when <a class="reference external" href="http://geekfeminism.org/2013/08/15/that-time-i-wasnt-harassed-at-a-conference/">&#8220;that time I
+wasn&#8217;t harassed at a conference&#8221;</a> is a description of&nbsp;DjangoCon.</p>
+<p>That&#8217;s the community that I want to be a part of, and the Ada Initiative is
+working every day to make it a reality. If that&#8217;s the community you want too,
+join me and <a class="reference external" href="https://supportada.org/?campaign=python">donate today</a>!</p>
+<p><a class="reference external" href="https://supportada.org/?campaign=python"><img width="400" align="center" src="https://adainitiative.org/counters/2014counter-python.svg"></a></p>
+<p>Thanks for&nbsp;listening,</p>
+<p>Carl</p>
+
+</div>
+  <aside class="comments">
+  Have feedback on this post?
+  Talk to us on
+  <a href="https://twitter.com/oddestbirds">Twitter</a>,
+  or email <span class="email">birds(who are &#39;at&#39; the)oddbird.net</span>.
+</aside class="comments">
+
+
+</main>
+
+<aside class="fatfooter">
+<div class="fat-wrap">
+  <section class="recent-posts">
+  <h2 class="rp-title">Recent Posts</h2>
+  <ul class="rp-list">
+    <li>
+      <a href="/2014/09/17/jqcon"  rel="bookmark">jQuery Chicago 2014</a>
+    </li>
+    <li>
+      <a href="/2014/06/14/sqlalchemy-postgres-autocommit"  rel="bookmark">PostgreSQL transactions and SQLAlchemy</a>
+    </li>
+    <li>
+      <a href="/2013/12/30/sixth-year"  rel="bookmark">2013</a>
+    </li>
+    <li>
+      <a href="/2013/11/27/susy-alpha-5"  rel="bookmark">Susy Next: Alpha 5</a>
+    </li>
+    <li>
+      <a href="/2013/10/19/map-merge"  rel="bookmark">Map-Set vs. Map-Merge</a>
+    </li>
+  </ul>
+</section>
+  
+  
+</div>
+</aside>
+
+<footer role="contentinfo">
+<div class="footer-wrap">
+
+  <p class="copyright h-card">
+    Copyright &copy; 2014
+    <a href="http://oddbird.net" class="fn org url">OddBird</a>
+  </p>
+
+  <p class="history">Established in 2008 by three odd brothers.</p>
+
+  <p class="colophon">
+    Built with
+    <a href="http://www.w3.org/TR/html5/">HTML5</a>,
+    <a href="https://github.com/mitsuhiko/rstblog/">rstBlog</a>,
+    <a href="http://www.python.org">Python</a>,
+    <a href="http://www.w3.org/TR/css-2010/">CSS3</a>,
+    <a href="http://www.jquery.com/">jQuery</a>,
+    <a href="http://gruntjs.com/">Grunt</a>,
+    <a href="http://keyamoon.com/icomoon/">IcoMoon</a>,
+    <a href="http://susy.oddbird.net/">Susy</a>,
+    <a href="http://compass-style.org/">Compass</a>,
+    <a href="http://breakpoint-sass.com/">Breakpoint</a>,
+    and&nbsp;<a href="http://sass-lang.com/">Sass</a>.
+  </p>
+
+</div>
+</footer>
+
+
+<!-- JavaScript -->
+<script src="/static/js/libs/jquery-1.9.1.min.js"></script>
+<script src="/static/dist/all-js.min.a37c93bc.js"></script>
+
+
+</body>
+</html>
