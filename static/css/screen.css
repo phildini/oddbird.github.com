@@ -126,6 +126,9 @@ a:hover, a:focus, a:active {
   padding: 0.61905rem;
   white-space: pre-wrap;
 }
+[data-default-styles] strong, .recent-posts strong {
+  font-weight: bold;
+}
 
 .btn {
   margin: 0;

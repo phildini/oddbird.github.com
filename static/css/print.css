@@ -65,6 +65,9 @@ body pre {
   padding: 0.61905rem;
   white-space: pre-wrap;
 }
+body strong {
+  font-weight: bold;
+}
 
 .btn {
   margin: 0;
