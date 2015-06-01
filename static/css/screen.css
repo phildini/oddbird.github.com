@@ -55,7 +55,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   display: block;
 }
 
-.is-hidden, [id="odd-projects"] h2, [id="odd-process"] h2 {
+.is-hidden, [id="odd-projects"] h2, [id="odd-process"] h2, [id='odd-services'] h2 {
   position: absolute;
   height: 1px;
   width: 1px;
@@ -635,6 +635,11 @@ html {
   line-height: 1.57143rem;
   counter-reset: process;
 }
+[id="odd-process"]:after {
+  content: " ";
+  display: block;
+  clear: both;
+}
 [id="odd-process"] li {
   padding-left: 0.61905rem;
   padding-right: 0.61905rem;
@@ -673,6 +678,14 @@ html {
     margin-right: -100%;
     clear: none;
   }
+}
+
+[id='odd-services'] {
+  font-size: 0.80952rem;
+  line-height: 1.57143rem;
+  padding-left: 0.61905rem;
+  padding-right: 0.61905rem;
+  font-style: italic;
 }
 
 .post--list + .post--list:before {
