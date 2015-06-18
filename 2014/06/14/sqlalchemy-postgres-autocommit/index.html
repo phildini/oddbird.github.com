@@ -44,8 +44,8 @@
 
   <!-- Styles -->
   
-  <link rel="stylesheet" href="/static/dist/screen.min.a0476493.css" media="screen" />
-  <link rel="stylesheet" href="/static/dist/print.min.a3381468.css" media="print" />
+  <link rel="stylesheet" href="/static/dist/screen.min.8442ccc6.css" media="screen" />
+  <link rel="stylesheet" href="/static/dist/print.min.998a712c.css" media="print" />
   
 
   <!-- Modernizr -->
@@ -348,11 +348,11 @@ autocommit on all the appropriate&nbsp;connections:</p>
 <span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s">'postgresql://test'</span><span class="p">,</span> <span class="n">isolation_level</span><span class="o">=</span><span class="s">&quot;<span class="caps">AUTOCOMMIT</span>&quot;</span><span class="p">)</span>
 <span class="n">Session</span> <span class="o">=</span> <span class="n">sessionmaker</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span> <span class="n">autocommit</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
-<span class="n">dconns_by_transaction</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">dconns_by_trans</span> <span class="o">=</span> <span class="p">{}</span>
 
 <span class="nd">&#64;event.listens_for</span><span class="p">(</span><span class="n">Session</span><span class="p">,</span> <span class="s">'after_begin'</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">receive_after_begin</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">transaction</span><span class="p">,</span> <span class="n">connection</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;When a (non-nested) transaction begins, turn autocommit off.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;When a transaction begins, turn autocommit off.&quot;&quot;&quot;</span>
     <span class="n">dbapi_connection</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">connection</span>
     <span class="k">if</span> <span class="n">transaction</span><span class="o">.</span><span class="n">nested</span><span class="p">:</span>
         <span class="k">assert</span> <span class="ow">not</span> <span class="n">dbapi_connection</span><span class="o">.</span><span class="n">autocommit</span>
@@ -364,7 +364,7 @@ autocommit on all the appropriate&nbsp;connections:</p>
 
 <span class="nd">&#64;event.listens_for</span><span class="p">(</span><span class="n">Session</span><span class="p">,</span> <span class="s">'after_transaction_end'</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">receive_after_transaction_end</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">transaction</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Restore autocommit anywhere this transaction turned it off.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Restore autocommit where this transaction turned it off.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">transaction</span> <span class="ow">in</span> <span class="n">dconns_by_trans</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">dbapi_connection</span> <span class="ow">in</span> <span class="n">dconns_by_trans</span><span class="p">[</span><span class="n">transaction</span><span class="p">]:</span>
             <span class="k">assert</span> <span class="ow">not</span> <span class="n">dbapi_connection</span><span class="o">.</span><span class="n">autocommit</span>
@@ -379,6 +379,7 @@ equivalent to <a class="reference external" href="https://docs.djangoproject.com
 <a class="reference external" href="https://docs.djangoproject.com/en/1.6/topics/db/transactions/#django.db.transaction.atomic">transaction.atomic</a> this doesn&#8217;t work as a decorator, but adding that is just
 a matter of some&nbsp;boilerplate):</p>
 <pre class="code python">
+<span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
 <span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">Session</span> <span class="k">as</span> <span class="n">BaseSession</span>
 
 
@@ -391,8 +392,8 @@ a matter of some&nbsp;boilerplate):</p>
     <span class="k">def</span> <span class="nf">atomic</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Transaction context manager.
 
-        Will commit the transaction on successful completion of the
-        block, or roll it back on error.
+        Will commit the transaction on successful completion
+        of the block, or roll it back on error.
 
         Supports nested usage (via savepoints).
 
