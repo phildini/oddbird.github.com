@@ -1,0 +1,1029 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title type="text">Recent Blog Posts</title>
+  <id>http://oddbird.net/feed.atom</id>
+  <updated>2014-10-01T00:00:00Z</updated>
+  <link href="http://oddbird.net/" />
+  <link href="http://oddbird.net/feed.atom" rel="self" />
+  <subtitle type="text">Recent blog posts</subtitle>
+  <generator>Werkzeug</generator>
+  <entry xml:base="http://oddbird.net/feed.atom">
+    <title type="text">SassConf 2014</title>
+    <id>http://oddbird.net/2014/10/01/sassconf</id>
+    <updated>2014-10-01T00:00:00Z</updated>
+    <link href="http://oddbird.net/2014/10/01/sassconf" />
+    <author>
+      <name>OddBird</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;a href="http://sassconf.com/" style="float: left; margin: 0 1rem 1rem 0;"&gt;
+  &lt;img src="/static/images/blog/sassconf.jpeg" alt="SassConf" /&gt;
+&lt;/a&gt; &lt;a class="reference external" href="http://sassconf.com/"&gt;SassConf&lt;/a&gt; starts tomorrow
+at the Scholastic Auditorium in New York!
+We&amp;#8217;re damn proud to be sponsoring such a great event,
+and even more proud this year to have
+&lt;a class="reference external" href="/birds/#bio--claudina"&gt;one of the organizers&lt;/a&gt; on our&amp;nbsp;team.&lt;/p&gt;
+&lt;p&gt;&lt;div style="clear: left;"&gt;&lt;/div&gt; But who cares about pride,
+I have a flight to catch!
+See you all in&amp;nbsp;SoHo!&lt;/p&gt;
+</content>
+  </entry>
+  <entry xml:base="http://oddbird.net/feed.atom">
+    <title type="text">Susy Next: Alpha 5</title>
+    <id>http://oddbird.net/2013/11/27/susy-alpha-5</id>
+    <updated>2013-11-27T00:00:00Z</updated>
+    <link href="http://oddbird.net/2013/11/27/susy-alpha-5" />
+    <author>
+      <name>OddBird</name>
+    </author>
+    <content type="html">&lt;p&gt;Susy Next is almost feature complete!
+Alpha 5 is loaded with changes —
+some as a result of alpha testing,
+but mostly in response to the new power of Sass 3.3.
+This is likely to be our final alpha.
+With a bit more user testing
+and some minor cleanup,
+we hope to hit beta soon
+and then land a stable version
+along side the upcoming releases of Compass and&amp;nbsp;Sass.&lt;/p&gt;
+&lt;section id="sass-and-compass"&gt;
+&lt;h2&gt;Sass and&amp;nbsp;Compass&lt;/h2&gt;
+&lt;p&gt;Sass 3.3 is awesome,
+and we&amp;#8217;ve made a lot of changes in Susy
+to take full advantage of the new toys.
+We started integrating the new &lt;a class="reference external" href="https://github.com/nex3/sass/blob/master/doc-src/SASS_CHANGELOG.md#sassscript-maps"&gt;SassScript Maps&lt;/a&gt; data type
+(not to be confused with &lt;a class="reference external" href="https://github.com/nex3/sass/blob/master/doc-src/SASS_CHANGELOG.md#source-maps"&gt;Source Maps&lt;/a&gt;),
+and the side benefits were huge.
+We&amp;#8217;re also using the new &lt;code&gt;variable-exists()&lt;/code&gt;
+and &lt;code&gt;mixin-exists()&lt;/code&gt; functions
+to check for the presence of various compass features,
+and degrade gracefully if they aren&amp;#8217;t&amp;nbsp;available.&lt;/p&gt;
+&lt;p&gt;In brief:
+&lt;strong&gt;Sass 3.3 is now required&lt;/strong&gt;
+and
+&lt;strong&gt;Compass is no longer required&lt;/strong&gt;,
+although we do tie in with Compass features
+such as vertical-rhythms
+if they are&amp;nbsp;available.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="settings"&gt;
+&lt;h2&gt;Settings&lt;/h2&gt;
+&lt;p&gt;The first thing to do,
+after upgrading Sass,
+is to translate your Susy settings
+into a single map of key/value pairs.
+For a long time the only way to establish defaults
+and user overrides in a Sass plugin has been to use variables.
+In Susy 1 and the early alpha releases, we did the&amp;nbsp;same:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nv"&gt;$columns&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$gutters&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$gutter-position&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="no"&gt;inside&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;But that clogs up the global namespace in ugly ways.
+Now, thanks to SassScript Maps,
+we have a new solution that keeps everything contained,
+and comes with side-benefits for anyone using multiple&amp;nbsp;grids:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nv"&gt;$susy&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+  &lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+  &lt;span class="n"&gt;gutters&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+  &lt;span class="n"&gt;gutter-position&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="no"&gt;inside&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;There is only one variable, named &lt;code&gt;$susy&lt;/code&gt;,
+that takes a map of all your settings.
+You can still use the grid shorthand
+with &lt;code&gt;set-grid&lt;/code&gt; or &lt;code&gt;use-grid&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; set-grid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="no"&gt;inside&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;But you can also mix-and-match shorthand with maps,
+both for grid-settings and for&amp;nbsp;spans:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nv"&gt;$large&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+  &lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+  &lt;span class="n"&gt;container&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;90&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; use-grid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$large&lt;/span&gt; &lt;span class="no"&gt;inside&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="c1"&gt;// ...
+&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="nv"&gt;$large&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;If you need access the current value of a setting,
+just use &lt;code&gt;susy-get(setting-name)&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nv"&gt;$current-columns&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nf"&gt;susy-get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/section&gt;
+&lt;section id="split-gutters"&gt;
+&lt;h2&gt;Split&amp;nbsp;Gutters&lt;/h2&gt;
+&lt;p&gt;Susy Next supports several gutter styles:
+&lt;code&gt;after&lt;/code&gt; (the Susy 1 approach), &lt;code&gt;before&lt;/code&gt;, &lt;code&gt;inside&lt;/code&gt;, &lt;code&gt;inside-static&lt;/code&gt;,
+and &lt;code&gt;split&lt;/code&gt;. Before, after, and split all use margins.
+Inside and inside-static use&amp;nbsp;padding.&lt;/p&gt;
+&lt;p&gt;In previous alphas, &lt;code&gt;split&lt;/code&gt; worked like &lt;code&gt;before&lt;/code&gt; and &lt;code&gt;after&lt;/code&gt;,
+and you had to remove the &lt;code&gt;first&lt;/code&gt; and &lt;code&gt;last&lt;/code&gt; edge-gutters.
+That felt wrong, so we fixed it.
+Split gutters now work similar to inside gutters,
+and there is no reason to remove them at the edges of the grid.
+That simplifies most things, but it complicates nesting.
+You don&amp;#8217;t want gutters added to the edges of an outer element,
+and then added again to the edges of inner&amp;nbsp;elements.&lt;/p&gt;
+&lt;p&gt;Susy is very flexible,
+and there are many ways you can work around that problem already,
+but we added a &lt;code&gt;container&lt;/code&gt; shortcut to make it&amp;nbsp;easier.&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nc"&gt;.outer-element&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt; &lt;span class="n"&gt;container&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="nc"&gt;.inner-element&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/section&gt;
+&lt;section id="full"&gt;
+&lt;h2&gt;Full&lt;/h2&gt;
+&lt;p&gt;People are often confused about spanning full widths in Susy.
+I often see &lt;code&gt;&amp;#64;include span(12 of 12);&lt;/code&gt; or the Susy 1 equivalent.
+That&amp;#8217;s not necessary, and adds a fair amount of extra output
+that you don&amp;#8217;t need.
+Really, in most cases you don&amp;#8217;t need anything at all —
+block elements span the full width by default.
+Sometimes, though, you need to clear the previous floats (&lt;code&gt;clear: both&lt;/code&gt;),
+or you need to clear internal floats (&lt;code&gt;clearfix&lt;/code&gt;),
+but those seemed simple enough that we didn&amp;#8217;t bake them&amp;nbsp;in.&lt;/p&gt;
+&lt;p&gt;That&amp;#8217;s changing.
+Thanks to the added complexity of inside and split gutters,
+which also need to be applied on full-width elements,
+we&amp;#8217;ve added a &lt;code&gt;full&lt;/code&gt; mixin. Use&amp;nbsp;it!&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="c1"&gt;// Wrong! (usually)
+&lt;/span&gt;&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="c1"&gt;// Right!
+&lt;/span&gt;&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; full&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/section&gt;
+&lt;section id="other-changes"&gt;
+&lt;h2&gt;Other&amp;nbsp;Changes&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;code&gt;bleed&lt;/code&gt; now takes standard span syntax, with multiple (&lt;span class="caps"&gt;TRBL&lt;/span&gt;) spans,
+e.g. &lt;code&gt;bleed(1em 2 of 8)&lt;/code&gt; for 1em top/bottom and 2-columns left/right.
+Use &lt;code&gt;bleed-x&lt;/code&gt; and &lt;code&gt;bleed-y&lt;/code&gt; mixins for horizontal and vertical&amp;nbsp;shortcuts.&lt;/li&gt;
+&lt;li&gt;Span arguments now accept &lt;code&gt;narrow&lt;/code&gt;, &lt;code&gt;wide&lt;/code&gt;, or &lt;code&gt;wider&lt;/code&gt; keywords.
+The &lt;code&gt;wide&lt;/code&gt; keyword replaces the old &lt;code&gt;outer&lt;/code&gt; keyword.
+A standard &lt;code&gt;span&lt;/code&gt; is called &lt;code&gt;narrow&lt;/code&gt;,
+&lt;code&gt;wide&lt;/code&gt; adds the width of one gutter,
+and &lt;code&gt;wider&lt;/code&gt; adds two&amp;nbsp;gutters.&lt;/li&gt;
+&lt;li&gt;Re-wrote grid debugging for more concise &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; accurate output.&lt;ul&gt;
+&lt;li&gt;Changed &lt;code&gt;grid-background()&lt;/code&gt; to &lt;code&gt;show-grid()&lt;/code&gt;/&lt;code&gt;show-grids()&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Changed &lt;code&gt;overlay-grid()&lt;/code&gt; to &lt;code&gt;grid-overlay()&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Moved settings into &lt;code&gt;$debug&lt;/code&gt; map:
+&lt;code&gt;$debug: (color: rgba(#66f, .25), toggle: top right);&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Removed the overlay-position&amp;nbsp;setting.&lt;/li&gt;
+&lt;li&gt;Only display vertical-rhythms when &lt;code&gt;$base-line-height&lt;/code&gt; is&amp;nbsp;available.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;first&lt;/code&gt;/&lt;code&gt;alpha&lt;/code&gt;/&lt;code&gt;last&lt;/code&gt;/&lt;code&gt;omega&lt;/code&gt;/&lt;code&gt;nth-&lt;/code&gt; mixins now require grid&amp;nbsp;context.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We&amp;#8217;re in the final stages here,
+working hard to get the last pieces in place
+and give it a coat of polish before it lands.
+Any help or feedback is appreciated,
+just file an issue on &lt;a class="reference external" href="https://github.com/ericam/susy/issues?milestone=4&amp;amp;state=open"&gt;GitHub&lt;/a&gt;, and we&amp;#8217;ll&amp;nbsp;talk.&lt;/p&gt;
+&lt;/section&gt;
+</content>
+  </entry>
+  <entry xml:base="http://oddbird.net/feed.atom">
+    <title type="text">Map-Set vs. Map-Merge</title>
+    <id>http://oddbird.net/2013/10/19/map-merge</id>
+    <updated>2013-10-19T00:00:00Z</updated>
+    <link href="http://oddbird.net/2013/10/19/map-merge" />
+    <author>
+      <name>OddBird</name>
+    </author>
+    <content type="html">&lt;p&gt;When I first heard that Sass 3.3 had no map-set function, I was confused. Why force me to create a map, and then merge it? That sounds like two steps to accomplish one simple task! But that&amp;#8217;s not the case. Map-merge is a much more powerful function, and using it to set a key in an existing map is quite straight-forward. In fact, I couldn&amp;#8217;t come up with a map-set function that shaved off more than a few keystrokes. Here&amp;#8217;s the&amp;nbsp;comparison:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="c1"&gt;// a map!
+&lt;/span&gt;&lt;span class="nv"&gt;$map&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+  &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;hello&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+  &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;world&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="c1"&gt;// a map-set function (not included with Sass)
+&lt;/span&gt;&lt;span class="k"&gt;&amp;#64;function&lt;/span&gt; &lt;span class="nt"&gt;map-set&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="nt"&gt;map&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="nt"&gt;key&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="nt"&gt;value&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nv"&gt;$new&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$key&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nv"&gt;$value&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;return&lt;/span&gt; &lt;span class="nt"&gt;map-merge&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="nt"&gt;map&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="nt"&gt;new&lt;/span&gt;&lt;span class="o"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="c1"&gt;// the difference between map-set and map-merge: almost nothing.
+&lt;/span&gt;&lt;span class="nv"&gt;$merge&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nf"&gt;map-merge&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$map&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;New&lt;/span&gt; &lt;span class="n"&gt;York&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+&lt;span class="nv"&gt;$set&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nf"&gt;map-set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$map&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;New&lt;/span&gt; &lt;span class="n"&gt;York&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+</content>
+  </entry>
+  <entry xml:base="http://oddbird.net/feed.atom">
+    <title type="text">Susy Next: Alpha 4</title>
+    <id>http://oddbird.net/2013/09/05/susy-alpha-4</id>
+    <updated>2013-09-05T00:00:00Z</updated>
+    <link href="http://oddbird.net/2013/09/05/susy-alpha-4" />
+    <author>
+      <name>OddBird</name>
+    </author>
+    <content type="html">&lt;p&gt;I don&amp;#8217;t have a lot of time to delve,
+but let me run through some of the changes
+and new features in &lt;a class="reference external" href="http://rubygems.org/gems/susy/versions/2.0.0.alpha.4"&gt;Susy Next alpha 4&lt;/a&gt; —
+as well as alpha 3, which never got a blog post.
+You can see the full list of changes
+in the &lt;a class="reference external" href="https://github.com/ericam/susy/blob/susy-next/CHANGELOG-NEXT.md"&gt;Susy Next Changelog&lt;/a&gt;,
+and we&amp;#8217;ll work on examples as we start writing&amp;nbsp;docs.&lt;/p&gt;
+&lt;p&gt;If you haven&amp;#8217;t already started using a Susy Next alpha,
+read the &lt;a class="reference external" href="/2013/05/03/susy-next-alpha-2/"&gt;alpha 2&lt;/a&gt; introduction first
+to get a sense of the new syntax and&amp;nbsp;approach.&lt;/p&gt;
+&lt;p&gt;In addition to the new features,
+we&amp;#8217;ve added comprehensive unit test tests
+using &lt;a class="reference external" href="http://miriamsuzanne.com/true/"&gt;True&lt;/a&gt;,
+which we built for the occasion.
+We also have a set of complex nesting tests
+that show how things work in practice.
+Right now,
+the &lt;a class="reference external" href="https://github.com/ericam/susy/blob/susy-next/test/"&gt;test folder&lt;/a&gt;
+provides the best documentation —
+with &lt;code&gt;index.html&lt;/code&gt; showing the True results
+and &lt;code&gt;ag.html&lt;/code&gt; showing several standard grid-types.
+Explore, download, and&amp;nbsp;play!&lt;/p&gt;
+&lt;section id="alpha-3"&gt;
+&lt;h2&gt;Alpha&amp;nbsp;3&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;New&amp;nbsp;Features:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Added &lt;code&gt;gutters&lt;/code&gt; mixin to apply gutters as margin or padding on an&amp;nbsp;element.&lt;/li&gt;
+&lt;li&gt;Added &lt;code&gt;outer&lt;/code&gt; keyword to include gutters in any returned width.
+This replaces the Susy 1 &lt;code&gt;space&lt;/code&gt; mixin.&lt;/li&gt;
+&lt;li&gt;Added &lt;code&gt;container&lt;/code&gt; function to return a given container&amp;#8217;s&amp;nbsp;width.&lt;/li&gt;
+&lt;li&gt;Added &lt;code&gt;auto&lt;/code&gt; keyword to any grid argument
+as a setting for &lt;code&gt;$container-width&lt;/code&gt;.
+This will use &lt;code&gt;$column-width&lt;/code&gt; settings to calculate a container,
+or fallback to&amp;nbsp;100%.&lt;/li&gt;
+&lt;li&gt;Added &lt;code&gt;show-columns&lt;/code&gt; and &lt;code&gt;show-baseline&lt;/code&gt; keywords
+for controlling background-grids.
+The &lt;code&gt;show&lt;/code&gt; keyword will display&amp;nbsp;both.&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;gutter&lt;/code&gt; function now returns half-widths
+when using split or inside&amp;nbsp;gutters.&lt;/li&gt;
+&lt;li&gt;Added margin/padding mixins from Susy 1:
+&lt;code&gt;prefix&lt;/code&gt;, &lt;code&gt;suffix&lt;/code&gt;, &lt;code&gt;pad&lt;/code&gt;,
+&lt;code&gt;pre&lt;/code&gt;, &lt;code&gt;post&lt;/code&gt;, &lt;code&gt;push&lt;/code&gt;, &lt;code&gt;pull&lt;/code&gt;, and &lt;code&gt;squish&lt;/code&gt;.
+They work pretty much the way you expect them to,
+although there&amp;#8217;s a &lt;a class="reference external" href="https://github.com/ericam/susy/issues/204"&gt;small issue&lt;/a&gt;
+we&amp;#8217;ll be fixing in the next release (alpha&amp;nbsp;5).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Backwards Incompatible&amp;nbsp;Changes:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Renamed &lt;code&gt;$isolate&lt;/code&gt; setting to &lt;code&gt;$layout-method&lt;/code&gt;,
+which no longer accepts a boolean,
+only the &lt;code&gt;isolate&lt;/code&gt; and &lt;code&gt;float&lt;/code&gt; keywords.&lt;/li&gt;
+&lt;li&gt;Renamed &lt;code&gt;$static&lt;/code&gt; setting to &lt;code&gt;$layout-math&lt;/code&gt;,
+which no longer accepts a boolean,
+only the &lt;code&gt;static&lt;/code&gt; and &lt;code&gt;fluid&lt;/code&gt; keywords.
+Fluid is used for both Susy 1 &lt;code&gt;fluid&lt;/code&gt; and &lt;code&gt;magic&lt;/code&gt; styles,
+depending on the presence of a &lt;code&gt;$column-width&lt;/code&gt; setting.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section id="alpha-4"&gt;
+&lt;h2&gt;Alpha&amp;nbsp;4&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;New&amp;nbsp;Features:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Added a &lt;code&gt;bleed&lt;/code&gt; mixin.
+This works similar to bleed in Susy 1,
+but accounts for gutters as well
+(unless you pass the &lt;code&gt;no-gutters&lt;/code&gt; keyword).
+Currently only inside gutters are being incorporated,
+but that will be fixed along with the issue linked&amp;nbsp;above.&lt;/li&gt;
+&lt;li&gt;Added a &lt;code&gt;$last-flow&lt;/code&gt; setting
+to control the flow direction of row-ending elements.
+It accepts either &lt;code&gt;to&lt;/code&gt; of &lt;code&gt;from&lt;/code&gt;.
+This is similar to &lt;code&gt;$omega-float&lt;/code&gt; in Susy&amp;nbsp;1.&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;span&lt;/code&gt; mixin now accepts nested &lt;code&gt;&amp;#64;content&lt;/code&gt;,
+so you can nest styles directly in a new&amp;nbsp;context.&lt;/li&gt;
+&lt;li&gt;Added &lt;code&gt;inside-static&lt;/code&gt; option for static gutters in otherwise fluid&amp;nbsp;grids.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;gutters&lt;/code&gt; mixin uses span syntax, accepts explicit gutter&amp;nbsp;spans.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Backwards Incompatible&amp;nbsp;Changes:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;code&gt;grid-background&lt;/code&gt;, &lt;code&gt;grid-overlay&lt;/code&gt;, &lt;code&gt;grid-background-output&lt;/code&gt;,
+&lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; &lt;code&gt;$grid-background-color&lt;/code&gt; have been renamed
+to remiain consistent and avoid conflicts with Compass:&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;grid-background&lt;/code&gt; =&amp;gt; &lt;code&gt;background-grid&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;grid-overlay&lt;/code&gt; =&amp;gt; &lt;code&gt;overlay-grid&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;grid-background-output&lt;/code&gt; =&amp;gt; &lt;code&gt;background-grid-output&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;$grid-background-color&lt;/code&gt; =&amp;gt; &lt;code&gt;$grid-color&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+</content>
+  </entry>
+  <entry xml:base="http://oddbird.net/feed.atom">
+    <title type="text">Susy Next: The Second Alpha</title>
+    <id>http://oddbird.net/2013/05/03/susy-next-alpha-2</id>
+    <updated>2013-05-03T00:00:00Z</updated>
+    <link href="http://oddbird.net/2013/05/03/susy-next-alpha-2" />
+    <author>
+      <name>OddBird</name>
+    </author>
+    <content type="html">&lt;p&gt;I&amp;#8217;ve just released the &lt;a class="reference external" href="http://rubygems.org/gems/susy/versions/2.0.0.alpha.2"&gt;second alpha&lt;/a&gt; of Susy Next.
+Go download and play with&amp;nbsp;it!&lt;/p&gt;
+&lt;p&gt;The main difference you will notice from Susy 1.0
+is a &amp;#8220;natural-language&amp;#8221; syntax
+that allows you to adjust settings more quickly and easily
+on the fly.
+You can also go gridless,
+and we&amp;#8217;ll still help you manage your&amp;nbsp;layouts.&lt;/p&gt;
+&lt;p&gt;We haven&amp;#8217;t written full docs yet,
+and this blog post will be vastly incomplete,
+but I&amp;#8217;ll give you a quick rundown of where we&amp;#8217;re going.
+This is all open to change, of course.
+There&amp;#8217;s a reason we&amp;#8217;re still in&amp;nbsp;alpha.&lt;/p&gt;
+&lt;section id="span-anything"&gt;
+&lt;h2&gt;Span&amp;nbsp;Anything&lt;/h2&gt;
+&lt;p&gt;The main layout mixin is called &lt;code&gt;span&lt;/code&gt;
+and allows you to span columns on a grid,
+or span any width you want,
+and forget about grids&amp;nbsp;entirely.&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="c1"&gt;// span 50%
+&lt;/span&gt;&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="kt"&gt;%&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="c1"&gt;// span 300px;
+&lt;/span&gt;&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;300&lt;/span&gt;&lt;span class="kt"&gt;px&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="c1"&gt;// span 3 columns
+&lt;/span&gt;&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="c1"&gt;// span 4 of 12 columns
+&lt;/span&gt;&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="c1"&gt;// span the last 3 columns in a 5-column row
+&lt;/span&gt;&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;last&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="c1"&gt;// isolate an item in the last 3 columns of a 5-column row
+&lt;/span&gt;&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;last&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="n"&gt;isolate&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="c1"&gt;// isolate 2-col width, in the 3rd of 12 columns
+&lt;/span&gt;&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="c1"&gt;// anything can be arbitrary: width (30em), gutter (20px), &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; location (30%)!
+&lt;/span&gt;&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;isolate&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt; &lt;span class="n"&gt;gutter&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="kt"&gt;px&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="kt"&gt;%&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;You can also use various keywords to change your output from the defaults.
+Output &lt;code&gt;static&lt;/code&gt; or &lt;code&gt;fluid&lt;/code&gt; units;
+move gutters &lt;code&gt;before&lt;/code&gt;, &lt;code&gt;after&lt;/code&gt;, &lt;code&gt;split&lt;/code&gt;, or &lt;code&gt;inside&lt;/code&gt;;
+&lt;code&gt;isolate&lt;/code&gt; or &lt;code&gt;float&lt;/code&gt; elements;
+and so&amp;nbsp;on.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="establishing-grids"&gt;
+&lt;h2&gt;Establishing&amp;nbsp;Grids&lt;/h2&gt;
+&lt;p&gt;In Susy 2.0,
+you still can set individual settings,
+but you can also contain an entire grid in a single argument.
+That allows us to change grids&amp;nbsp;easily:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nv"&gt;$container&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="kt"&gt;%&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$columns&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$gutters&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$gutter-placement&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;before&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="c1"&gt;// or:
+&lt;/span&gt;
+&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; set-grid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="kt"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="n"&gt;before&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Let&amp;#8217;s dissect&amp;nbsp;that.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;A grid starts with an optional container-width,
+similar to the Susy 1.0 &lt;code&gt;$container-width&lt;/code&gt; setting —
+in this case &lt;code&gt;80%&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;After that we have columns,
+which can either be a simple number for symmetrical grids
+(in this case &lt;code&gt;12&lt;/code&gt;)
+or a list of relative column sizes:
+&lt;code&gt;(1 2 3.5 2)&lt;/code&gt; would create 4 columns of unequal&amp;nbsp;size.&lt;/li&gt;
+&lt;li&gt;Then gutters are passed as a simple fraction -
+&lt;code&gt;1/4&lt;/code&gt; of a column for us.
+If you want to establish column/gutter widths
+as you did in Susy 1.0,
+you can pass your ratio as a list of two values —
+&lt;code&gt;(4em 1em)&lt;/code&gt; —
+and we&amp;#8217;ll use those values as column and gutter&amp;nbsp;widths.&lt;/li&gt;
+&lt;li&gt;Finally you can pass a number of optional keyword settings,
+such as &lt;code&gt;before&lt;/code&gt;, &lt;code&gt;after&lt;/code&gt;, &lt;code&gt;split&lt;/code&gt;, and &lt;code&gt;inside&lt;/code&gt;
+to change how we handle gutters;
+&lt;code&gt;static&lt;/code&gt; or &lt;code&gt;fluid&lt;/code&gt; to use either fixed or relative widths;
+and &lt;code&gt;float&lt;/code&gt; or &lt;code&gt;isolate&lt;/code&gt; to establish your default&amp;nbsp;positioning.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Here are a few&amp;nbsp;grids:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nv"&gt;$susy-1-default&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;after&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$960-ish&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;60&lt;/span&gt;&lt;span class="kt"&gt;px&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="kt"&gt;px&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="no"&gt;inside&lt;/span&gt; &lt;span class="no"&gt;static&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$asymmetrical&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="n"&gt;isolate&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="c1"&gt;// set a grid globally
+&lt;/span&gt;&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; set-grid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$susy-1-default&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="c1"&gt;// use a grid locally
+&lt;/span&gt;&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; use-grid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$960-ish&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="cm"&gt;/* This code will use the $960-ish grid... */&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;You can use &lt;code&gt;set-grid()&lt;/code&gt; to establish new grids anywhere you need,
+or &lt;code&gt;use-grid() { ... }&lt;/code&gt; to use a new grid for one block of&amp;nbsp;code.&lt;/p&gt;
+&lt;p&gt;As you can see,
+we&amp;#8217;re trying to make the system as flexible as possible,
+so you can create the layouts that work for&amp;nbsp;you.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="containers-and-grid-backgrounds"&gt;
+&lt;h2&gt;Containers and Grid&amp;nbsp;Backgrounds&lt;/h2&gt;
+&lt;p&gt;Containers are simple with the &lt;code&gt;container&lt;/code&gt; mixin,
+and the grid syntax you already&amp;nbsp;learned.&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; container&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$grid&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Of course, we&amp;#8217;ll default to any grid you already set globally.
+you can also pass an arbitrary width,
+or add keywords to justify your container &lt;code&gt;left&lt;/code&gt;, &lt;code&gt;right&lt;/code&gt;, or &lt;code&gt;center&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="c1"&gt;// 960 container, justified left
+&lt;/span&gt;&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; container&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;960&lt;/span&gt;&lt;span class="kt"&gt;px&lt;/span&gt; &lt;span class="no"&gt;left&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;While you&amp;#8217;re at it,
+you can &lt;code&gt;show&lt;/code&gt; or &lt;code&gt;hide&lt;/code&gt; the grid background
+for that particular&amp;nbsp;container:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; container&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;show&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/section&gt;
+&lt;section id="galleries-formerly-isolate-grid"&gt;
+&lt;h2&gt;Galleries (formerly&amp;nbsp;&amp;#8220;isolate-grid&amp;#8221;)&lt;/h2&gt;
+&lt;p&gt;You can now create a simple gallery layout
+using either isolation or basic float techniques.
+The syntax should be familiar&amp;nbsp;already:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; gallery&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt; &lt;span class="n"&gt;isolate&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/section&gt;
+&lt;section id="media-queries"&gt;
+&lt;h2&gt;Media&amp;nbsp;Queries&lt;/h2&gt;
+&lt;p&gt;Media-query handling hasn&amp;#8217;t been built in yet.
+We recommend that you use the brilliant
+&lt;a class="reference external" href="http://breakpoint-sass.com/"&gt;breakpoint&lt;/a&gt; plugin by Mason Wendell.
+We&amp;#8217;ll add a bit of integration in before 2.0 stable,
+but for now you can just add the &lt;cite&gt;use-grid()&lt;/cite&gt; mixin
+inside any media-queries to change your&amp;nbsp;grids:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="c1"&gt;// using breakpoint
+&lt;/span&gt;&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; breakpoint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; use-grid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$my-grid&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="cm"&gt;/* Your Code Here */&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/section&gt;
+</content>
+  </entry>
+  <entry xml:base="http://oddbird.net/feed.atom">
+    <title type="text">Isolation and bleed in Susy</title>
+    <id>http://oddbird.net/2013/03/20/isolation-susy</id>
+    <updated>2013-03-20T00:00:00Z</updated>
+    <link href="http://oddbird.net/2013/03/20/isolation-susy" />
+    <author>
+      <name>OddBird</name>
+    </author>
+    <content type="html">&lt;p&gt;A few new features have landed in Susy 1.0.7,
+even as we work on more integrated syntaxes for&amp;nbsp;2.0.&lt;/p&gt;
+&lt;section id="isolation"&gt;
+&lt;h2&gt;Isolation&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://ejohn.org/blog/sub-pixel-problems-in-css/"&gt;Sub-pixel rounding&lt;/a&gt; has always been a problem for fluid design.
+Susy takes care of the most egregious layout-breaking cases,
+but there is no way to entirely eliminate the&amp;nbsp;problem.&lt;/p&gt;
+&lt;p&gt;John Albin Wilkins has a &lt;a class="reference external" href="http://johnalbin.github.com/fluid-grid-rounding-errors/"&gt;demo&lt;/a&gt; of the problem,
+as well as a proposed &lt;a class="reference external" href="http://palantir.net/blog/responsive-design-s-dirty-little-secret"&gt;solution&lt;/a&gt;.
+He hasn&amp;#8217;t eliminated rounding errors,
+he just found a way to keep them from piling up.
+Every float is positioned relative to its container,
+rather than the float before it.
+It&amp;#8217;s a bit of a hack,
+and removes content from the flow,
+so I don&amp;#8217;t recommned building your entire layout on isolated floats,
+but it can be very useful as a spot-check
+when rounding errors are really causing you a&amp;nbsp;headache.&lt;/p&gt;
+&lt;p&gt;(&lt;em&gt;Note that rounding errors can still stack up when you use
+a gradient background for testing.
+Gradient background grids are useful,
+but you should never trust them as a pixel-exact guide.&lt;/em&gt;)&lt;/p&gt;
+&lt;p&gt;Using John&amp;#8217;s method,
+you can now &lt;a class="reference external" href="http://susy.oddbird.net/guides/reference/#ref-helper-isolation"&gt;isolate any grid element in susy&lt;/a&gt;,
+with the simple &lt;code&gt;isolate()&lt;/code&gt; mixin:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nc"&gt;.span&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span-columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;div class="subpixel-demo"&gt;
+  &lt;div class="span"&gt;span 6&lt;/div&gt;
+&lt;/div&gt;&lt;pre class="code scss"&gt;
+&lt;span class="nc"&gt;.isolate&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span-columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; isolate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;div class="subpixel-demo"&gt;
+  &lt;div class="isolate"&gt;span 6 isolate 3&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;When you put several of those together,
+you can see how they have been removed from the&amp;nbsp;flow:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nc"&gt;.first&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span-columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; isolate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="nc"&gt;.second&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span-columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; isolate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="nc"&gt;.third&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span-columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; isolate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;div class="subpixel-demo"&gt;
+  &lt;div class="first"&gt;first&lt;/div&gt;
+  &lt;div class="second"&gt;second&lt;/div&gt;
+  &lt;div class="third"&gt;third&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;The items can overlap, and stack in any order —
+almost as though they are positioned&amp;nbsp;absolutely.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="isolation-grid"&gt;
+&lt;h2&gt;Isolation&amp;nbsp;Grid&lt;/h2&gt;
+&lt;p&gt;Isolation is most useful when
+you are repeating the same grid math again and again,
+such as image-galleries.
+To help with that use-case,
+we&amp;#8217;ve added the &lt;code&gt;isolate-grid()&lt;/code&gt; mixin.
+You just tell us how wide each item should be,
+and we&amp;#8217;ll calculate the locations,
+applying them with nth-child&amp;nbsp;selectors:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nc"&gt;.gallery-item&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; isolate-grid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;div class="subpixel-demo"&gt;
+  &lt;div class="gallery-item"&gt;1&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;2&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;3&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;4&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;5&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;6&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;7&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;8&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;9&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;10&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;11&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;12&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;13&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;14&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;15&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;16&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;17&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;18&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;19&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;20&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;21&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;22&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;23&lt;/div&gt;
+  &lt;div class="gallery-item"&gt;24&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Change the width, and we&amp;#8217;ll update everything for&amp;nbsp;you:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nc"&gt;.gallery-item2&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; isolate-grid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;div class="subpixel-demo"&gt;
+  &lt;div class="gallery-item2"&gt;1&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;2&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;3&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;4&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;5&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;6&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;7&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;8&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;9&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;10&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;11&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;12&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;13&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;14&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;15&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;16&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;17&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;18&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;19&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;20&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;21&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;22&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;23&lt;/div&gt;
+  &lt;div class="gallery-item2"&gt;24&lt;/div&gt;
+&lt;/div&gt;&lt;/section&gt;
+&lt;section id="bleed"&gt;
+&lt;h2&gt;Bleed&lt;/h2&gt;
+&lt;p&gt;Bleed has nothing to do with isolation,
+it just happened to appear in the same update.
+&lt;a class="reference external" href="http://susy.oddbird.net/guides/reference/#ref-bleed"&gt;Bleed&lt;/a&gt; uses negative margins and equal-but-positive padding
+to let an element&amp;#8217;s background &amp;#8220;bleed&amp;#8221; outside
+the area it would normally&amp;nbsp;occupy.&lt;/p&gt;
+&lt;p&gt;Here&amp;#8217;s an element bleeding 1-column outside our 9-column page&amp;nbsp;layout:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nc"&gt;.bleed-demo&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; bleed&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;div class="bleed-demo"&gt;&lt;span&gt;bleed!&lt;/span&gt;&lt;/div&gt;&lt;p&gt;You&amp;#8217;ll notice that the context syntax is a bit different here:
+&lt;code&gt;(1 of 9)&lt;/code&gt; instead of &lt;code&gt;(1,9)&lt;/code&gt;.
+That&amp;#8217;s the direction we&amp;#8217;re heading with Susy 2.0,
+and it&amp;#8217;s very helpful in this case,
+because there&amp;#8217;s another argument we want to access easily.
+Use the second argument to list which sides should do the bleeding
+(defaults to &amp;#8220;left right&amp;#8221;).
+You can also pass arbitrary widths in the first&amp;nbsp;argument:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nc"&gt;.bleed-sides-demo&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; bleed&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="no"&gt;left&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; bleed&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="no"&gt;top&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; bleed&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="kt"&gt;px&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="no"&gt;right&lt;/span&gt; &lt;span class="no"&gt;bottom&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;div class="bleed-sides-demo"&gt;&lt;span&gt;bleed all the sides!&lt;/span&gt;&lt;/div&gt;
+&lt;br /&gt;&lt;p&gt;This can be especially useful to bleed across &lt;code&gt;$grid-padding&lt;/code&gt;.
+Simply &lt;code&gt;bleed($grid-padding)&lt;/code&gt; and you&amp;#8217;re&amp;nbsp;there.&lt;/p&gt;
+&lt;p&gt;Happy&amp;nbsp;coding!&lt;/p&gt;
+&lt;/section&gt;
+</content>
+  </entry>
+  <entry xml:base="http://oddbird.net/feed.atom">
+    <title type="text">Susy Next: The first alpha</title>
+    <id>http://oddbird.net/2013/01/29/susy-next-alpha-1</id>
+    <updated>2013-01-29T00:00:00Z</updated>
+    <link href="http://oddbird.net/2013/01/29/susy-next-alpha-1" />
+    <author>
+      <name>OddBird</name>
+    </author>
+    <content type="html">&lt;p&gt;Last night we released
+the very first &lt;a class="reference external" href="http://rubygems.org/gems/susy/versions/2.0.0.alpha.1"&gt;alpha build&lt;/a&gt; of &lt;a class="reference external" href="/2013/01/01/susy-next/"&gt;Susy&amp;nbsp;Next&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This release is extremely sparse.
+What we have built is a background &amp;#8216;engine&amp;#8217;
+for calculating grid math.
+There are some rough first steps towards api and syntax,
+but they are more &amp;#8220;proof of concept&amp;#8221; experimentation
+than usable&amp;nbsp;interface.&lt;/p&gt;
+&lt;p&gt;There is no documentation,
+no tutorials,
+barely any user-facing activity to speak of.
+You can get some sense of things
+from the &lt;code&gt;test/&lt;/code&gt; directory,
+but even that is&amp;nbsp;un-explained.&lt;/p&gt;
+&lt;p&gt;Feel free to pull it apart,
+hack on it,
+and let us know what you think.
+We still have a long way to go,
+but we&amp;#8217;re very excited about the power and flexability
+this engine has to&amp;nbsp;offer.&lt;/p&gt;
+&lt;p&gt;Check out the &lt;a class="reference external" href="https://github.com/ericam/susy/tree/susy-next"&gt;susy-next branch on&amp;nbsp;GitHub&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  <entry xml:base="http://oddbird.net/feed.atom">
+    <title type="text">Sass Layout in 2013 and the Future of Susy</title>
+    <id>http://oddbird.net/2013/01/01/susy-next</id>
+    <updated>2013-01-01T00:00:00Z</updated>
+    <link href="http://oddbird.net/2013/01/01/susy-next" />
+    <author>
+      <name>OddBird</name>
+    </author>
+    <content type="html">&lt;p&gt;The web is littered with grid systems and &amp;#8216;frameworks&amp;#8217;
+that force your code &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; design into narrowly defined patterns.
+Even the most semantic of us
+have had to push specialized techniques
+in order to create a usable&amp;nbsp;syntax.&lt;/p&gt;
+&lt;p&gt;But Sass has come a long way, and
+I&amp;#8217;m convinced that it&amp;#8217;s time for something&amp;nbsp;new.&lt;/p&gt;
+&lt;p&gt;What if you had a layout system
+that bends completely to the needs of your site?
+What if you could use one unified syntax
+for handling responsive layouts of any kind?
+What if you had a modular system
+that let you mix-and-match to customize for every site,
+and change your output with simple&amp;nbsp;extensions?&lt;/p&gt;
+&lt;section id="susy-next-a-merger"&gt;
+&lt;h2&gt;Susy Next (A&amp;nbsp;Merger)&lt;/h2&gt;
+&lt;p&gt;I&amp;#8217;m excited to announce Susy Next,
+a joint project from the creators of
+&lt;a class="reference external" href="http://singularity.gs/"&gt;Singularity&lt;/a&gt;, &lt;a class="reference external" href="http://tsi.github.com/Salsa/"&gt;Salsa&lt;/a&gt;, &lt;a class="reference external" href="http://breakpoint-sass.com"&gt;Breakpoint&lt;/a&gt;, and &lt;a class="reference external" href="http://susy.oddbird.net/"&gt;Susy&lt;/a&gt;.
+We&amp;#8217;ll be working together to design and build a
+unified layout system under the Susy&amp;nbsp;name.&lt;/p&gt;
+&lt;p&gt;Please welcome the Susy Next&amp;nbsp;team:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://github.com/jina/"&gt;Jina Bolton&lt;/a&gt; [&lt;a class="reference external" href="http://twitter.com/jina"&gt;&amp;#64;jina&lt;/a&gt;]
+is a Product Designer at &lt;a class="reference external" href="http://do.com/"&gt;Do&lt;/a&gt;,
+a regular speaker at web conferences,
+co-creator of the &lt;a class="reference external" href="http://stuffandnonsense.co.uk/projects/320andup/"&gt;320 and Up&lt;/a&gt; responsive design boilerplate,
+curator of &lt;a class="reference external" href="http://artinmycoffee.com/"&gt;Art in My Coffee&lt;/a&gt;,
+and an active part of &lt;a class="reference external" href="http://teamsassdesign.tumblr.com/"&gt;Team Sass&amp;nbsp;Design&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://github.com/scottkellum/"&gt;Scott Kellum&lt;/a&gt; [&lt;a class="reference external" href="http://twitter.com/scottkellum"&gt;&amp;#64;scottkellum&lt;/a&gt;]
+is a designer at &lt;a class="reference external" href="http://voxmedia.com/"&gt;&lt;span class="caps"&gt;VOX&lt;/span&gt; Media&lt;/a&gt;.
+He created &lt;a class="reference external" href="http://singularity.gs/"&gt;Singularity&lt;/a&gt;
+for managing asymmetric grids,
+as well as &lt;a class="reference external" href="http://github.com/scottkellum/sassy-math"&gt;Sassy Math&lt;/a&gt;, &lt;a class="reference external" href="http://github.com/scottkellum/modular-scale"&gt;Modular Scale&lt;/a&gt;, and&amp;nbsp;more.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://github.com/CrowChick/"&gt;Rachel Nabors&lt;/a&gt; [&lt;a class="reference external" href="http://twitter.com/crowchick"&gt;&amp;#64;crowchick&lt;/a&gt;]
+is a front-ender &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; &lt;span class="caps"&gt;UI&lt;/span&gt; lead at &lt;a class="reference external" href="http://ruzuku.com/"&gt;Ruzuku&lt;/a&gt;
+an award-winning comicker,
+developer, Susy contributor, and a regular speaker at web&amp;nbsp;conferences.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://github.com/dannyprose/"&gt;Danny Palmer&lt;/a&gt; [&lt;a class="reference external" href="https://twitter.com/dannyprose/"&gt;&amp;#64;dannyprose&lt;/a&gt;]
+is an interactive creative and cross-media art director.
+He has helped create &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; maintain the Susy docs for the past year.
+He is also the creator of &lt;a class="reference external" href="http://github.com/dannyprose/Middleman-HTML5BP-HAML"&gt;Middleman-&lt;span class="caps"&gt;HTML5BP&lt;/span&gt;-&lt;span class="caps"&gt;HAML&lt;/span&gt;&lt;/a&gt;,
+a project template using &lt;span class="caps"&gt;HTML5&lt;/span&gt; Boilerplate, &lt;span class="caps"&gt;HAML&lt;/span&gt;, Sprockets,
+Susy, and&amp;nbsp;more.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://github.com/snugug/"&gt;Sam Richard&lt;/a&gt; [&lt;a class="reference external" href="http://twitter.com/Snugug"&gt;&amp;#64;snugug&lt;/a&gt;]
+is a Senior Front End Developer for &lt;a class="reference external" href="http://www.nbcuni.com/"&gt;NBCUniversal&lt;/a&gt;,
+an organizer for various Sass &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; &lt;span class="caps"&gt;RWD&lt;/span&gt; meetups in New York City,
+and a co-maintainer of &lt;a class="reference external" href="http://breakpoint-sass.com"&gt;Breakpoint&lt;/a&gt;, &lt;a class="reference external" href="http://github.com/scottkellum/sassy-math"&gt;Sassy Math&lt;/a&gt;, &lt;a class="reference external" href="http://singularity.gs/"&gt;Singularity&lt;/a&gt;,
+and so&amp;nbsp;on.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://github.com/tsi/"&gt;Tsachi Shlidor&lt;/a&gt; [&lt;a class="reference external" href="http://twitter.com/shlidor"&gt;&amp;#64;shlidor&lt;/a&gt;]
+is a Drupalist front-end developer and themer.
+He created the &lt;a class="reference external" href="http://drupal.org/project/sasson"&gt;Sasson&lt;/a&gt; Drupal theme,
+and the &lt;a class="reference external" href="http://tsi.github.com/Salsa/"&gt;Salsa&lt;/a&gt; layout&amp;nbsp;system.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://github.com/canarymason/"&gt;Mason Wendell&lt;/a&gt; [&lt;a class="reference external" href="http://twitter.com/codingdesigner"&gt;&amp;#64;codingdesigner&lt;/a&gt;]
+is a Creative Director at &lt;a class="reference external" href="http://zivtech.com"&gt;Zivtech&lt;/a&gt;,
+the creator of &lt;a class="reference external" href="http://breakpoint-sass.com"&gt;Breakpoint&lt;/a&gt;
+(simple sass media queries),
+and a contributor to various other great projects.
+He also built &amp;#8220;one of the dumbest Sass experiments&amp;#8221; —
+&lt;a class="reference external" href="http://sassymothereffingtextshadow.com"&gt;sassymothereffingtextshadow&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;All of us are passionate designer/developers,
+with a love for Sass &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; &lt;span class="caps"&gt;CSS&lt;/span&gt;.
+We&amp;#8217;re excited to build a layout syntax that spans
+existing frameworks, techniques, and systems.
+We hope you&amp;#8217;ll get involved, and help make it a community project.
+Stay&amp;nbsp;tuned!&lt;/p&gt;
+&lt;/section&gt;
+</content>
+  </entry>
+  <entry xml:base="http://oddbird.net/feed.atom">
+    <title type="text">Off-canvas layout with Susy</title>
+    <id>http://oddbird.net/2012/11/27/susy-off-canvas</id>
+    <updated>2012-11-27T00:00:00Z</updated>
+    <link href="http://oddbird.net/2012/11/27/susy-off-canvas" />
+    <author>
+      <name>OddBird</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;strong&gt;&lt;span class="caps"&gt;UPDATE&lt;/span&gt;&lt;/strong&gt;:
+&lt;em&gt;I fixed a bug with show-left failing on small screens.
+The main area was dropping below the left sidebar,
+as floats sometimes do.
+The fix is actually simpler than the original code:
+just set and leave a 100% negative right-margin
+on the main area,
+removing all state changes to that&amp;nbsp;margin.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;a class="reference external" href="http://jasonweaver.name/lab/offcanvas/"&gt;off-canvas&lt;/a&gt; layout pattern
+for responsive websites
+has been getting all the attention lately,
+and I&amp;#8217;ve had several people ask
+how &lt;a class="reference external" href="http://susy.oddbird.net/"&gt;Susy&lt;/a&gt; might play&amp;nbsp;along.&lt;/p&gt;
+&lt;p&gt;The truth is,
+Susy handles off-canvas layout the same
+as any other layout.
+All you need to do
+is pull some of your columns off the screen.
+I&amp;#8217;ll show you how,
+following Jason&amp;#8217;s lead,
+and adding in the Susy&amp;nbsp;bits.&lt;/p&gt;
+&lt;p&gt;Check out the &lt;a class="reference external" href="/demos/susy-off-canvas/"&gt;demo&lt;/a&gt;,
+and make sure you understand
+&lt;a class="reference external" href="http://jasonweaver.name/lab/offcanvas/"&gt;off-canvas&lt;/a&gt; layouts
+before you go&amp;nbsp;on.&lt;/p&gt;
+&lt;p&gt;I&amp;#8217;ve used a few shortcuts
+that require the &lt;a class="reference external" href="http://rubygems.org/gems/susy"&gt;latest Susy release&lt;/a&gt;
+(1.0.5),
+but the concepts remain true
+in older versions as&amp;nbsp;well.&lt;/p&gt;
+&lt;section id="basic-markup"&gt;
+&lt;h2&gt;Basic&amp;nbsp;Markup:&lt;/h2&gt;
+&lt;pre class="code html"&gt;
+&lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;container&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;header&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#left&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;toggle&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;show-left&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;#right&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;toggle&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;show-right&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+    header
+  &lt;span class="nt"&gt;&amp;lt;/header&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;left&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;left&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;left&lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;main&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;main&lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;right&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;right&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;right&lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;footer&amp;gt;&lt;/span&gt;footer&lt;span class="nt"&gt;&amp;lt;/footer&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;We have a simple container
+with header, footer,
+and three body columns:
+left, right, and main.
+Inside the header
+we have links we can hijack in JavaScript
+to toggle state&amp;nbsp;body-classes.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="susy-settings"&gt;
+&lt;h2&gt;Susy&amp;nbsp;Settings:&lt;/h2&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nv"&gt;$total-columns&lt;/span&gt;&lt;span class="o"&gt;    :&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$column-width&lt;/span&gt;&lt;span class="o"&gt;     :&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$gutter-width&lt;/span&gt;&lt;span class="o"&gt;     :&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$grid-padding&lt;/span&gt;&lt;span class="o"&gt;     :&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="kt"&gt;em&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Since this is a mobile-first design pattern,
+we&amp;#8217;ll start with settings for a
+typical mobile-first Susy grid.
+You can change those any way you&amp;nbsp;like.&lt;/p&gt;
+&lt;p&gt;I&amp;#8217;m also going to establish my
+medium and large column settings right&amp;nbsp;away:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nv"&gt;$medium-columns&lt;/span&gt;&lt;span class="o"&gt;   :&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$large-columns&lt;/span&gt;&lt;span class="o"&gt;    :&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;And I&amp;#8217;ll set Susy&amp;#8217;s
+&lt;code&gt;$container-width&lt;/code&gt;
+override to the largest layout width,
+so the container is fluid up to that&amp;nbsp;point:&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nv"&gt;$container-width&lt;/span&gt;&lt;span class="o"&gt;  :&lt;/span&gt; &lt;span class="nf"&gt;container-outer-width&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$large-columns&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;/section&gt;
+&lt;section id="establish-the-container"&gt;
+&lt;h2&gt;Establish the&amp;nbsp;Container:&lt;/h2&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nc"&gt;.container&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; container&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="na"&gt;overflow&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="no"&gt;hidden&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Besides establishing the usual Susy container,
+I also set &lt;code&gt;overflow&lt;/code&gt; to &lt;code&gt;hidden&lt;/code&gt;
+so that our off-canvas elements
+don&amp;#8217;t trigger a horizontal&amp;nbsp;scrollbar.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="small-layout"&gt;
+&lt;h2&gt;Small&amp;nbsp;Layout:&lt;/h2&gt;
+&lt;p&gt;For our smallest layout
+the &lt;code&gt;.main&lt;/code&gt; section is visible at all times,
+full-width by default
+or pushed to one side to make room
+for the &lt;code&gt;.left&lt;/code&gt; or &lt;code&gt;.right&lt;/code&gt;
+sections to&amp;nbsp;appear.&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nv"&gt;$anchor&lt;/span&gt;&lt;span class="o"&gt; :&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$side&lt;/span&gt;&lt;span class="o"&gt;   :&lt;/span&gt; &lt;span class="nv"&gt;$total-columns&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nv"&gt;$anchor&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;I&amp;#8217;ve created an &lt;code&gt;$anchor&lt;/code&gt; variable
+to control how many columns of the main section
+remain visible while side-sections are displayed.
+The &lt;code&gt;$side&lt;/code&gt; width of our left &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; right sections
+is based on the remaining&amp;nbsp;space.&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nc"&gt;.left&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span-columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$side&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="na"&gt;margin-left&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;-100&lt;/span&gt;&lt;span class="kt"&gt;%&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="nc"&gt;.show-left&lt;/span&gt; &lt;span class="k"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;margin-left&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="err"&gt; &lt;/span&gt;&lt;span class="na"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="nc"&gt;.main&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span-columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$total-columns&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="na"&gt;margin-right&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;-100&lt;/span&gt;&lt;span class="kt"&gt;%&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="nc"&gt;.show-right&lt;/span&gt; &lt;span class="k"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;margin-left&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nf"&gt;space&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$side&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="err"&gt; &lt;/span&gt;&lt;span class="na"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="nc"&gt;.right&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span-columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$side&lt;/span&gt; &lt;span class="n"&gt;omega&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="na"&gt;margin-right&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;-100&lt;/span&gt;&lt;span class="kt"&gt;%&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="nc"&gt;.show-right&lt;/span&gt; &lt;span class="k"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;margin-right&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="err"&gt; &lt;/span&gt;&lt;span class="na"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;span-column&lt;/code&gt; mixins establish our spacing,
+just like any other Susy site.
+The main difference here is that our total columns-spanned
+is much larger than the number of columns available.
+A few &lt;code&gt;margin&lt;/code&gt; adjustments,
+and we&amp;#8217;ve pulled the left and right sections off the canvas.
+I also removed the &lt;code&gt;margin-right&lt;/code&gt; gutter
+on our main column, since it spans the full&amp;nbsp;width.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;.show-left&lt;/code&gt; and &lt;code&gt;.show-right&lt;/code&gt;
+selectors allow us to move everything around
+when we want to show and hide the sidebars.
+The &lt;code&gt;space()&lt;/code&gt; function is used to push
+our main section only as far as it needs to go:
+&lt;code&gt;space()&lt;/code&gt; represents the space taken by
+a given number of &lt;code&gt;columns()&lt;/code&gt;
+with the final &lt;code&gt;gutter()&lt;/code&gt; included.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="medium-layout"&gt;
+&lt;h2&gt;Medium&amp;nbsp;Layout:&lt;/h2&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nv"&gt;$main&lt;/span&gt;&lt;span class="o"&gt; :&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$side&lt;/span&gt;&lt;span class="o"&gt; :&lt;/span&gt; &lt;span class="nv"&gt;$medium-columns&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nv"&gt;$main&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;These variables simply establish
+the widths we will use for our columns.
+You could, of course,
+set different right and left widths.
+I&amp;#8217;ll leave that as an exercise for the&amp;nbsp;reader.&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; at-breakpoint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$medium-columns&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="nt"&gt;href&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;#left&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;visibility&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="no"&gt;hidden&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="err"&gt; &lt;/span&gt;&lt;span class="na"&gt;}&lt;/span&gt;
+
+  &lt;span class="nc"&gt;.left&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span-columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$side&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="na"&gt;margin-left&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="nc"&gt;.show-right&lt;/span&gt; &lt;span class="k"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;margin-left&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="kt"&gt;%&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="err"&gt; &lt;/span&gt;&lt;span class="na"&gt;}&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="nc"&gt;.main&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="na"&gt;width&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nf"&gt;columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$main&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nc"&gt;.show-right&lt;/span&gt; &lt;span class="k"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;margin-left&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="err"&gt; &lt;/span&gt;&lt;span class="na"&gt;}&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="nc"&gt;.right&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="na"&gt;width&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nf"&gt;columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$side&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nc"&gt;.show-right&lt;/span&gt; &lt;span class="k"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;margin-right&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="err"&gt; &lt;/span&gt;&lt;span class="na"&gt;}&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;At our medium breakpoint,
+we change the styles to show both the
+left and main sections by default.
+I used &lt;code&gt;width: columns()&lt;/code&gt;
+instead of &lt;code&gt;span-columns&lt;/code&gt;
+on the main &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; right sections
+because only the width actually needs to change,
+while our left column needs the gutter adjusted as&amp;nbsp;well.&lt;/p&gt;
+&lt;p&gt;We also hide the left toggle
+( &lt;code&gt;[href=&amp;quot;#left&amp;quot;]&lt;/code&gt; )
+as it is no longer&amp;nbsp;needed.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="large-layout"&gt;
+&lt;h2&gt;Large&amp;nbsp;Layout:&lt;/h2&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="nv"&gt;$main&lt;/span&gt;&lt;span class="o"&gt; :&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;$side&lt;/span&gt;&lt;span class="o"&gt; :&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$large-columns&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nv"&gt;$main&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Nothing new here; we&amp;#8217;re just dividing up the space
+into variables we can&amp;nbsp;use.&lt;/p&gt;
+&lt;pre class="code scss"&gt;
+&lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; at-breakpoint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$large-columns&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="nt"&gt;href&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;#right&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;visibility&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="no"&gt;hidden&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="err"&gt; &lt;/span&gt;&lt;span class="na"&gt;}&lt;/span&gt;
+
+  &lt;span class="nc"&gt;.left&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span-columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$side&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nc"&gt;.show-right&lt;/span&gt; &lt;span class="k"&gt;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;margin-left&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="err"&gt; &lt;/span&gt;&lt;span class="na"&gt;}&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="nc"&gt;.main&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="na"&gt;width&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nf"&gt;columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$main&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+
+  &lt;span class="nc"&gt;.right&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;&amp;#64;include&lt;/span&gt;&lt;span class="nd"&gt; span-columns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$side&lt;/span&gt; &lt;span class="n"&gt;omega&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;At our largest breakpoint
+we are simply overriding everything
+to get ourselves back to a normal layout.
+No more off-canvas malarkey here.
+Hide the other toggle-link,
+make sure everything stays put
+even if we have leftover classes,
+and you&amp;#8217;re&amp;nbsp;done.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id="final-tweaks"&gt;
+&lt;h2&gt;Final&amp;nbsp;Tweaks&lt;/h2&gt;
+&lt;p&gt;I&amp;#8217;ve added a number of styles
+to make it obvious what&amp;#8217;s going on
+and highlight the transitions
+in our &lt;a class="reference external" href="/demos/susy-off-canvas/"&gt;demo&lt;/a&gt;.
+You also need a bit of &lt;span class="caps"&gt;JS&lt;/span&gt;
+to make the toggles work,
+but this is all you need for the Susy&amp;nbsp;setup.&lt;/p&gt;
+&lt;p&gt;Play around with all the numbers;
+it&amp;#8217;s amazingly flexible.
+It works the same as any other Susy grid:
+any reasonable settings should&amp;nbsp;work.&lt;/p&gt;
+&lt;p&gt;Feel free to peruse the full &lt;a class="reference external" href="https://github.com/oddbird/oddsite/blob/master/sass/pages/susy-off-canvas.scss"&gt;sass&lt;/a&gt;
+and &lt;a class="reference external" href="https://github.com/oddbird/oddsite/blob/master/content/static/js/pages/susy-off-canvas.js"&gt;js&lt;/a&gt; source at your&amp;nbsp;leisure.&lt;/p&gt;
+&lt;/section&gt;
+</content>
+  </entry>
+</feed>
+
