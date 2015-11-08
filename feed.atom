@@ -585,10 +585,10 @@ and we&amp;#8217;re lucky to have them working with&amp;nbsp;us.&lt;/li&gt;
 &lt;li&gt;We had a great time working on &lt;a class="reference external" href="https://www.portfoliyo.org/"&gt;Portfoliyo&lt;/a&gt; with &lt;a class="reference external" href="https://www.theknetwork.org/"&gt;The K Network&lt;/a&gt;
 and collaborating on a new ed-tech project with &lt;a class="reference external" href="http://junyo.com/"&gt;Junyo&lt;/a&gt;.
 We like solving problems that&amp;nbsp;matter.&lt;/li&gt;
-&lt;li&gt;We&amp;#8217;re slowly developing Eric&amp;#8217;s &lt;a class="reference external" href="http://www.greengreenmud.com/"&gt;novel&lt;/a&gt;
+&lt;li&gt;We&amp;#8217;re slowly developing Miriam&amp;#8217;s &lt;a class="reference external" href="http://www.greengreenmud.com/"&gt;novel&lt;/a&gt;
 (which has gotten some &lt;a class="reference external" href="http://iloveepoetry.com/?p=2571"&gt;rave previews&lt;/a&gt;),
 and working on a (still pre-alpha) collaborative authoring&amp;nbsp;tool.&lt;/li&gt;
-&lt;li&gt;Eric &lt;a class="reference external" href="http://eric.andmeyer.com/pres/"&gt;spoke&lt;/a&gt; at &lt;a class="reference external" href="http://sassconf.com/"&gt;SassConf&lt;/a&gt;, the &lt;a class="reference external" href="http://www.meetup.com/nyc-sass/"&gt;New York Sass &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; Compass Meetup&lt;/a&gt;,
+&lt;li&gt;Miriam &lt;a class="reference external" href="http://miriamsuzanne.com/pres/"&gt;spoke&lt;/a&gt; at &lt;a class="reference external" href="http://sassconf.com/"&gt;SassConf&lt;/a&gt;, the &lt;a class="reference external" href="http://www.meetup.com/nyc-sass/"&gt;New York Sass &lt;span class="amp"&gt;&amp;amp;&lt;/span&gt; Compass Meetup&lt;/a&gt;,
 and the &lt;a class="reference external" href="http://www.brakhagecenter.net/"&gt;Brakhage Center for the Media Arts&lt;/a&gt;.
 He&amp;#8217;ll appear again in 2014 at &lt;a class="reference external" href="https://twitter.com/theMixinSF"&gt;The Mixin&lt;/a&gt;
 and others &lt;span class="caps"&gt;TBA&lt;/span&gt;.
@@ -823,7 +823,7 @@ read the &lt;a class="reference external" href="/2013/05/03/susy-next-alpha-2/"&
 to get a sense of the new syntax and&amp;nbsp;approach.&lt;/p&gt;
 &lt;p&gt;In addition to the new features,
 we&amp;#8217;ve added comprehensive unit test tests
-using &lt;a class="reference external" href="http://eric.andmeyer.com/true/"&gt;True&lt;/a&gt;,
+using &lt;a class="reference external" href="http://miriamsuzanne.com/true/"&gt;True&lt;/a&gt;,
 which we built for the occasion.
 We also have a set of complex nesting tests
 that show how things work in practice.
