@@ -190,7 +190,7 @@ and &lt;code&gt;wider&lt;/code&gt; adds two&amp;nbsp;gutters.&lt;/li&gt;
 working hard to get the last pieces in place
 and give it a coat of polish before it lands.
 Any help or feedback is appreciated,
-just file an issue on &lt;a class="reference external" href="https://github.com/ericam/susy/issues?milestone=4&amp;amp;state=open"&gt;GitHub&lt;/a&gt;, and we&amp;#8217;ll&amp;nbsp;talk.&lt;/p&gt;
+just file an issue on &lt;a class="reference external" href="https://github.com/oddbird/susy/issues?milestone=4&amp;amp;state=open"&gt;GitHub&lt;/a&gt;, and we&amp;#8217;ll&amp;nbsp;talk.&lt;/p&gt;
 &lt;/section&gt;
 </content>
   </entry>
@@ -235,7 +235,7 @@ but let me run through some of the changes
 and new features in &lt;a class="reference external" href="http://rubygems.org/gems/susy/versions/2.0.0.alpha.4"&gt;Susy Next alpha 4&lt;/a&gt; —
 as well as alpha 3, which never got a blog post.
 You can see the full list of changes
-in the &lt;a class="reference external" href="https://github.com/ericam/susy/blob/susy-next/CHANGELOG-NEXT.md"&gt;Susy Next Changelog&lt;/a&gt;,
+in the &lt;a class="reference external" href="https://github.com/oddbird/susy/blob/susy-next/CHANGELOG-NEXT.md"&gt;Susy Next Changelog&lt;/a&gt;,
 and we&amp;#8217;ll work on examples as we start writing&amp;nbsp;docs.&lt;/p&gt;
 &lt;p&gt;If you haven&amp;#8217;t already started using a Susy Next alpha,
 read the &lt;a class="reference external" href="/2013/05/03/susy-next-alpha-2/"&gt;alpha 2&lt;/a&gt; introduction first
@@ -247,7 +247,7 @@ which we built for the occasion.
 We also have a set of complex nesting tests
 that show how things work in practice.
 Right now,
-the &lt;a class="reference external" href="https://github.com/ericam/susy/blob/susy-next/test/"&gt;test folder&lt;/a&gt;
+the &lt;a class="reference external" href="https://github.com/oddbird/susy/blob/susy-next/test/"&gt;test folder&lt;/a&gt;
 provides the best documentation —
 with &lt;code&gt;index.html&lt;/code&gt; showing the True results
 and &lt;code&gt;ag.html&lt;/code&gt; showing several standard grid-types.
@@ -273,7 +273,7 @@ when using split or inside&amp;nbsp;gutters.&lt;/li&gt;
 &lt;code&gt;prefix&lt;/code&gt;, &lt;code&gt;suffix&lt;/code&gt;, &lt;code&gt;pad&lt;/code&gt;,
 &lt;code&gt;pre&lt;/code&gt;, &lt;code&gt;post&lt;/code&gt;, &lt;code&gt;push&lt;/code&gt;, &lt;code&gt;pull&lt;/code&gt;, and &lt;code&gt;squish&lt;/code&gt;.
 They work pretty much the way you expect them to,
-although there&amp;#8217;s a &lt;a class="reference external" href="https://github.com/ericam/susy/issues/204"&gt;small issue&lt;/a&gt;
+although there&amp;#8217;s a &lt;a class="reference external" href="https://github.com/oddbird/susy/issues/204"&gt;small issue&lt;/a&gt;
 we&amp;#8217;ll be fixing in the next release (alpha&amp;nbsp;5).&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Backwards Incompatible&amp;nbsp;Changes:&lt;/strong&gt;&lt;/p&gt;
@@ -694,7 +694,7 @@ and let us know what you think.
 We still have a long way to go,
 but we&amp;#8217;re very excited about the power and flexability
 this engine has to&amp;nbsp;offer.&lt;/p&gt;
-&lt;p&gt;Check out the &lt;a class="reference external" href="https://github.com/ericam/susy/tree/susy-next"&gt;susy-next branch on&amp;nbsp;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Check out the &lt;a class="reference external" href="https://github.com/oddbird/susy/tree/susy-next"&gt;susy-next branch on&amp;nbsp;GitHub&lt;/a&gt;.&lt;/p&gt;
 </content>
   </entry>
   <entry xml:base="http://oddbird.net/feed.atom">
