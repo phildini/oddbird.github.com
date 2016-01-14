@@ -567,7 +567,7 @@ html {
   background-image: url('../images/jonny.png?1409961749');
 }
 .bird.miriam {
-  background-image: url('../images/miriam.png?1409961749');
+  background-image: url('../images/miriam.png?1452755304');
 }
 .bird.claudina {
   background-image: url('../images/claudina.png?1409961749');
@@ -612,7 +612,7 @@ html {
   }
 }
 .company [bio-link='birds'] {
-  background: url('../images/birds.png?1409961749') no-repeat scroll center;
+  background: url('../images/birds.png?1452755330') no-repeat scroll center;
   -moz-background-size: 100% auto;
   -o-background-size: 100% auto;
   -webkit-background-size: 100% auto;
