@@ -151,67 +151,67 @@ a:hover, a:focus, a:active {
 
 @font-face {
   font-family: "BaskervilleFS";
-  src: url('../fonts/serif/baskerville-regular-webfont.woff?1410186797') format("woff"), url('../fonts/serif/baskerville-regular-webfont.ttf?1410186797') format("truetype");
+  src: url('../fonts/serif/baskerville-regular-webfont.woff?1418433548') format("woff"), url('../fonts/serif/baskerville-regular-webfont.ttf?1418433548') format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "BaskervilleFS";
-  src: url('../fonts/serif/baskerville-italic-webfont.woff?1410186797') format("woff"), url('../fonts/serif/baskerville-italic-webfont.ttf?1410186797') format("truetype");
+  src: url('../fonts/serif/baskerville-italic-webfont.woff?1418433548') format("woff"), url('../fonts/serif/baskerville-italic-webfont.ttf?1418433548') format("truetype");
   font-weight: normal;
   font-style: italic;
 }
 @font-face {
   font-family: "BaskervilleFS";
-  src: url('../fonts/serif/baskerville-bold-webfont.woff?1410186797') format("woff"), url('../fonts/serif/baskerville-bold-webfont.ttf?1410186797') format("truetype");
+  src: url('../fonts/serif/baskerville-bold-webfont.woff?1418433548') format("woff"), url('../fonts/serif/baskerville-bold-webfont.ttf?1418433548') format("truetype");
   font-weight: bold;
   font-style: normal;
 }
 @font-face {
   font-family: "BaskervilleFS";
-  src: url('../fonts/serif/baskerville-bolditalic-webfont.woff?1410186797') format("woff"), url('../fonts/serif/baskerville-bolditalic-webfont.ttf?1410186797') format("truetype");
+  src: url('../fonts/serif/baskerville-bolditalic-webfont.woff?1418433548') format("woff"), url('../fonts/serif/baskerville-bolditalic-webfont.ttf?1418433548') format("truetype");
   font-weight: bold;
   font-style: italic;
 }
 @font-face {
   font-family: "SourceSansPro";
-  src: url('../fonts/sans/sourcesanspro-regular-webfont.woff?1410186797') format("woff"), url('../fonts/sans/sourcesanspro-regular-webfont.ttf?1410186797') format("truetype");
+  src: url('../fonts/sans/sourcesanspro-regular-webfont.woff?1418433548') format("woff"), url('../fonts/sans/sourcesanspro-regular-webfont.ttf?1418433548') format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "SourceSansPro";
-  src: url('../fonts/sans/sourcesanspro-italic-webfont.woff?1410186797') format("woff"), url('../fonts/sans/sourcesanspro-italic-webfont.ttf?1410186797') format("truetype");
+  src: url('../fonts/sans/sourcesanspro-italic-webfont.woff?1418433548') format("woff"), url('../fonts/sans/sourcesanspro-italic-webfont.ttf?1418433548') format("truetype");
   font-weight: normal;
   font-style: italic;
 }
 @font-face {
   font-family: "SourceSansPro";
-  src: url('../fonts/sans/sourcesanspro-bold-webfont.woff?1410186797') format("woff"), url('../fonts/sans/sourcesanspro-bold-webfont.ttf?1410186797') format("truetype");
+  src: url('../fonts/sans/sourcesanspro-bold-webfont.woff?1418433548') format("woff"), url('../fonts/sans/sourcesanspro-bold-webfont.ttf?1418433548') format("truetype");
   font-weight: bold;
   font-style: normal;
 }
 @font-face {
   font-family: "SourceSansPro";
-  src: url('../fonts/sans/sourcesanspro-bolditalic-webfont.woff?1410186797') format("woff"), url('../fonts/sans/sourcesanspro-bolditalic-webfont.ttf?1410186797') format("truetype");
+  src: url('../fonts/sans/sourcesanspro-bolditalic-webfont.woff?1418433548') format("woff"), url('../fonts/sans/sourcesanspro-bolditalic-webfont.ttf?1418433548') format("truetype");
   font-weight: bold;
   font-style: italic;
 }
 @font-face {
   font-family: "SourceCodePro";
-  src: url('../fonts/code/sourcecodepro-regular-webfont.woff?1410186797') format("woff"), url('../fonts/code/sourcecodepro-regular-webfont.ttf?1410186797') format("truetype");
+  src: url('../fonts/code/sourcecodepro-regular-webfont.woff?1418433548') format("woff"), url('../fonts/code/sourcecodepro-regular-webfont.ttf?1418433548') format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "SourceCodePro";
-  src: url('../fonts/code/sourcecodepro-bold-webfont.woff?1410186797') format("woff"), url('../fonts/code/sourcecodepro-bold-webfont.ttf?1410186797') format("truetype");
+  src: url('../fonts/code/sourcecodepro-bold-webfont.woff?1418433548') format("woff"), url('../fonts/code/sourcecodepro-bold-webfont.ttf?1418433548') format("truetype");
   font-weight: bold;
   font-style: normal;
 }
 @font-face {
   font-family: "oddsite";
-  src: url('../fonts/icons/oddsite.woff?1410186797') format("woff"), url('../fonts/icons/oddsite.ttf?1410186797') format("truetype");
+  src: url('../fonts/icons/oddsite.woff?1418433550') format("woff"), url('../fonts/icons/oddsite.ttf?1418433550') format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -561,19 +561,19 @@ html {
   }
 }
 .bird.carl {
-  background-image: url('../images/carl.png?1410186797');
+  background-image: url('../images/carl.png?1418433194');
 }
 .bird.jonny {
-  background-image: url('../images/jonny.png?1410186797');
+  background-image: url('../images/jonny.png?1418433194');
 }
 .bird.miriam {
-  background-image: url('../images/miriam.png?1456523000');
+  background-image: url('../images/miriam.png?1456505797');
 }
 .bird.claudina {
-  background-image: url('../images/claudina.png?1410186797');
+  background-image: url('../images/claudina.png?1418433194');
 }
 .bird.sondra {
-  background-image: url('../images/sondra.png?1410186797');
+  background-image: url('../images/sondra.png?1418433194');
 }
 .bird .bio {
   margin-bottom: 0.61905rem;
@@ -612,7 +612,7 @@ html {
   }
 }
 .company [bio-link='birds'] {
-  background: url('../images/birds.png?1456523000') no-repeat scroll center;
+  background: url('../images/birds.png?1456505797') no-repeat scroll center;
   -moz-background-size: 100% auto;
   -o-background-size: 100% auto;
   -webkit-background-size: 100% auto;
